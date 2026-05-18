@@ -1,22 +1,22 @@
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
 
-const SuggestedPeopleCard = function () {
+const ViewedPeopleCard = function () {
   // prova di map
-  const people = [
+  const viewedPeople = [
     {
-      name: "Snoopy",
-      role: "Senior Nap Engineer",
+      name: "Lucy van Pelt",
+      role: "Senior Psychiatric Booth Consultant",
     },
 
     {
-      name: "Woodstock",
-      role: "Junior Flying Consultant",
+      name: "Linus van Pelt",
+      role: "Security Specialist",
     },
-    {
-      name: "Charlie Brown",
 
-      role: "Professional Overthinker",
+    {
+      name: "Schroeder",
+      role: "Classical Music Enthusiast",
     },
   ]
 
@@ -26,11 +26,10 @@ const SuggestedPeopleCard = function () {
     <>
       <div className="sidebar-card">
         <div className="sidebar-card-content">
-          <h5>Persone che potresti conoscere</h5>
-          <p>Del tuo settore</p>
+          <h5>Altri profili consultati</h5>
 
-          {/* suggested people map start */}
-          {people.map((person) => (
+          {/* viewed people map start */}
+          {viewedPeople.map((person) => (
             <div className="sidebar-item">
               <img
                 className="round-avatar"
@@ -43,24 +42,25 @@ const SuggestedPeopleCard = function () {
 
                 <p>{person.role}</p>
 
-                <button>+ Collegati</button>
+                <button>Visualizza</button>
               </div>
             </div>
           ))}
-          {/* suggested people map end */}
+          {/* viewed people map end */}
         </div>
 
         <div className="show-all" onClick={() => setShow(true)}>
           Mostra tutto →
         </div>
       </div>
+
       <Modal show={show} onHide={() => setShow(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Persone che potresti conoscere</Modal.Title>
+          <Modal.Title>Altri profili consultati</Modal.Title>
         </Modal.Header>
 
         <Modal.Body>
-          {people.map((person) => (
+          {viewedPeople.map((person) => (
             <div className="sidebar-item">
               <img
                 className="round-avatar"
@@ -73,7 +73,7 @@ const SuggestedPeopleCard = function () {
 
                 <p>{person.role}</p>
 
-                <button>+ Collegati</button>
+                <button>Visualizza</button>
               </div>
             </div>
           ))}
@@ -83,4 +83,4 @@ const SuggestedPeopleCard = function () {
   )
 }
 
-export default SuggestedPeopleCard
+export default ViewedPeopleCard

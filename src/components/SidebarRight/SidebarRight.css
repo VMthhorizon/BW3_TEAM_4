@@ -60,7 +60,7 @@
 }
 
 /* bottoni */
-.sidebar-card button {
+.sidebar-card button, .sidebar-content button {
   width: fit-content;
   border-radius: 20px;
   padding: 5px 12px;
@@ -69,9 +69,9 @@
   transition: 0.2s;
 }
 
-.sidebar-card button:hover {
+.sidebar-card button:hover, .sidebar-content button:hover {
   background-color: #f3f3f3;
-  border: 2px solid #444;
+  border: 1.5px solid #444;
 }
 
 
