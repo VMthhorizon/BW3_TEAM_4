@@ -7,7 +7,7 @@ import {
   CaretDownFill,
 } from "react-bootstrap-icons";
 
-const MyFooter = () => {
+const Chatbox = () => {
   return (
     <footer
       className="py-5 bg-light text-secondary w-100"
@@ -263,4 +263,4 @@ const MyFooter = () => {
   );
 };
 
-export default MyFooter;
+export default Chatbox;
