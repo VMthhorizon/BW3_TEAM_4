@@ -16,8 +16,9 @@ function ProfilePersonalInfo() {
           />
           <Pencil className="m-3 bg-white border border-1 border-black rounded-circle position-absolute fs-1 top-0 end-0 "></Pencil>
           <img
-            className="bottom-0 m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
+            className="m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
             style={{
+              bottom: "-60px",
               position: "absolute",
               width: "100px",
               height: "100px",
