@@ -9,7 +9,9 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../redux/actions/profiloPersonal";
 
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill" },
@@ -20,11 +22,21 @@ const buttons = [
 ];
 
 const NavbarLinkedin = function () {
+  const profilo = useSelector((storeRedux) => {
+    return storeRedux.profile.me;
+  });
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProfilePersonaleAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [activeBtn, setActiveBtn] = useState("home");
   const profileDropdown = (
     <div className="d-flex flex-column align-items-center">
       <img
-        src="https://placecats.com/50/50"
+        src={profilo.image}
         className="rounded-circle profile-img-nav"
         alt="Profilo"
       />
@@ -32,6 +44,25 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Tu</span>
       </div>
     </div>
+  );
+  const profile = (
+    <Container fluid>
+      <Row>
+        <Col xs={2}>
+          <img
+            src={profilo.image}
+            style={{ width: "40px", height: "40px" }}
+            alt="profilo"
+          />
+        </Col>
+        <Col xs={10} className="d-flex flex-column">
+          <h5>
+            {profilo.name}
+            {profilo.surname}
+          </h5>
+        </Col>
+      </Row>
+    </Container>
   );
   const perleaziendeDropdown = (
     <div className="d-flex flex-column align-items-center">
@@ -44,6 +75,7 @@ const NavbarLinkedin = function () {
       </div>
     </div>
   );
+
   return (
     <Container>
       <Row>
@@ -89,7 +121,9 @@ const NavbarLinkedin = function () {
                     title={profileDropdown}
                     className="profile-dropdown me-4"
                   >
-                    <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
+                    <NavDropdown.Item href="#action/3.1">
+                      {profile}
+                    </NavDropdown.Item>
                   </NavDropdown>
                   <NavDropdown
                     title={perleaziendeDropdown}
