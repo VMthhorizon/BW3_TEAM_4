@@ -115,3 +115,29 @@ color: #666666 !important;
   white-space: nowrap;
   max-width: 120px; 
 }
+.profile-dropdown .dropdown-menu {
+  padding: 0 !important;
+  min-width: 300px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+.btn-verify-custom, .btn-profile-custom {
+   height: 3.5em;
+   border-color: #0a66c2 !important;
+  color: #0a66c2 !important;
+}
+.btn-verify-custom:hover, .btn-profile-custom:hover {
+  background-color: #2b76c188 !important;
+  border: 2px solid blue;
+}
+.premium-mini-cube {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: linear-gradient(135deg, #dca642 50%, #c38324 50%);
+  flex-shrink: 0;
+}
+.menu-section h6 {
+  margin-top: 8px;
+  margin-bottom: 4px;
+}
