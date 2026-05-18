@@ -1,11 +1,14 @@
+import { Provider } from "react-redux";
 import "./App.css";
-import MyFooter from "./components/MyFooter";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import store from "./redux/store";
+import NavabarLinkedin from "./components/NavabarLinkedin";
 
 function App() {
   return (
-    <>
-      <MyFooter />
-    </>
+    <Provider store={store}>
+      <NavabarLinkedin />
+    </Provider>
   );
 }
 
