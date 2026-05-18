@@ -6,14 +6,12 @@ import NavabarLinkedin from "./components/NavabarLinkedin"
 import SideBarSxPaginaHome from "./components/pagina home/SidebarSxPaginaHome"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import ProfilePage from "./components/pages/ProfilePage"
-import SidebarRight from "./components/SidebarRight/SidebarRight"
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
         <NavabarLinkedin />
-        <SidebarRight/>
         <Routes>
           <Route path="/" element={<SideBarSxPaginaHome />} />
           <Route path="/me" element={<ProfilePage />} />
