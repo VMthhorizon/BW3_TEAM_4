@@ -1,6 +1,6 @@
 export const GET_PROFILE_ALL = "GET_PROFILE_ALL"
 
-// FETCH PROFILO SPECFICO TRAMITE ID
+// FETCH PER TUTTI I PROFILI
 const getProfileAllListAction = () => {
   return (dispatch) => {
     fetch(`https://striveschool-api.herokuapp.com/api/profile`, {
