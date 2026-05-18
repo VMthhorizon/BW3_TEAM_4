@@ -38,15 +38,16 @@ function ProfilePersonalInfo() {
                 Vincenzo Mola
               </Card.Title>
               <Button
-                variant="outline-primary gap-1"
-                className="p-1 d-flex align-items-center rounded-4 justify-content-center"
+                variant="outline-primary"
+                className="p-1 d-flex align-items-center rounded-4 justify-content-center flex-nowrap gap-1"
                 style={{
                   borderColor: "blue",
                   borderWidth: "2px",
                   borderStyle: "dashed",
                 }}
               >
-                <PatchCheck></PatchCheck>Add verification badge
+                <PatchCheck></PatchCheck>
+                <span className="flex-nowrap">Add verification badge</span>
               </Button>
             </Col>
             <Col
