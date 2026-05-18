@@ -6,6 +6,8 @@ import {
   Form,
   InputGroup,
   Button,
+  Row,
+  Col,
 } from "react-bootstrap";
 import { useState } from "react";
 
@@ -19,61 +21,100 @@ const buttons = [
 
 const NavbarLinkedin = function () {
   const [activeBtn, setActiveBtn] = useState("home");
+  const profileDropdown = (
+    <div className="d-flex flex-column align-items-center">
+      <img
+        src="https://placecats.com/50/50"
+        className="rounded-circle profile-img-nav"
+        alt="Profilo"
+      />
+      <div className="profile-text-container">
+        <span className="profile-text-nav">Tu</span>
+      </div>
+    </div>
+  );
+  const perleaziendeDropdown = (
+    <div className="d-flex flex-column align-items-center">
+      <i
+        className="bi bi-grid-3x3-gap-fill"
+        style={{ width: "27px", height: "27px" }}
+      ></i>
+      <div className="profile-text-container">
+        <span className="profile-text-nav">Per le aziende</span>
+      </div>
+    </div>
+  );
   return (
-    <Navbar expand="lg" className="bg-body-tertiary navbar-linkedin">
-      <Container fluid>
-        <Navbar.Brand href="#home">
-          <i className="bi bi-linkedin logo-linkedin"></i>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <InputGroup className="me-sm-2 search-input-linkedin">
-              <InputGroup.Text
-                id="search-addon"
-                className="bg-white border-end-0"
-              >
-                <i className="bi bi-search text-muted"></i>
-              </InputGroup.Text>
-              <Form.Control
-                type="text"
-                placeholder="Cerca..."
-                aria-label="Search"
-                aria-describedby="search-addon"
-                className="border-start-0 ps-0"
-              />
-            </InputGroup>
-            {/* BOTTONI */}
-            <div className="d-flex bg-white border-bottom px-3">
-              {buttons.map((btn) => (
-                <Button
-                  key={btn.id}
-                  variant="link"
-                  className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
-                  onClick={() => setActiveBtn(btn.id)}
+    <Container>
+      <Row>
+        <Col xs={12} className="text-center justify-content-around">
+          <Navbar expand="lg" className="bg-white navbar-linkedin">
+            <Container>
+              <Navbar.Brand href="#home">
+                <i className="bi bi-linkedin logo-linkedin"></i>
+              </Navbar.Brand>
+              <InputGroup className="me-sm-2 search-input-linkedin">
+                <InputGroup.Text
+                  id="search-addon"
+                  className="bg-white border-end-0"
                 >
-                  <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
-                  <span className="linkedin-btn-text">{btn.label}</span>
-                </Button>
-              ))}
-            </div>
-
-            <Nav.Link href="#link">Link</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+                  <i className="bi bi-search text-muted"></i>
+                </InputGroup.Text>
+                <Form.Control
+                  type="text"
+                  placeholder="Cerca..."
+                  aria-label="Search"
+                  aria-describedby="search-addon"
+                  className="border-start-0 ps-0"
+                />
+              </InputGroup>
+              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+              <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="align-items-center">
+                  {/* BOTTONI */}
+                  <div className="d-flex bg-white">
+                    {buttons.map((btn) => (
+                      <Button
+                        key={btn.id}
+                        variant="link"
+                        className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
+                        onClick={() => setActiveBtn(btn.id)}
+                      >
+                        <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
+                        <span className="linkedin-btn-text">{btn.label}</span>
+                      </Button>
+                    ))}
+                  </div>
+                  <NavDropdown
+                    title={profileDropdown}
+                    className="profile-dropdown me-4"
+                  >
+                    <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
+                  </NavDropdown>
+                  <NavDropdown
+                    title={perleaziendeDropdown}
+                    className="profile-dropdown border-start border-secondary ps-2 "
+                  >
+                    <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
+                  </NavDropdown>
+                  <Nav.Link
+                    href="#premium"
+                    className="premium-nav-link d-flex flex-column align-items-center justify-content-center"
+                  >
+                    <div className="premium-icon-box">
+                      <div className="premium-icon-diagonal"></div>
+                    </div>
+                    <span className="premium-text-nav">
+                      Prova Premium per 0 €
+                    </span>
+                  </Nav.Link>
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 export default NavbarLinkedin;
