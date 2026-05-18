@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
+import SidebarItem from "./SidebarItem"
 
 const SuggestedPagesCard = function () {
   // prova di map
@@ -8,12 +9,12 @@ const SuggestedPagesCard = function () {
       name: "Peanuts Inc.",
       description: "Intrattenimento • 2M follower",
     },
-    
+
     {
       name: "Cat Pictures Daily",
       description: "Media • 850k follower",
     },
-    
+
     {
       name: "Nap Lovers Club",
       description: "Lifestyle • 120k follower",
@@ -33,21 +34,12 @@ const SuggestedPagesCard = function () {
           {/* suggested pages map start */}
 
           {pages.map((page) => (
-            <div className="sidebar-item">
-              <img
-                className="square-logo"
-                src="https://placehold.co/50"
-                alt="page img"
-              />
-
-              <div className="sidebar-content">
-                <h6>{page.name}</h6>
-
-                <p>{page.description}</p>
-
-                <button>+ Segui</button>
-              </div>
-            </div>
+            <SidebarItem
+              image="https://placehold.co/50"
+              title={page.name}
+              description={page.description}
+              buttonText="+ Segui"
+            />
           ))}
 
           {/* suggested pages map end */}
@@ -65,21 +57,12 @@ const SuggestedPagesCard = function () {
 
         <Modal.Body>
           {pages.map((page) => (
-            <div className="sidebar-item">
-              <img
-                className="square-logo"
-                src="https://placehold.co/50"
-                alt="page img"
-              />
-
-              <div className="sidebar-content">
-                <h6>{page.name}</h6>
-
-                <p>{page.description}</p>
-
-                <button>+ Segui</button>
-              </div>
-            </div>
+            <SidebarItem
+              image="https://placehold.co/50"
+              title={page.name}
+              description={page.description}
+              buttonText="+ Segui"
+            />
           ))}
         </Modal.Body>
       </Modal>

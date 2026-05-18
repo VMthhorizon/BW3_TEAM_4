@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
+import SidebarItem from "./SidebarItem"
 
 const SuggestedPeopleCard = function () {
   // prova di map
@@ -31,21 +32,13 @@ const SuggestedPeopleCard = function () {
 
           {/* suggested people map start */}
           {people.map((person) => (
-            <div className="sidebar-item">
-              <img
-                className="round-avatar"
-                src="https://placehold.co/50"
-                alt="profile img"
-              />
-
-              <div className="sidebar-content">
-                <h6>{person.name}</h6>
-
-                <p>{person.role}</p>
-
-                <button>+ Collegati</button>
-              </div>
-            </div>
+            <SidebarItem
+              image="https://placehold.co/50"
+              title={person.name}
+              description={person.role}
+              buttonText="+ Collegati"
+              rounded={true}
+            />
           ))}
           {/* suggested people map end */}
         </div>
@@ -61,21 +54,13 @@ const SuggestedPeopleCard = function () {
 
         <Modal.Body>
           {people.map((person) => (
-            <div className="sidebar-item">
-              <img
-                className="round-avatar"
-                src="https://placehold.co/50"
-                alt="profile img"
-              />
-
-              <div className="sidebar-content">
-                <h6>{person.name}</h6>
-
-                <p>{person.role}</p>
-
-                <button>+ Collegati</button>
-              </div>
-            </div>
+            <SidebarItem
+              image="https://placehold.co/50"
+              title={person.name}
+              description={person.role}
+              buttonText="+ Collegati"
+              rounded={true}
+            />
           ))}
         </Modal.Body>
       </Modal>
