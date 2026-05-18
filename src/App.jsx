@@ -1,15 +1,14 @@
+import { Provider } from "react-redux";
 import "./App.css";
-import NavbarLinkedin from "./components/NavabarLinkedin";
-import "bootstrap/dist/css/bootstrap.min.css";
-import ProfilePersonalInfo from "./components/ProfilePersonalInfo";
-import "swiper/css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import store from "./redux/store";
+import NavabarLinkedin from "./components/NavabarLinkedin";
 
 function App() {
   return (
-    <>
-      <NavbarLinkedin />
-      <ProfilePersonalInfo></ProfilePersonalInfo>
-    </>
+    <Provider store={store}>
+      <NavabarLinkedin />
+    </Provider>
   );
 }
 
