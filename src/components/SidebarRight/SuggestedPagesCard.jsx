@@ -5,10 +5,10 @@ const SuggestedPagesCard = function () {
 
       <p>Pagine per te</p>
 
-      <div className="page-info">
-        <img src="https://placehold.co/50" alt="page img" />
+      <div className="sidebar-item">
+        <img className="square-logo" src="https://placehold.co/50" alt="page img" />
 
-        <div className="page-content">
+        <div className="sidebar-content">
           <h6>Peanuts Inc.</h6>
 
           <p>Intrattenimento • 2M follower</p>

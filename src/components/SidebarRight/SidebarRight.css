@@ -3,13 +3,13 @@ body {
   background-color: #f4f2ee;
 }
 
-/* SIDEBAR RIGHT */
+/* COMUNI */
 .sidebar-right {
   display: flex;
   flex-direction: column;
   gap: 15px;
 }
-/* sidebar cards */
+
 .sidebar-card {
   background-color: white;
   border-radius: 10px;
@@ -29,40 +29,33 @@ body {
   margin-bottom: 12px;
 }
 
-/* card altri profili consultati */
-/* viewed profile card */
-.viewed-profile {
-  display: flex;
-  gap: 10px;
-}
-
-.viewed-profile img {
-  width: 50px;
-  height: 50px;
-}
-
-/* SUGGESTED PEOPLE CARD */
-.suggested-person {
+/*  ITEM */
+/* avatar/logo + contenuto */
+.sidebar-item {
   display: flex;
   gap: 10px;
   margin-top: 15px;
 }
 
-/* immagine avatar */
-.suggested-person img {
+.sidebar-item img {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
   object-fit: cover;
 }
 
-/* testo */
-.person-info {
+.round-avatar {
+  border-radius: 50%;
+}
+
+/* CONTENT */
+/* testo verticale + bottone */
+.sidebar-content {
   display: flex;
   flex-direction: column;
 }
 
-button {
+/* bottoni */
+.sidebar-card button {
   width: fit-content;
   border-radius: 20px;
   padding: 5px 12px;
@@ -70,17 +63,15 @@ button {
   border: 1px solid gray;
 }
 
-/* SUGGESTED PAGES CARD */
-/* testo */
-.page-info {
-  display: flex;
-  gap: 10px;
-  margin-top: 15px;
+/* footer ad */
+.footer-ad {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
 }
 
-.page-info img {
-  width: 50px;
-  height: 50px;
+.footer-ad img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  display: block;
 }
-

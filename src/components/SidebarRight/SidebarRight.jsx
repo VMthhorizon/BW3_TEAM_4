@@ -1,27 +1,20 @@
-import AdCard from "./AdCard"
 import LanguageCard from "./LanguageCard"
 import SuggestedPagesCard from "./SuggestedPagesCard"
 import SuggestedPeopleCard from "./SuggestedPeopleCard"
+import AltriProfili from "./AltriProfili"
 import "./SidebarRight.css"
-import ViewedProflesCard from "./ViewedProfilesCard"
+import FooterAdCard from "./FooterAdCard"
 
-const SidebarRight = function(){
-    return(
-        <div className="sidebar-right">
-
+const SidebarRight = function () {
+  return (
+    <div className="sidebar-right">
       <LanguageCard />
-
-      <ViewedProflesCard/>
-
+      <AltriProfili />
       <SuggestedPeopleCard />
-
       <SuggestedPagesCard />
-
-      <AdCard/>
-
-
+      <FooterAdCard />
     </div>
-    )
+  )
 }
 
 export default SidebarRight

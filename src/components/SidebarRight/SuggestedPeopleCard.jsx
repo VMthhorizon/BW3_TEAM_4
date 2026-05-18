@@ -2,14 +2,17 @@ const SuggestedPeopleCard = function () {
   return (
     <div className="sidebar-card">
       <h5>Persone che potresti conoscere</h5>
+
       <p>Del tuo settore</p>
-      <div className="suggested-person">
+
+      <div className="sidebar-item">
         <img
+          className="round-avatar"
           src="https://placehold.co/50"
           alt="profile img"
         />
 
-        <div className="person-info">
+        <div className="sidebar-content">
           <h6>Snoopy</h6>
 
           <p>Senior Nap Engineer</p>
