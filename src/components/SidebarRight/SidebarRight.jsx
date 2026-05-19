@@ -1,15 +1,15 @@
-import LanguageCard from "./LanguageCard"
-import SuggestedPagesCard from "./SuggestedPagesCard"
-import SuggestedPeopleCard from "./SuggestedPeopleCard"
-import AltriProfili from "./AltriProfili"
+import LanguageCard from "./components/LanguageCard"
+import SuggestedPagesCard from "./components/SuggestedPagesCard"
+import SuggestedPeopleCard from "./components/SuggestedPeopleCard"
+import ViewedPeopleCard from "./components/ViewedPeopleCard"
+import FooterAdCard from "./components/FooterAdCard"
 import "./SidebarRight.css"
-import FooterAdCard from "./FooterAdCard"
 
 const SidebarRight = function () {
   return (
     <div className="sidebar-right">
       <LanguageCard />
-      <AltriProfili />
+      <ViewedPeopleCard />
       <SuggestedPeopleCard />
       <SuggestedPagesCard />
       <FooterAdCard />

@@ -25,7 +25,7 @@
   margin-bottom: 4px;
 }
 
-/* testo */
+/* testi */
 .sidebar-card p {
   font-size: 12px;
   color: #666;
@@ -60,13 +60,20 @@
 }
 
 /* bottoni */
-.sidebar-card button {
+.sidebar-card button, .sidebar-content button {
   width: fit-content;
   border-radius: 20px;
   padding: 5px 12px;
   background-color: white;
   border: 1px solid gray;
+  transition: 0.2s;
 }
+
+.sidebar-card button:hover, .sidebar-content button:hover {
+  background-color: #f3f3f3;
+  border: 1.5px solid #444;
+}
+
 
 /* FOOTER AD */
 /* card pubblicitaria finale */
@@ -97,14 +104,15 @@
   margin-top: 10px;
   padding: 12px;
   border-top: 1px solid #ddd;
-
   text-align: center;
-
   font-weight: 600;
-
   color: #666;
-
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.show-all:hover {
+  background-color: #f3f3f3;
 }
 
 /* pencil */
