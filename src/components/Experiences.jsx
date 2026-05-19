@@ -1,9 +1,30 @@
-import { useState } from "react";
-import { Row, Col, Modal, Button, Form } from "react-bootstrap";
-import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons";
+import { useState } from "react"
+import { Row, Col, Modal, Button, Form } from "react-bootstrap"
+import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons"
+import { useDispatch, useSelector } from "react-redux"
+import experiencePostAction from "../redux/actions/experiencesAction/experiencePost"
 
-const ExperienceSection = ({ experiences = [] }) => {
-  const [show, setShow] = useState(false);
+const ExperienceSection = () => {
+  const [show, setShow] = useState(false)
+
+  const [formExp, setFormExp] = useState({
+    role: "",
+    company: "",
+    startDate: "",
+    endDate: "",
+    description: "",
+    area: "",
+  })
+
+  const profilo = useSelector((storeRedux) => {
+    return storeRedux.profile.me
+  })
+
+  const listaEsperienze = useSelector((storeRedux) => {
+    return storeRedux.experience.list
+  })
+
+  const dispatch = useDispatch()
 
   return (
     <>
@@ -20,7 +41,7 @@ const ExperienceSection = ({ experiences = [] }) => {
             </div>
           </div>
 
-          {experiences.map((exp, index) => (
+          {listaEsperienze.map((exp, index) => (
             <div key={index} className="sidebar-item">
               <div className="flex-shrink-0">
                 {exp.image ? (
@@ -63,36 +84,101 @@ const ExperienceSection = ({ experiences = [] }) => {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form onSubmit={(e) => e.preventDefault()}>
             <Form.Group className="mb-3">
               <Form.Label className="small fw-bold">Qualifica*</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="Es: Full Stack Developer"
+                onChange={(e) => {
+                  setFormExp({
+                    ...formExp,
+                    role: e.target.value,
+                  })
+                }}
               />
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label className="small fw-bold">Azienda*</Form.Label>
-              <Form.Control type="text" placeholder="Es: Epicode" />
+              <Form.Control
+                type="text"
+                placeholder="Es: Epicode"
+                onChange={(e) => {
+                  setFormExp({
+                    ...formExp,
+                    company: e.target.value,
+                  })
+                }}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label className="small fw-bold">Description*</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={(e) => {
+                  setFormExp({
+                    ...formExp,
+                    description: e.target.value,
+                  })
+                }}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label className="small fw-bold">Area*</Form.Label>
+              <Form.Control
+                type="text"
+                onChange={(e) => {
+                  setFormExp({
+                    ...formExp,
+                    area: e.target.value,
+                  })
+                }}
+              />
             </Form.Group>
             <Row>
               <Col>
-                <Form.Label className="small fw-bold">Data inizio</Form.Label>
-                <Form.Control type="date" />
+                <Form.Label className="small fw-bold">Data inizio*</Form.Label>
+                <Form.Control
+                  type="date"
+                  onChange={(e) => {
+                    setFormExp({
+                      ...formExp,
+                      startDate: e.target.value.toString(),
+                    })
+                  }}
+                />
               </Col>
               <Col>
                 <Form.Label className="small fw-bold">Data fine</Form.Label>
-                <Form.Control type="date" />
+                <Form.Control
+                  type="date"
+                  onChange={(e) => {
+                    setFormExp({
+                      ...formExp,
+                      endDate: e.target.value.toString(),
+                    })
+                  }}
+                />
               </Col>
             </Row>
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => setShow(false)}>Salva</Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              return (
+                dispatch(experiencePostAction(profilo?._id, formExp)),
+                setShow(false)
+              )
+            }}
+          >
+            Salva
+          </Button>
         </Modal.Footer>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default ExperienceSection;
+export default ExperienceSection

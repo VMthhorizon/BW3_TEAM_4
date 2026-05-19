@@ -4,6 +4,7 @@ export const POST_EXPERIENCES = "POST_EXPERIENCES"
 
 const experiencePostAction = (id, exp) => {
   return (dispatch) => {
+    console.log(exp)
     fetch(
       `https://striveschool-api.herokuapp.com/api/profile/${id}/experiences`,
       {
