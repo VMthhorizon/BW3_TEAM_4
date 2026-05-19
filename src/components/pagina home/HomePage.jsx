@@ -1,8 +1,9 @@
 import { Container, Row, Col } from "react-bootstrap";
 
-import SideBarSxPaginaHome from "./SidebarSxPaginaHome";
 import HPSidebarRight from "./HPSidebarRight";
 import PostHomePage from "./PostHomePage";
+import Feed from "./Feed";
+import SidebarSxPaginaHome from "./sidebarSxHome/SidebarSxPaginaHome";
 
 const Home = function () {
   return (
@@ -10,12 +11,16 @@ const Home = function () {
       <Row>
         {/* sidebar sinistra */}
         <Col xs={12} lg={3}>
-          <SideBarSxPaginaHome />
+          <SidebarSxPaginaHome />
         </Col>
 
         {/* feed centrale */}
         <Col xs={12} lg={6}>
           <PostHomePage></PostHomePage>
+          {/* create post Vincenzo */}
+
+          {/* feed posts */}
+          <Feed />
         </Col>
 
         {/* sidebar destra */}

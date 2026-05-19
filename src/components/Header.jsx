@@ -19,7 +19,12 @@ import { Link } from "react-router-dom";
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/" },
   { id: "rete", label: "Rete", icon: "bi-people-fill" },
-  { id: "lavoro", label: "Lavoro", icon: "bi-briefcase-fill" },
+  {
+    id: "lavoro",
+    label: "Lavoro",
+    icon: "bi-briefcase-fill",
+    navigate: "/jobs",
+  },
   { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
 ];
