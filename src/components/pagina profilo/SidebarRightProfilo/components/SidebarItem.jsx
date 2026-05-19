@@ -1,4 +1,4 @@
-import avatar from "../../../assets/linkedin-avatar.png"
+import avatar from "../../../../assets/linkedin-avatar.png"
 
 const SidebarItem = function ({
   image,

@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
 import SidebarItem from "./SidebarItem"
-import epicodeLogo from "../../../assets/epicode-logo.jpeg"
+import epicodeLogo from "../../../../assets/epicode-logo.jpeg"
 
 const SuggestedPagesCard = function () {
   // prova di map
