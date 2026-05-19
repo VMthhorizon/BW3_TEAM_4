@@ -19,15 +19,15 @@ const SideBarSxPaginaHome = () => {
 
   if (!profilo) return null
   return (
-    <Container>
+    
       <Row>
-        <Col xs={2}>
+        <Col xs={12}>
           <Card1SidebarSx profilo={profilo} />
           <Card2SidebarSx />
           <Card3SidebarSx />
         </Col>
       </Row>
-    </Container>
+    
   )
 }
 export default SideBarSxPaginaHome
