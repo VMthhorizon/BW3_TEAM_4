@@ -1,7 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap";
 
 import HPSidebarRight from "./HPSidebarRight";
-import PostHomePage from "./PostHomePage";
+import PostHomePage from "../pagina home/sidebarSxHome/PostHomePage";
 import Feed from "./Feed";
 import SidebarSxPaginaHome from "./sidebarSxHome/SidebarSxPaginaHome";
 
