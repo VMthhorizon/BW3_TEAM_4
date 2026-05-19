@@ -8,6 +8,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProfilePage from "./components/pages/ProfilePage";
 import MyFooter from "./components/MyFooter";
 import ChatBox from "./components/Chatbox";
+import "swiper/css";
 
 function App() {
   return (
