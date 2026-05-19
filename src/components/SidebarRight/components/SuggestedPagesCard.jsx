@@ -1,26 +1,27 @@
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
 import SidebarItem from "./SidebarItem"
+import epicodeLogo from "../../../assets/epicode-logo.jpeg"
 
 const SuggestedPagesCard = function () {
   // prova di map
   const pages = [
     {
-      name: "Peanuts Inc.",
-      description: "Intrattenimento • 2M follower",
-      image: "https://placehold.co/50/orange/white",
+      name: "Epicode",
+      description: "Education • 35k follower",
+      image: epicodeLogo,
     },
 
     {
       name: "Cat Pictures Daily",
       description: "Media • 850k follower",
-      image: "https://placehold.co/50/pink/white",
+      image: "https://placecats.com/g/50/50",
     },
 
     {
       name: "Nap Lovers Club",
       description: "Lifestyle • 120k follower",
-      image: "https://placehold.co/50/blue/white",
+      image: "https://placehold.co/50/60a5fa/ffffff?text=N",
     },
   ]
 
