@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
+import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal";
 import { CalendarWeek, Newspaper } from "react-bootstrap-icons";
 
 const PostHomePage = () => {
