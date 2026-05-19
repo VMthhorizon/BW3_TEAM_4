@@ -90,9 +90,8 @@
 /* immagine pubblicità */
 .footer-ad img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+  height: auto;
+  object-fit: contain;
 }
 
 /* LANGUAGE CARD */

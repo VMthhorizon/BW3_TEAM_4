@@ -20,7 +20,7 @@ const LanguageCard = function () {
           <div className="language-row">
             <h5>Lingua del profilo</h5>
             <Pencil
-              className="pencil-icon"
+              className="bi bi-pencil pencil-icon"
               onClick={() => setShowLanguageModal(true)}
             />
           </div>
@@ -31,7 +31,7 @@ const LanguageCard = function () {
           <div className="language-row">
             <h5>Profilo pubblico & URL</h5>
             <Pencil
-              className="pencil-icon"
+              className="bi bi-pencil pencil-icon"
               onClick={() => navigate("/settings")}
             />
           </div>

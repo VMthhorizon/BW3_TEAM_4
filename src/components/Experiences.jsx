@@ -1,8 +1,12 @@
-import { useRef, useState } from "react";
-import { Row, Col, Modal, Button, Form, Image } from "react-bootstrap";
+import { useState, useEffect, useRef } from "react";
+import { Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import experiencePostAction from "../redux/actions/experiencesAction/experiencePost";
+import experiencesListAction from "../redux/actions/experiencesAction/experiencesList";
+import experienceDeleteAction from "../redux/actions/experiencesAction/experienceDelete";
+import experiencePutAction from "../redux/actions/experiencesAction/experiencePut";
+// import experiencePutAction from "../redux/actions/experiencesAction/experiencePut"
 
 const ExperienceSection = () => {
   const [show, setShow] = useState(false);
@@ -17,6 +21,10 @@ const ExperienceSection = () => {
     image: null,
   });
 
+  const [selectedExpId, setSelectedExpId] = useState(null);
+
+  const dispatch = useDispatch();
+
   const profilo = useSelector((storeRedux) => {
     return storeRedux.profile.me;
   });
@@ -25,7 +33,12 @@ const ExperienceSection = () => {
     return storeRedux.experience.list;
   });
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    if (profilo?._id) {
+      dispatch(experiencesListAction(profilo?._id));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profilo]);
 
   const handleImgChange = (e) => {
     const file = e.target.files[0];
@@ -53,37 +66,72 @@ const ExperienceSection = () => {
             </div>
           </div>
 
-          {listaEsperienze.map((exp, index) => (
-            <div key={index} className="sidebar-item">
-              <div className="flex-shrink-0">
-                {exp.image ? (
-                  <img src={exp.image} alt="logo" className="rounded" />
-                ) : (
-                  <div
-                    className="bg-light d-flex align-items-center justify-content-center rounded"
-                    style={{ width: "50px", height: "50px" }}
-                  >
-                    <Briefcase className="text-secondary fs-3" />
-                  </div>
-                )}
-              </div>
+          {listaEsperienze
+            .filter((exp) => exp)
+            .map((exp, index) => (
+              <div key={index} className="sidebar-item">
+                <div className="flex-shrink-0">
+                  {exp.image ? (
+                    <img src={exp.image} alt="logo" className="rounded" />
+                  ) : (
+                    <div
+                      className="bg-light d-flex align-items-center justify-content-center rounded"
+                      style={{ width: "50px", height: "50px" }}
+                    >
+                      <Briefcase className="text-secondary fs-3" />
+                    </div>
+                  )}
+                </div>
 
-              <div className="sidebar-content w-100">
-                <h6 className="fw-bold mb-0" style={{ fontSize: "14px" }}>
-                  {exp.role}
-                </h6>
-                <p className="mb-0">{exp.company}</p>
-                <p className="mb-0">
-                  {exp.startDate} – {exp.endDate || "Presente"}
-                </p>
-                {exp.description && (
-                  <p className="mt-2 mb-0" style={{ color: "#333" }}>
-                    {exp.description}
-                  </p>
-                )}
+                <div className="d-flex justify-content-between">
+                  <div className="sidebar-content w-100">
+                    <h6 className="fw-bold mb-0" style={{ fontSize: "14px" }}>
+                      {exp.role}
+                    </h6>
+                    <p className="mb-0">{exp.company}</p>
+                    <p className="mb-0">
+                      {exp.startDate} – {exp.endDate || "Presente"}
+                    </p>
+                    {exp.description && (
+                      <p className="mt-2 mb-0" style={{ color: "#333" }}>
+                        {exp.description}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <Button
+                      className="rounded-circle"
+                      variant="light"
+                      onClick={() => {
+                        setFormExp({
+                          role: exp.role,
+                          company: exp.company,
+                          startDate: exp.startDate.slice(0, 10),
+                          endDate: exp.endDate ? exp.endDate.slice(0, 10) : "",
+                          description: exp.description,
+                          area: exp.area,
+                        });
+
+                        setSelectedExpId(exp._id);
+
+                        setShow(true);
+                      }}
+                    >
+                      <i className="bi bi-pencil pencil-icon"></i>
+                    </Button>
+                    <Button
+                      className="rounded-circle"
+                      variant="light"
+                      onClick={() => {
+                        dispatch(experienceDeleteAction(profilo._id, exp._id));
+                      }}
+                    >
+                      <i className="bi bi-trash3"></i>
+                    </Button>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         <div className="show-all">Mostra tutte le esperienze &rarr;</div>
@@ -148,6 +196,8 @@ const ExperienceSection = () => {
               <Form.Control
                 type="text"
                 placeholder="Es: Full Stack Developer"
+                required
+                value={formExp.role}
                 onChange={(e) => {
                   setFormExp({
                     ...formExp,
@@ -161,6 +211,8 @@ const ExperienceSection = () => {
               <Form.Control
                 type="text"
                 placeholder="Es: Epicode"
+                required
+                value={formExp.company}
                 onChange={(e) => {
                   setFormExp({
                     ...formExp,
@@ -173,6 +225,8 @@ const ExperienceSection = () => {
               <Form.Label className="small fw-bold">Description*</Form.Label>
               <Form.Control
                 type="text"
+                required
+                value={formExp.description}
                 onChange={(e) => {
                   setFormExp({
                     ...formExp,
@@ -185,6 +239,8 @@ const ExperienceSection = () => {
               <Form.Label className="small fw-bold">Area*</Form.Label>
               <Form.Control
                 type="text"
+                required
+                value={formExp.area}
                 onChange={(e) => {
                   setFormExp({
                     ...formExp,
@@ -198,6 +254,8 @@ const ExperienceSection = () => {
                 <Form.Label className="small fw-bold">Data inizio*</Form.Label>
                 <Form.Control
                   type="date"
+                  required
+                  value={formExp.startDate}
                   onChange={(e) => {
                     setFormExp({
                       ...formExp,
@@ -210,6 +268,7 @@ const ExperienceSection = () => {
                 <Form.Label className="small fw-bold">Data fine</Form.Label>
                 <Form.Control
                   type="date"
+                  value={formExp.endDate}
                   onChange={(e) => {
                     setFormExp({
                       ...formExp,
@@ -225,10 +284,16 @@ const ExperienceSection = () => {
           <Button
             type="submit"
             onClick={() => {
-              return (
-                dispatch(experiencePostAction(profilo?._id, formExp)),
-                setShow(false)
-              );
+              if (selectedExpId) {
+                dispatch(
+                  experiencePutAction(profilo._id, selectedExpId, formExp),
+                );
+                dispatch(experiencesListAction(profilo._id));
+              } else {
+                dispatch(experiencePostAction(profilo?._id, formExp));
+              }
+
+              setShow(false);
             }}
           >
             Salva
