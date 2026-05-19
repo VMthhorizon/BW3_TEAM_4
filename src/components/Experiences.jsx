@@ -80,7 +80,7 @@ const ExperienceSection = () => {
                     <p className="mb-0">{exp.company}</p>
                     <p className="mb-0">
                       {exp.startDate.slice(0, 10)} –{" "}
-                      {exp.endDate.slice(0, 10) || "Presente"}
+                      {exp.endDate ? exp.endDate.slice(0, 10) : "Presente"}
                     </p>
                     {exp.description && (
                       <p className="mt-2 mb-0" style={{ color: "#333" }}>
