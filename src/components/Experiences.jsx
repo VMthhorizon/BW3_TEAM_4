@@ -72,7 +72,7 @@ const ExperienceSection = () => {
                   )}
                 </div>
 
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between w-100">
                   <div className="sidebar-content w-100">
                     <h6 className="fw-bold mb-0" style={{ fontSize: "14px" }}>
                       {exp.role}
