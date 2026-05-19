@@ -3,7 +3,7 @@ import { Apple, PatchCheck, Pencil } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import MyCarousel from "./MyCarousel";
-import Analisi from "../Analisi";
+import Analisi from "../../Analisi";
 
 function ProfilePersonalInfo() {
   return (
