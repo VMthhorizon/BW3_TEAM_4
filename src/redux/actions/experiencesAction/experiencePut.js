@@ -4,7 +4,7 @@ export const PUT_EXPERIENCES = "PUT_EXPERIENCES";
 
 const experiencePutAction = (userId, expId, exp) => {
   return (dispatch) => {
-    fetch(
+    return fetch(
       `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`,
       {
         method: "PUT",
@@ -28,6 +28,9 @@ const experiencePutAction = (userId, expId, exp) => {
           type: PUT_EXPERIENCES,
           payload: data,
         });
+        return {
+          payload: data,
+        };
       })
       .catch((error) => {
         console.log("errore nella fetch", error);

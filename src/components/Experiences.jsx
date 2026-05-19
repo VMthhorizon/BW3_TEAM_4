@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Row, Col, Modal, Button, Form } from "react-bootstrap";
 import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,11 +6,12 @@ import experiencePostAction from "../redux/actions/experiencesAction/experienceP
 import experiencesListAction from "../redux/actions/experiencesAction/experiencesList";
 import experienceDeleteAction from "../redux/actions/experiencesAction/experienceDelete";
 import experiencePutAction from "../redux/actions/experiencesAction/experiencePut";
+import AddExperienceImagesAction from "../redux/actions/images action/pictureExperience";
 // import experiencePutAction from "../redux/actions/experiencesAction/experiencePut"
 
 const ExperienceSection = () => {
   const [show, setShow] = useState(false);
-  const file = useRef(null);
+  const [image, setImage] = useState(null);
   const [formExp, setFormExp] = useState({
     role: "",
     company: "",
@@ -18,7 +19,6 @@ const ExperienceSection = () => {
     endDate: "",
     description: "",
     area: "",
-    image: null,
   });
 
   const [selectedExpId, setSelectedExpId] = useState(null);
@@ -39,17 +39,6 @@ const ExperienceSection = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [profilo]);
-
-  const handleImgChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const sorgenteImg = URL.createObjectURL(file);
-      setFormExp({
-        ...formExp,
-        image: sorgenteImg,
-      });
-    }
-  };
 
   return (
     <>
@@ -90,7 +79,8 @@ const ExperienceSection = () => {
                     </h6>
                     <p className="mb-0">{exp.company}</p>
                     <p className="mb-0">
-                      {exp.startDate} – {exp.endDate || "Presente"}
+                      {exp.startDate.slice(0, 10)} –{" "}
+                      {exp.endDate.slice(0, 10) || "Presente"}
                     </p>
                     {exp.description && (
                       <p className="mt-2 mb-0" style={{ color: "#333" }}>
@@ -98,9 +88,9 @@ const ExperienceSection = () => {
                       </p>
                     )}
                   </div>
-                  <div>
+                  <div className="d-flex ms-5">
                     <Button
-                      className="rounded-circle"
+                      className="border-0"
                       variant="light"
                       onClick={() => {
                         setFormExp({
@@ -120,7 +110,7 @@ const ExperienceSection = () => {
                       <i className="bi bi-pencil pencil-icon"></i>
                     </Button>
                     <Button
-                      className="rounded-circle"
+                      className="border-0"
                       variant="light"
                       onClick={() => {
                         dispatch(experienceDeleteAction(profilo._id, exp._id));
@@ -145,52 +135,21 @@ const ExperienceSection = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={(e) => e.preventDefault()}>
-            <Form.Group className="mb-3 text-center">
-              <Form.Label className="small fw-bold d-block text-start">
-                Immagine
-              </Form.Label>
-              <input
-                type="file"
-                accept="image/*"
-                ref={file}
-                onChange={handleImgChange}
-                style={{ display: "none" }}
-              />
-              <div className="d-flex align-items-center gap-3 mt-2">
-                {formExp.image ? (
-                  <img
-                    src={formExp.image}
-                    alt="Anteprima"
-                    className="rounded"
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      objectFit: "cover",
-                      border: "1px solid #ddd",
-                    }}
-                  />
-                ) : (
-                  <div
-                    className="bg-light rounded d-flex align-items-center justify-content-center"
-                    style={{
-                      width: "60px",
-                      height: "60px",
-                      border: "1px #ccc",
-                    }}
-                  >
-                    <Image className="text-secondary fs-4" />
-                  </div>
-                )}
+            {selectedExpId ? (
+              <Form.Group className="mb-3 text-center">
+                <Form.Label className="small fw-bold d-block text-start">
+                  Immagine
+                </Form.Label>
+                <Form.Control
+                  type="file"
+                  onChange={(e) => setImage(e.target.files[0])}
+                />
+                {console.log(image ? "true" : "false")}
+              </Form.Group>
+            ) : (
+              ""
+            )}
 
-                <Button
-                  variant="outline-secondary"
-                  size="sm"
-                  onClick={() => file.current.click()}
-                >
-                  {formExp.image ? "Cambia Immagine" : "Carica Logo"}
-                </Button>
-              </div>
-            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label className="small fw-bold">Qualifica*</Form.Label>
               <Form.Control
@@ -287,10 +246,34 @@ const ExperienceSection = () => {
               if (selectedExpId) {
                 dispatch(
                   experiencePutAction(profilo._id, selectedExpId, formExp),
-                );
-                dispatch(experiencesListAction(profilo._id));
+                ).then(() => {
+                  if (image) {
+                    console.log("2");
+                    dispatch(
+                      AddExperienceImagesAction(
+                        image,
+                        profilo?._id,
+                        selectedExpId,
+                      ),
+                    );
+                  }
+                  dispatch(experiencesListAction(profilo._id));
+                });
               } else {
-                dispatch(experiencePostAction(profilo?._id, formExp));
+                dispatch(experiencePostAction(profilo?._id, formExp)).then(
+                  () => {
+                    if (image) {
+                      dispatch(
+                        AddExperienceImagesAction(
+                          image,
+                          profilo?._id,
+                          selectedExpId,
+                        ),
+                      );
+                    }
+                    dispatch(experiencesListAction(profilo._id));
+                  },
+                );
               }
 
               setShow(false);
