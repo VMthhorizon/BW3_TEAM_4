@@ -1,16 +1,17 @@
 import { Row, Col, Badge } from "react-bootstrap";
 
 const JobsLine = function ({ job }) {
+  console.log(job);
+  console.log(job);
   return (
     <div className="p-3 border-bottom bg-white hover-bg-light transition-colors">
       <Row className="align-items-start g-3">
         <Col xs="auto">
-          <div
-            className="d-flex align-items-center justify-content-center bg-primary-subtle text-primary fw-bold rounded uppercase"
-            style={{ width: "48px", height: "48px", fontSize: "1.25rem" }}
-          >
-            {job.company_name ? job.company_name.charAt(0) : "J"}
-          </div>
+          <img
+            className="rounded"
+            style={{ width: "48px", height: "48px", objectFit: "cover" }}
+            src={job.company_logo_url}
+          />
         </Col>
         <Col className="d-flex flex-column gap-1">
           <div className="d-flex align-items-center gap-1">

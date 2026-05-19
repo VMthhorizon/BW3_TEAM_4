@@ -17,7 +17,7 @@ const Job = function () {
     }, 0);
 
     let link = "https://strive-benchmark.herokuapp.com/api/jobs";
-    let query = "developer";
+    let query = "artist";
     if (query) {
       link += `?search=${query}`;
     }
