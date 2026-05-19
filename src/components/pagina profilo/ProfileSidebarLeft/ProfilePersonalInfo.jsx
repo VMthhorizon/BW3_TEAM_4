@@ -4,7 +4,6 @@ import {
   Envelope,
   Linkedin,
   PatchCheck,
-  Pencil,
   TelephoneFill,
 } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
@@ -15,7 +14,7 @@ import getProfilePersonaleAction from "../../../redux/actions/profileAction/prof
 import { useEffect, useState } from "react";
 
 import AddImages from "../../AddImages";
-
+import copertina from "../../../assets/van gogh ciliegio.jpg";
 function ProfilePersonalInfo() {
   const dispatch = useDispatch();
   const profilo = useSelector((storeRedux) => {
@@ -28,6 +27,7 @@ function ProfilePersonalInfo() {
 
   useEffect(() => {
     dispatch(getProfilePersonaleAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Card className="mb-3">
@@ -35,9 +35,17 @@ function ProfilePersonalInfo() {
         <Card.Img
           style={{ height: 200, objectFit: "cover" }}
           variant="top"
-          src={profilo?.image}
+          src={copertina}
         />
-        <Pencil className="m-3 bg-white border border-1 border-black rounded-circle position-absolute fs-1 top-0 end-0 "></Pencil>
+        <Button
+          className="border border-1 bg-secondary bg-light bg-opacity-75 rounded-circle position-absolute top-0 end-0 m-3"
+          variant="light"
+        >
+          <i
+            className="bi bi-pencil pencil-icon"
+            style={{ fontSize: "0.9em" }}
+          ></i>
+        </Button>
         <img
           className="m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
           style={{

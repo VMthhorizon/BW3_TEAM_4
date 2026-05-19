@@ -1,75 +1,86 @@
-import { Card, Nav, Row, Col } from "react-bootstrap";
+import { Nav, Row, Col } from "react-bootstrap";
+import { Check2 } from "react-bootstrap-icons";
 
 const Interessi = () => {
   return (
-    <Card className="mb-3 border-0 shadow-sm rounded-3">
-      <Card.Body className="p-4">
-        <h5 className="fw-bold mb-3">Interessi</h5>
+    <div className="sidebar-card mb-3">
+      <div className="sidebar-card-content">
+        <h5 className="mb-3">Interessi</h5>
 
-        <Nav variant="underline" defaultActiveKey="aziende" className="mb-3">
+        <Nav
+          variant="underline"
+          defaultActiveKey="aziende"
+          className="mb-3 border-bottom"
+        >
           <Nav.Item>
             <Nav.Link
               eventKey="aziende"
-              className="text-dark fw-bold border-primary"
+              className="text-dark fw-bold p-2"
+              style={{ fontSize: "14px" }}
             >
               Aziende
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="scuole" className="text-secondary">
+            <Nav.Link
+              eventKey="scuole"
+              className="text-secondary p-2"
+              style={{ fontSize: "14px" }}
+            >
               Scuole
             </Nav.Link>
           </Nav.Item>
         </Nav>
 
         <Row className="g-4">
+          {/* Azienda 1 */}
           <Col xs={12} md={6}>
-            <div className="d-flex align-items-center">
-              <img
-                src="https://placehold.co/60x60"
-                alt="Apple"
-                className="me-3"
-                style={{ objectFit: "contain" }}
-              />
-              <div>
-                <h6 className="fw-bold mb-0">Apple</h6>
-                <p className="text-muted small mb-1">12.345.678 follower</p>
-                <button className="btn btn-outline-secondary btn-sm rounded-pill fw-bold px-3">
-                  <i className="bi bi-check2 me-1"></i> Già segui
+            <div className="sidebar-item mt-0">
+              <div className="flex-shrink-0">
+                <img
+                  src="https://placehold.co/60x60"
+                  alt="Apple"
+                  className="rounded"
+                />
+              </div>
+              <div className="sidebar-content">
+                <h6 className="fw-bold mb-0" style={{ fontSize: "14px" }}>
+                  Apple
+                </h6>
+                <p className="mb-1">12.345.678 follower</p>
+
+                <button className="d-flex align-items-center gap-1">
+                  <Check2 size={16} /> Già segui
                 </button>
               </div>
             </div>
           </Col>
 
           <Col xs={12} md={6}>
-            <div className="d-flex align-items-center">
-              <img
-                src="https://placehold.co/60x60"
-                alt="Epicode"
-                className="me-3"
-                style={{ objectFit: "contain" }}
-              />
-              <div>
-                <h6 className="fw-bold mb-0">Epicode</h6>
-                <p className="text-muted small mb-1">50.000 follower</p>
-                <button className="btn btn-outline-secondary btn-sm rounded-pill fw-bold px-3">
-                  <i className="bi bi-check2 me-1"></i> Già segui
+            <div className="sidebar-item mt-0">
+              <div className="flex-shrink-0">
+                <img
+                  src="https://placehold.co/60x60"
+                  alt="Epicode"
+                  className="rounded"
+                />
+              </div>
+              <div className="sidebar-content">
+                <h6 className="fw-bold mb-0" style={{ fontSize: "14px" }}>
+                  Epicode
+                </h6>
+                <p className="mb-1">50.000 follower</p>
+                <button className="d-flex align-items-center gap-1">
+                  <Check2 size={16} /> Già segui
                 </button>
               </div>
             </div>
           </Col>
         </Row>
-      </Card.Body>
+      </div>
 
-      <Card.Footer
-        className="bg-white text-center border-top py-3"
-        style={{ cursor: "pointer" }}
-      >
-        <span className="fw-bold text-secondary">
-          Mostra tutte le aziende &rarr;
-        </span>
-      </Card.Footer>
-    </Card>
+      <div className="show-all">Mostra tutte le aziende &rarr;</div>
+    </div>
   );
 };
 

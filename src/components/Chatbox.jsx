@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Card,
-  Form,
-  InputGroup,
-  Image,
-  Dropdown,
-  Button,
-} from "react-bootstrap";
+import { Form, InputGroup, Image, Dropdown } from "react-bootstrap";
 
 const ChatBox = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +11,8 @@ const ChatBox = () => {
       style={{ zIndex: 1050, pointerEvents: "none" }}
     >
       {isComposerOpen && (
-        <Card
-          className="shadow-lg me-2 border-bottom-0"
+        <div
+          className="sidebar-card shadow-lg me-2"
           style={{
             width: "350px",
             height: "450px",
@@ -27,9 +20,13 @@ const ChatBox = () => {
             pointerEvents: "auto",
             display: "flex",
             flexDirection: "column",
+            borderBottom: "none",
           }}
         >
-          <Card.Header className="d-flex align-items-center justify-content-between bg-white py-2 border-bottom">
+          <div
+            className="d-flex align-items-center justify-content-between bg-white py-2 px-3 border-bottom"
+            style={{ borderTopLeftRadius: "8px", borderTopRightRadius: "8px" }}
+          >
             <strong style={{ fontSize: "14px" }}>Nuovo messaggio</strong>
             <div className="d-flex gap-2 align-items-center">
               <i
@@ -42,9 +39,9 @@ const ChatBox = () => {
                 onClick={() => setIsComposerOpen(false)}
               ></i>
             </div>
-          </Card.Header>
+          </div>
 
-          <Card.Body className="p-0 d-flex flex-column bg-white">
+          <div className="p-0 d-flex flex-column bg-white flex-grow-1">
             <div className="p-2 border-bottom">
               <Form.Control
                 type="text"
@@ -79,30 +76,31 @@ const ChatBox = () => {
                   style={{ cursor: "pointer" }}
                 ></i>
               </div>
-              <Button
-                size="sm"
-                variant="light"
-                className="rounded-pill px-3 fw-bold border text-muted"
+
+              <button
+                className="fw-bold px-3 py-1"
+                style={{ fontSize: "14px", opacity: 0.6 }}
               >
                 Invia
-              </Button>
+              </button>
             </div>
-          </Card.Body>
-        </Card>
+          </div>
+        </div>
       )}
 
-      <Card
-        className="shadow-lg border-bottom-0"
+      <div
+        className="sidebar-card shadow-lg"
         style={{
           width: "300px",
           pointerEvents: "auto",
           borderRadius: "8px 8px 0 0",
           transform: isOpen ? "translateY(0)" : "translateY(calc(100% - 48px))",
           transition: "transform 0.3s ease-in-out",
+          borderBottom: "none",
         }}
       >
-        <Card.Header
-          className="d-flex align-items-center justify-content-between bg-white py-2 border-0"
+        <div
+          className="d-flex align-items-center justify-content-between bg-white py-2 px-3"
           style={{
             cursor: "pointer",
             borderTopLeftRadius: "8px",
@@ -164,9 +162,9 @@ const ChatBox = () => {
               className={`bi ${isOpen ? "bi-chevron-down" : "bi-chevron-up"}`}
             ></i>
           </div>
-        </Card.Header>
+        </div>
 
-        <Card.Body
+        <div
           className="p-0 bg-white"
           style={{ height: "400px", overflowY: "auto" }}
         >
@@ -174,7 +172,7 @@ const ChatBox = () => {
             <InputGroup size="sm" className="bg-light rounded">
               <Form.Control
                 placeholder="Cerca messaggi"
-                className="bg-transparent border-0 shadow-none"
+                className="bg-transparent border-0 shadow-none px-2"
                 style={{ fontSize: "13px" }}
               />
               <InputGroup.Text className="bg-transparent border-0">
@@ -182,11 +180,14 @@ const ChatBox = () => {
               </InputGroup.Text>
             </InputGroup>
           </div>
-          <div className="p-3 text-center text-muted small">
+          <div
+            className="p-3 text-center text-muted"
+            style={{ fontSize: "12px" }}
+          >
             Nessun nuovo messaggio
           </div>
-        </Card.Body>
-      </Card>
+        </div>
+      </div>
 
       <style>{`.no-caret::after { display: none !important; }`}</style>
     </div>

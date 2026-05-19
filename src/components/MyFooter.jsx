@@ -5,7 +5,7 @@ const MyFooter = () => {
 
   return (
     <footer
-      className="py-5 bg-light text-secondary mt-5"
+      className="py-5 bg-transparent text-secondary mt-5"
       style={{ fontSize: "12px" }}
     >
       <Container style={{ maxWidth: "950px" }}>
@@ -67,7 +67,7 @@ const MyFooter = () => {
 
         <Row className="mb-4">
           <Col>
-            <p className="mb-0 text-dark" style={{ cursor: "pointer" }}>
+            <p className="mb-0 text-muted" style={{ cursor: "pointer" }}>
               LinkedIn Corporation <i className="bi bi-c-circle"></i>{" "}
               {getCurrentYear()}
             </p>
@@ -114,10 +114,17 @@ const MyFooter = () => {
               <Form.Label className="mb-1 text-muted">
                 Seleziona lingua
               </Form.Label>
+
               <Form.Select
                 size="sm"
-                className="bg-transparent border-secondary text-dark shadow-none"
-                style={{ fontSize: "12px", height: "32px", cursor: "pointer" }}
+                className="bg-white border text-dark shadow-none"
+                style={{
+                  fontSize: "12px",
+                  height: "32px",
+                  cursor: "pointer",
+                  borderRadius: "4px",
+                  borderColor: "#ddd",
+                }}
               >
                 <option>Italiano (Italiano)</option>
                 <option>English (Inglese)</option>
