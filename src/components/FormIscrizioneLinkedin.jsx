@@ -5,6 +5,7 @@ const FormIscrizioneLinkedin = function () {
     <Container fluid>
       <Row className="justify-content-center">
         <Col xs={3} className="bg-white border rounded-3 mt-5">
+          <h4>Iscriviti subito a LinkedIn. È gratis!</h4>
           <Form className="p-5">
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>

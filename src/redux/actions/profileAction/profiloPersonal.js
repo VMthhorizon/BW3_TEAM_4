@@ -1,4 +1,4 @@
-export const POST_PROFILE_PICTURES = "POST_PROFILE_PICTURES";
+export const GET_PROFILE_PERSONALE = "GET_PROFILE_PERSONALE";
 
 export const uploadProfilePictureAction = (selectedFile) => {
   return (dispatch) => {
@@ -26,7 +26,7 @@ export const uploadProfilePictureAction = (selectedFile) => {
       })
       .then((data) => {
         dispatch({
-          type: POST_PROFILE_PICTURES,
+          type: GET_PROFILE_PERSONALE,
           payload: data,
         });
       })
