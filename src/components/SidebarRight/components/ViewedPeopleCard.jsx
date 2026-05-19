@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { Modal } from "react-bootstrap"
-import SidebarItem from "./SidebarItem"
+import { useState } from "react";
+import { Modal } from "react-bootstrap";
+import SidebarItem from "./SidebarItem";
 
 const ViewedPeopleCard = function () {
   // prova di map
@@ -19,9 +19,9 @@ const ViewedPeopleCard = function () {
       name: "Schroeder",
       role: "Classical Music Enthusiast",
     },
-  ]
+  ];
 
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   return (
     <>
@@ -65,7 +65,7 @@ const ViewedPeopleCard = function () {
         </Modal.Body>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ViewedPeopleCard
+export default ViewedPeopleCard;

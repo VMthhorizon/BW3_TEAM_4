@@ -4,7 +4,7 @@ import SidebarRight from "../SidebarRight/SidebarRight";
 
 const ProfilePage = () => {
   return (
-    <Container>
+    <Container className="my-4">
       <Row>
         <Col xs={12} lg={9}>
           <ProfilePersonalInfo></ProfilePersonalInfo>
