@@ -1,15 +1,15 @@
-import { useState, useEffect } from "react"
-import { Row, Col, Modal, Button, Form } from "react-bootstrap"
-import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons"
-import { useDispatch, useSelector } from "react-redux"
-import experiencePostAction from "../redux/actions/experiencesAction/experiencePost"
-import experiencesListAction from "../redux/actions/experiencesAction/experiencesList"
-import experienceDeleteAction from "../redux/actions/experiencesAction/experienceDelete"
-import experiencePutAction from "../redux/actions/experiencesAction/experiencePut"
+import { useState, useEffect } from "react";
+import { Row, Col, Modal, Button, Form } from "react-bootstrap";
+import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import experiencePostAction from "../redux/actions/experiencesAction/experiencePost";
+import experiencesListAction from "../redux/actions/experiencesAction/experiencesList";
+import experienceDeleteAction from "../redux/actions/experiencesAction/experienceDelete";
+import experiencePutAction from "../redux/actions/experiencesAction/experiencePut";
 // import experiencePutAction from "../redux/actions/experiencesAction/experiencePut"
 
 const ExperienceSection = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   const [formExp, setFormExp] = useState({
     role: "",
@@ -18,25 +18,25 @@ const ExperienceSection = () => {
     endDate: "",
     description: "",
     area: "",
-  })
+  });
 
-  const [selectedExpId, setSelectedExpId] = useState(null)
+  const [selectedExpId, setSelectedExpId] = useState(null);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
-  })
+    return storeRedux.profile.me;
+  });
 
   const listaEsperienze = useSelector((storeRedux) => {
-    return storeRedux.experience.list
-  })
+    return storeRedux.experience.list;
+  });
 
   useEffect(() => {
     if (profilo?._id) {
-      dispatch(experiencesListAction(profilo?._id))
+      dispatch(experiencesListAction(profilo?._id));
     }
-  }, [profilo])
+  }, [profilo]);
 
   return (
     <>
@@ -97,11 +97,11 @@ const ExperienceSection = () => {
                           endDate: exp.endDate ? exp.endDate.slice(0, 10) : "",
                           description: exp.description,
                           area: exp.area,
-                        })
+                        });
 
-                        setSelectedExpId(exp._id)
+                        setSelectedExpId(exp._id);
 
-                        setShow(true)
+                        setShow(true);
                       }}
                     >
                       <i className="bi bi-pencil pencil-icon"></i>
@@ -110,7 +110,7 @@ const ExperienceSection = () => {
                       className="rounded-circle"
                       variant="light"
                       onClick={() => {
-                        dispatch(experienceDeleteAction(profilo._id, exp._id))
+                        dispatch(experienceDeleteAction(profilo._id, exp._id));
                       }}
                     >
                       <i className="bi bi-trash3"></i>
@@ -142,7 +142,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     role: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -156,7 +156,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     company: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -169,7 +169,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     description: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -182,7 +182,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     area: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -196,7 +196,7 @@ const ExperienceSection = () => {
                     setFormExp({
                       ...formExp,
                       startDate: e.target.value.toString(),
-                    })
+                    });
                   }}
                 />
               </Col>
@@ -209,7 +209,7 @@ const ExperienceSection = () => {
                     setFormExp({
                       ...formExp,
                       endDate: e.target.value.toString(),
-                    })
+                    });
                   }}
                 />
               </Col>
@@ -223,13 +223,13 @@ const ExperienceSection = () => {
               if (selectedExpId) {
                 dispatch(
                   experiencePutAction(profilo._id, selectedExpId, formExp),
-                )
-                dispatch(experiencesListAction(profilo._id))
+                );
+                dispatch(experiencesListAction(profilo._id));
               } else {
-                dispatch(experiencePostAction(profilo?._id, formExp))
+                dispatch(experiencePostAction(profilo?._id, formExp));
               }
 
-              setShow(false)
+              setShow(false);
             }}
           >
             Salva
@@ -237,7 +237,7 @@ const ExperienceSection = () => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ExperienceSection
+export default ExperienceSection;
