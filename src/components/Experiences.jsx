@@ -1,12 +1,12 @@
-import { useState } from "react";
-import { Row, Col, Modal, Button, Form } from "react-bootstrap";
+import { useRef, useState } from "react";
+import { Row, Col, Modal, Button, Form, Image } from "react-bootstrap";
 import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons";
 import { useDispatch, useSelector } from "react-redux";
 import experiencePostAction from "../redux/actions/experiencesAction/experiencePost";
 
 const ExperienceSection = () => {
   const [show, setShow] = useState(false);
-
+  const file = useRef(null);
   const [formExp, setFormExp] = useState({
     role: "",
     company: "",
@@ -14,6 +14,7 @@ const ExperienceSection = () => {
     endDate: "",
     description: "",
     area: "",
+    image: null,
   });
 
   const profilo = useSelector((storeRedux) => {
@@ -25,6 +26,17 @@ const ExperienceSection = () => {
   });
 
   const dispatch = useDispatch();
+
+  const handleImgChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const sorgenteImg = URL.createObjectURL(file);
+      setFormExp({
+        ...formExp,
+        image: sorgenteImg,
+      });
+    }
+  };
 
   return (
     <>
@@ -85,6 +97,52 @@ const ExperienceSection = () => {
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={(e) => e.preventDefault()}>
+            <Form.Group className="mb-3 text-center">
+              <Form.Label className="small fw-bold d-block text-start">
+                Immagine
+              </Form.Label>
+              <input
+                type="file"
+                accept="image/*"
+                ref={file}
+                onChange={handleImgChange}
+                style={{ display: "none" }}
+              />
+              <div className="d-flex align-items-center gap-3 mt-2">
+                {formExp.image ? (
+                  <img
+                    src={formExp.image}
+                    alt="Anteprima"
+                    className="rounded"
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      objectFit: "cover",
+                      border: "1px solid #ddd",
+                    }}
+                  />
+                ) : (
+                  <div
+                    className="bg-light rounded d-flex align-items-center justify-content-center"
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      border: "1px #ccc",
+                    }}
+                  >
+                    <Image className="text-secondary fs-4" />
+                  </div>
+                )}
+
+                <Button
+                  variant="outline-secondary"
+                  size="sm"
+                  onClick={() => file.current.click()}
+                >
+                  {formExp.image ? "Cambia Immagine" : "Carica Logo"}
+                </Button>
+              </div>
+            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label className="small fw-bold">Qualifica*</Form.Label>
               <Form.Control
