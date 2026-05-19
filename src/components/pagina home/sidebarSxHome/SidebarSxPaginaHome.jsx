@@ -19,15 +19,13 @@ const SideBarSxPaginaHome = () => {
 
   if (!profilo) return null;
   return (
-    <Container className="mt-3">
-      <Row>
-        <Col xs={2}>
-          <Card1SidebarSx profilo={profilo} />
-          <Card2SidebarSx />
-          <Card3SidebarSx />
-        </Col>
-      </Row>
-    </Container>
+    <Row>
+      <Col xs={12}>
+        <Card1SidebarSx profilo={profilo} />
+        <Card2SidebarSx />
+        <Card3SidebarSx />
+      </Col>
+    </Row>
   );
 };
 export default SideBarSxPaginaHome;

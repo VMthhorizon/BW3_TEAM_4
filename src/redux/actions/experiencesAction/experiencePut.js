@@ -1,10 +1,10 @@
-export const PUT_EXPERIENCES = "PUT_EXPERIENCES"
+export const PUT_EXPERIENCES = "PUT_EXPERIENCES";
 
 // FETCH PER MODIFICARE UNA EXPERIENCE
 
 const experiencePutAction = (userId, expId, exp) => {
   return (dispatch) => {
-    fetch(
+    return fetch(
       `https://striveschool-api.herokuapp.com/api/profile/${userId}/experiences/${expId}`,
       {
         method: "PUT",
@@ -18,21 +18,24 @@ const experiencePutAction = (userId, expId, exp) => {
     )
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error("errore nella response")
+          throw new Error("errore nella response");
         }
       })
       .then((data) => {
         dispatch({
           type: PUT_EXPERIENCES,
           payload: data,
-        })
+        });
+        return {
+          payload: data,
+        };
       })
       .catch((error) => {
-        console.log("errore nella fetch", error)
-      })
-  }
-}
+        console.log("errore nella fetch", error);
+      });
+  };
+};
 
-export default experiencePutAction
+export default experiencePutAction;

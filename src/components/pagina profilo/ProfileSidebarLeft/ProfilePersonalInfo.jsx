@@ -12,6 +12,7 @@ import MyCarousel from "./MyCarousel";
 import { useDispatch, useSelector } from "react-redux";
 import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
 import { useEffect, useState } from "react";
+
 import AddImages from "../../AddImages";
 import copertina from "../../../assets/van gogh ciliegio.jpg";
 function ProfilePersonalInfo() {
@@ -66,7 +67,9 @@ function ProfilePersonalInfo() {
         <Row className="align-items-center">
           <Col xs={8} className="d-flex flex-column flex-md-row  gap-1">
             <Card.Title className="fs-1 text-nowrap">
-              {profilo?.name} {profilo?.surname}
+              {profilo?.name.charAt(0).toUpperCase() + profilo?.name.slice(1)}{" "}
+              {profilo?.surname.charAt(0).toUpperCase() +
+                profilo?.surname.slice(1)}
             </Card.Title>
             <Button
               variant="outline-primary"
