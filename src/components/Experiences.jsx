@@ -45,7 +45,7 @@ const ExperienceSection = () => {
       <div className="sidebar-card mb-3">
         <div className="sidebar-card-content">
           <div className="d-flex justify-content-between align-items-center">
-            <h5 className="m-0">Esperienze lavorative</h5>
+            <h5 className="m-0">Esperienza</h5>
             <div className="d-flex gap-3 align-items-center">
               <PlusLg
                 style={{ cursor: "pointer" }}
