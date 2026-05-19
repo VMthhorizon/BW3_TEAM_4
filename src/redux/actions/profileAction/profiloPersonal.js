@@ -1,38 +1,30 @@
-export const GET_PROFILE_PERSONALE = "GET_PROFILE_PERSONALE";
+export const GET_PROFILE_PERSONALE = "GET_PROFILE_PERSONALE"
 
-export const uploadProfilePictureAction = (selectedFile) => {
+// FETCH PROFILO PERSONALE
+const getProfilePersonaleAction = () => {
   return (dispatch) => {
-    const picture = new FormData();
-    picture.append("profile", selectedFile);
-
-    fetch(
-      "https://striveschool-api.herokuapp.com/api/profile/6a0c26c274041f00150bfb17/picture",
-      {
-        method: "POST",
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjMjZjMjc0MDQxZjAwMTUwYmZiMTciLCJpYXQiOjE3NzkxODEyNTAsImV4cCI6MTc4MDM5MDg1MH0.tEZZKlUAnTx79WB0uAoHzzlR_CrEQW4ZMR4g2PQd7A0",
-        },
-        body: picture,
+    fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
+      headers: {
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDViOTA2YmJlOTAwMTVkZWU1N2YiLCJpYXQiOjE3NzkwOTQ5NjksImV4cCI6MTc4MDMwNDU2OX0.lCWAGVeHSActGSTjMyk8RMF3Ua0zXKkTnQcNrIuiP20",
       },
-    )
-      .then((res) => {
-        if (res.ok) {
-          alert("PROFILO MODIFICATO");
-          return res.json();
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
         } else {
-          throw new Error("ERRORE");
+          throw new Error("errore nella response")
         }
       })
       .then((data) => {
         dispatch({
           type: GET_PROFILE_PERSONALE,
           payload: data,
-        });
+        })
       })
-      .catch((err) => {
-        console.error(err);
-        alert("ERRORE NEL CARICAMENTO DELL'IMMAGINE, RIPROVA!");
-      });
-  };
-};
+      .catch((error) => {
+        console.log("errore nella fetch", error)
+      })
+  }
+}
+export default getProfilePersonaleAction
