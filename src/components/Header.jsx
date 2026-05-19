@@ -12,7 +12,7 @@ import {
 } from "react-bootstrap"
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import getProfilePersonaleAction from "../redux/actions/profiloPersonal"
+import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal"
 import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
