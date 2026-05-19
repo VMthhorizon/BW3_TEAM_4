@@ -1,6 +1,6 @@
 export const POST_PROFILE_PICTURES = "POST_PROFILE_PICTURES"
 
-const AddImagesAction = (file, userId) => {
+const AddProfileImagesAction = (file, userId) => {
   return (dispatch) => {
     const picture = new FormData()
     picture.append("profile", file)
@@ -34,4 +34,4 @@ const AddImagesAction = (file, userId) => {
       })
   }
 }
-export default AddImagesAction
+export default AddProfileImagesAction

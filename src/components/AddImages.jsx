@@ -1,7 +1,7 @@
 import { Form, Button } from "react-bootstrap"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import AddImagesAction from "../redux/actions/images action/pictureProfilo"
+import AddProfileImagesAction from "../redux/actions/images action/pictureProfilo"
 
 const AddImages = function () {
   const [selectedPicture, setSelectedPicture] = useState(null)
@@ -22,7 +22,7 @@ const AddImages = function () {
       <Button
         disabled={!selectedPicture || !profilo}
         onClick={() => {
-          dispatch(AddImagesAction(selectedPicture, profilo?._id))
+          dispatch(AddProfileImagesAction(selectedPicture, profilo?._id))
         }}
       >
         Carica Foto
