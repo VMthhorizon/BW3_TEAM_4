@@ -1,34 +1,34 @@
-import { Col, Container, Row, Nav, Modal, NavLink } from "react-bootstrap";
+import { Col, Container, Row, Nav, Modal, NavLink } from "react-bootstrap"
 import {
   Apple,
   Envelope,
   Linkedin,
   PatchCheck,
   TelephoneFill,
-} from "react-bootstrap-icons";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import MyCarousel from "./MyCarousel";
-import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
-import { useEffect, useState } from "react";
+} from "react-bootstrap-icons"
+import Button from "react-bootstrap/Button"
+import Card from "react-bootstrap/Card"
+import MyCarousel from "./MyCarousel"
+import { useDispatch, useSelector } from "react-redux"
+import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal"
+import { useEffect, useState } from "react"
 
-import AddImages from "../../AddImages";
-import copertina from "../../../assets/van gogh ciliegio.jpg";
+import AddImages from "../../AddImages"
+import copertina from "../../../assets/van gogh ciliegio.jpg"
 function ProfilePersonalInfo() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me;
-  });
-  const [show, setShow] = useState(false);
+    return storeRedux.profile.me
+  })
+  const [show, setShow] = useState(false)
 
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction());
+    dispatch(getProfilePersonaleAction())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
   return (
     <Card className="mb-3">
       <div className="position-relative">
@@ -67,7 +67,9 @@ function ProfilePersonalInfo() {
         <Row className="align-items-center">
           <Col xs={8} className="d-flex flex-column flex-md-row  gap-1">
             <Card.Title className="fs-1 text-nowrap">
-              {profilo?.name} {profilo?.surname}
+              {profilo?.name.charAt(0).toUpperCase() + profilo?.name.slice(1)}{" "}
+              {profilo?.surname.charAt(0).toUpperCase() +
+                profilo?.surname.slice(1)}
             </Card.Title>
             <Button
               variant="outline-primary"
@@ -180,7 +182,7 @@ function ProfilePersonalInfo() {
         </Modal.Footer>
       </Modal>
     </Card>
-  );
+  )
 }
 
-export default ProfilePersonalInfo;
+export default ProfilePersonalInfo

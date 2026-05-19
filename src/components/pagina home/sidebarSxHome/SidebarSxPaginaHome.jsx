@@ -1,12 +1,12 @@
 import { useEffect } from "react"
-import { Col, Container, Row } from "react-bootstrap"
+import { Col, Row } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal"
 import Card1SidebarSx from "./card1SidebarSx"
 import Card2SidebarSx from "./Card2SidebarSx"
 import Card3SidebarSx from "./Card3Sidevasx"
 
-const SideBarSxPaginaHome = () => {
+const SidebarSxPaginaHome = () => {
   const profilo = useSelector((storeRedux) => {
     return storeRedux.profile.me
   })
@@ -30,4 +30,4 @@ const SideBarSxPaginaHome = () => {
     
   )
 }
-export default SideBarSxPaginaHome
+export default SidebarSxPaginaHome
