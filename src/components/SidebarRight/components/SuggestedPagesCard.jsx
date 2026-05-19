@@ -8,16 +8,19 @@ const SuggestedPagesCard = function () {
     {
       name: "Peanuts Inc.",
       description: "Intrattenimento • 2M follower",
+      image: "https://placehold.co/50/orange/white",
     },
 
     {
       name: "Cat Pictures Daily",
       description: "Media • 850k follower",
+      image: "https://placehold.co/50/pink/white",
     },
 
     {
       name: "Nap Lovers Club",
       description: "Lifestyle • 120k follower",
+      image: "https://placehold.co/50/blue/white",
     },
   ]
 
@@ -33,9 +36,10 @@ const SuggestedPagesCard = function () {
 
           {/* suggested pages map start */}
 
-          {pages.map((page) => (
+          {pages.map((page, index) => (
             <SidebarItem
-              image="https://placehold.co/50"
+              key={index}
+              image={page.image}
               title={page.name}
               description={page.description}
               buttonText="+ Segui"
@@ -56,9 +60,10 @@ const SuggestedPagesCard = function () {
         </Modal.Header>
 
         <Modal.Body>
-          {pages.map((page) => (
+          {pages.map((page, index) => (
             <SidebarItem
-              image="https://placehold.co/50"
+              key={index}
+              image={page.image}
               title={page.name}
               description={page.description}
               buttonText="+ Segui"

@@ -1,3 +1,5 @@
+import avatar from "../../../assets/linkedin-avatar.png"
+
 const SidebarItem = function ({
   image,
   title,
@@ -10,6 +12,10 @@ const SidebarItem = function ({
       <img
         className={rounded ? "round-avatar" : ""}
         src={image}
+        onError={(e) => {
+          e.target.src = avatar
+          e.target.classList.add("default-avatar")
+        }}
         alt="sidebar item"
       />
 

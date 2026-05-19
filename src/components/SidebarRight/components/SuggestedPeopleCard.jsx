@@ -1,27 +1,46 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Modal } from "react-bootstrap"
 import SidebarItem from "./SidebarItem"
 
 const SuggestedPeopleCard = function () {
   // prova di map
-  const people = [
-    {
-      name: "Snoopy",
-      role: "Senior Nap Engineer",
-    },
+  // const people = [
+  //   {
+  //     name: "Snoopy",
+  //     role: "Senior Nap Engineer",
+  //   },
 
-    {
-      name: "Woodstock",
-      role: "Junior Flying Consultant",
-    },
-    {
-      name: "Charlie Brown",
+  //   {
+  //     name: "Woodstock",
+  //     role: "Junior Flying Consultant",
+  //   },
+  //   {
+  //     name: "Charlie Brown",
 
-      role: "Professional Overthinker",
-    },
-  ]
+  //     role: "Professional Overthinker",
+  //   },
+  // ]
 
+  const [people, setPeople] = useState([])
   const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+
+    fetch("https://striveschool-api.herokuapp.com/api/profile/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        setPeople(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
 
   return (
     <>
@@ -31,11 +50,12 @@ const SuggestedPeopleCard = function () {
           <p>Del tuo settore</p>
 
           {/* suggested people map start */}
-          {people.map((person) => (
+          {people.slice(0, 5).map((person) => (
             <SidebarItem
-              image="https://placehold.co/50"
-              title={person.name}
-              description={person.role}
+              key={person._id}
+              image={person.image}
+              title={person.name + " " + person.surname}
+              description={person.title}
               buttonText="+ Collegati"
               rounded={true}
             />
@@ -53,11 +73,12 @@ const SuggestedPeopleCard = function () {
         </Modal.Header>
 
         <Modal.Body>
-          {people.map((person) => (
+          {people.slice(0, 20).map((person) => (
             <SidebarItem
-              image="https://placehold.co/50"
-              title={person.name}
-              description={person.role}
+              key={person._id}
+              image={person.image}
+              title={person.name + " " + person.surname}
+              description={person.title}
               buttonText="+ Collegati"
               rounded={true}
             />
