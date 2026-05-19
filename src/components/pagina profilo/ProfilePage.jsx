@@ -4,6 +4,7 @@ import SidebarRight from "./SidebarRightProfilo/SidebarRight";
 import Analisi from "../Analisi";
 import Formazione from "../Formazione";
 import Interessi from "../Interessi";
+import ExperienceSection from "../Experiences";
 const ProfilePage = () => {
   return (
     <Container className="my-4">
@@ -11,6 +12,7 @@ const ProfilePage = () => {
         <Col xs={12} lg={9}>
           <ProfilePersonalInfo></ProfilePersonalInfo>
           <Analisi />
+          <ExperienceSection />
           <Formazione />
           <Interessi />
         </Col>

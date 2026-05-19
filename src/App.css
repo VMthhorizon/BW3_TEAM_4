@@ -1,3 +1,14 @@
+body {
+  background-color: #F4F2EE !important;
+  min-height: 100vh;
+  margin: 0;
+}
+ 
+#root {
+  background-color: #F4F2EE;
+  min-height: 100vh;
+}
+
 .navbar-linkedin{
     display: inline-block;
     vertical-align: middle;
@@ -147,3 +158,6 @@ color: #666666 !important;
   margin-top: 8px;
   margin-bottom: 4px;
 }
+
+
+ 
