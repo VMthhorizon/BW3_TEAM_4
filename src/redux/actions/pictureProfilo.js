@@ -1,7 +1,6 @@
-export const GET_PROFILE_PERSONALE = "GET_PROFILE_PERSONALE"
+export const POST_PROFILE_PICTURES = "POST_PROFILE_PICTURES";
 
-// FETCH PROFILO PERSONALE
-const getProfilePersonaleAction = () => {
+const AddImagesAction = () => {
   return (dispatch) => {
     fetch("https://striveschool-api.herokuapp.com/api/profile/me", {
       headers: {
@@ -11,20 +10,20 @@ const getProfilePersonaleAction = () => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error("errore nella response")
+          throw new Error("errore nella response");
         }
       })
       .then((data) => {
         dispatch({
-          type: GET_PROFILE_PERSONALE,
+          type: POST_PROFILE_PICTURES,
           payload: data,
-        })
+        });
       })
       .catch((error) => {
-        console.log("errore nella fetch", error)
-      })
-  }
-}
-export default getProfilePersonaleAction
+        console.log("errore nella fetch", error);
+      });
+  };
+};
+export default AddImagesAction;
