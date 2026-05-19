@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import MyCarousel from "./MyCarousel";
 import Analisi from "../../Analisi";
+import SkillsSection from "../../Skills";
+import Formazione from "../../Formazione";
+import Interessi from "../../Interessi";
 
 function ProfilePersonalInfo() {
   return (
@@ -108,6 +111,9 @@ function ProfilePersonalInfo() {
         </Card.Body>
       </Card>
       <Analisi />
+      <Formazione />
+      <SkillsSection />
+      <Interessi />
     </Container>
   );
 }
