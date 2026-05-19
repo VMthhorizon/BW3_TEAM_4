@@ -52,6 +52,10 @@
   border-radius: 50%;
 }
 
+.round-avatar.default-avatar {
+  transform: scale(1.4);
+}
+
 /* CONTENT */
 /* testo verticale + bottone */
 .sidebar-content {
@@ -60,7 +64,8 @@
 }
 
 /* bottoni */
-.sidebar-card button, .sidebar-content button {
+.sidebar-card button,
+.sidebar-content button {
   width: fit-content;
   border-radius: 20px;
   padding: 5px 12px;
@@ -69,11 +74,11 @@
   transition: 0.2s;
 }
 
-.sidebar-card button:hover, .sidebar-content button:hover {
+.sidebar-card button:hover,
+.sidebar-content button:hover {
   background-color: #f3f3f3;
   border: 1.5px solid #444;
 }
-
 
 /* FOOTER AD */
 /* card pubblicitaria finale */

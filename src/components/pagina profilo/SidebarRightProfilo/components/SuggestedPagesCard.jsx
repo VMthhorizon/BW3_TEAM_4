@@ -1,23 +1,27 @@
 import { useState } from "react"
 import { Modal } from "react-bootstrap"
 import SidebarItem from "./SidebarItem"
+import epicodeLogo from "../../../../assets/epicode-logo.jpeg"
 
 const SuggestedPagesCard = function () {
   // prova di map
   const pages = [
     {
-      name: "Peanuts Inc.",
-      description: "Intrattenimento • 2M follower",
+      name: "Epicode",
+      description: "Education • 35k follower",
+      image: epicodeLogo,
     },
 
     {
       name: "Cat Pictures Daily",
       description: "Media • 850k follower",
+      image: "https://placecats.com/g/50/50",
     },
 
     {
       name: "Nap Lovers Club",
       description: "Lifestyle • 120k follower",
+      image: "https://placehold.co/50/60a5fa/ffffff?text=N",
     },
   ]
 
@@ -33,9 +37,10 @@ const SuggestedPagesCard = function () {
 
           {/* suggested pages map start */}
 
-          {pages.map((page) => (
+          {pages.map((page, index) => (
             <SidebarItem
-              image="https://placehold.co/50"
+              key={index}
+              image={page.image}
               title={page.name}
               description={page.description}
               buttonText="+ Segui"
@@ -56,9 +61,10 @@ const SuggestedPagesCard = function () {
         </Modal.Header>
 
         <Modal.Body>
-          {pages.map((page) => (
+          {pages.map((page, index) => (
             <SidebarItem
-              image="https://placehold.co/50"
+              key={index}
+              image={page.image}
               title={page.name}
               description={page.description}
               buttonText="+ Segui"
