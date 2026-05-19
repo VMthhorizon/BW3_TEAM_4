@@ -16,17 +16,13 @@ const experienceDeleteAction = (userId, expId) => {
     )
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          dispatch({
+            type: DELETE_EXPERIENCES,
+            payload: expId,
+          })
         } else {
           throw new Error("errore nella response")
         }
-      })
-      .then((data) => {
-        console.log(data)
-        dispatch({
-          type: DELETE_EXPERIENCES,
-          payload: expId,
-        })
       })
       .catch((error) => {
         console.log("errore nella fetch", error)
