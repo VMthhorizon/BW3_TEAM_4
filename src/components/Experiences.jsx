@@ -1,11 +1,11 @@
-import { useState } from "react"
-import { Row, Col, Modal, Button, Form } from "react-bootstrap"
-import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons"
-import { useDispatch, useSelector } from "react-redux"
-import experiencePostAction from "../redux/actions/experiencesAction/experiencePost"
+import { useState } from "react";
+import { Row, Col, Modal, Button, Form } from "react-bootstrap";
+import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import experiencePostAction from "../redux/actions/experiencesAction/experiencePost";
 
 const ExperienceSection = () => {
-  const [show, setShow] = useState(false)
+  const [show, setShow] = useState(false);
 
   const [formExp, setFormExp] = useState({
     role: "",
@@ -14,17 +14,17 @@ const ExperienceSection = () => {
     endDate: "",
     description: "",
     area: "",
-  })
+  });
 
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
-  })
+    return storeRedux.profile.me;
+  });
 
   const listaEsperienze = useSelector((storeRedux) => {
-    return storeRedux.experience.list
-  })
+    return storeRedux.experience.list;
+  });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -94,7 +94,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     role: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -107,7 +107,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     company: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -119,7 +119,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     description: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -131,7 +131,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     area: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -144,7 +144,7 @@ const ExperienceSection = () => {
                     setFormExp({
                       ...formExp,
                       startDate: e.target.value.toString(),
-                    })
+                    });
                   }}
                 />
               </Col>
@@ -156,7 +156,7 @@ const ExperienceSection = () => {
                     setFormExp({
                       ...formExp,
                       endDate: e.target.value.toString(),
-                    })
+                    });
                   }}
                 />
               </Col>
@@ -170,7 +170,7 @@ const ExperienceSection = () => {
               return (
                 dispatch(experiencePostAction(profilo?._id, formExp)),
                 setShow(false)
-              )
+              );
             }}
           >
             Salva
@@ -178,7 +178,7 @@ const ExperienceSection = () => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ExperienceSection
+export default ExperienceSection;
