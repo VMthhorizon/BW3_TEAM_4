@@ -8,7 +8,7 @@ import ProfilePage from "./components/pagina profilo/ProfilePage"
 import MyFooter from "./components/MyFooter"
 import ChatBox from "./components/Chatbox"
 import "swiper/css"
-import HomePage from "./components/pagina home/sidebarSxHome/HomePage"
+import HomePage from "./components/pagina home/HomePage"
 
 function App() {
   return (
