@@ -1,46 +1,21 @@
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 import { Modal } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+
 import SidebarItem from "./SidebarItem"
 
+import getProfileAllListAction from "../../../../redux/actions/profileAction/ProfileAllList"
+
 const SuggestedPeopleCard = function () {
-  // prova di map
-  // const people = [
-  //   {
-  //     name: "Snoopy",
-  //     role: "Senior Nap Engineer",
-  //   },
-
-  //   {
-  //     name: "Woodstock",
-  //     role: "Junior Flying Consultant",
-  //   },
-  //   {
-  //     name: "Charlie Brown",
-
-  //     role: "Professional Overthinker",
-  //   },
-  // ]
-
-  const [people, setPeople] = useState([])
   const [show, setShow] = useState(false)
 
-  useEffect(() => {
-    const token = localStorage.getItem("token")
+  const dispatch = useDispatch()
 
-    fetch("https://striveschool-api.herokuapp.com/api/profile/", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        setPeople(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+  const people = useSelector((state) => state.profile.profiles)
+
+  useEffect(() => {
+    dispatch(getProfileAllListAction())
+  }, [dispatch])
 
   return (
     <>
@@ -67,6 +42,7 @@ const SuggestedPeopleCard = function () {
           Mostra tutto →
         </div>
       </div>
+
       <Modal show={show} onHide={() => setShow(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Persone che potresti conoscere</Modal.Title>

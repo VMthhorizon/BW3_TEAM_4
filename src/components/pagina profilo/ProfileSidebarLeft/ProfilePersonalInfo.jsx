@@ -12,7 +12,7 @@ import MyCarousel from "./MyCarousel";
 import { useDispatch, useSelector } from "react-redux";
 import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
 import { useEffect, useState } from "react";
-import Analisi from "../../Analisi";
+
 import AddImages from "../../AddImages";
 import copertina from "../../../assets/van gogh ciliegio.jpg";
 function ProfilePersonalInfo() {
@@ -171,7 +171,6 @@ function ProfilePersonalInfo() {
                 </div>
               </Col>
             </Row>
-            <Analisi></Analisi>
           </Container>
         </Modal.Body>
         <Modal.Footer>
