@@ -1,6 +1,7 @@
-import { GET_PROFILE_ALL } from "../actions/ProfileAllList"
-import { GET_PROFILE_BY_ID } from "../actions/profileById"
-import { GET_PROFILE_PERSONALE } from "../actions/profiloPersonal"
+import { POST_PROFILE_PICTURES } from "../actions/images action/pictureProfilo"
+import { GET_PROFILE_ALL } from "../actions/profileAction/ProfileAllList"
+import { GET_PROFILE_BY_ID } from "../actions/profileAction/profileById"
+import { GET_PROFILE_PERSONALE } from "../actions/profileAction/profiloPersonal"
 
 const initialState = {
   me: null,
@@ -29,6 +30,11 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profiles: action.payload,
+      }
+    case POST_PROFILE_PICTURES:
+      return {
+        ...state,
+        me: { ...state.me, image: action.payload.image },
       }
 
     default:

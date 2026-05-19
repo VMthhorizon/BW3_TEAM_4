@@ -11,8 +11,10 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import MyCarousel from "./MyCarousel";
 import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../../redux/actions/profiloPersonal";
+import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
 import { useEffect, useState } from "react";
+import Analisi from "../../Analisi";
+import AddImages from "../../AddImages";
 
 function ProfilePersonalInfo() {
   const dispatch = useDispatch();
@@ -51,7 +53,7 @@ function ProfilePersonalInfo() {
       <Card.Body>
         <Row>
           <Col className="text-end" xs={12}>
-            <Pencil className="fs-4"></Pencil>
+            <AddImages></AddImages>
           </Col>
         </Row>
         <Row className="align-items-center">
@@ -161,6 +163,7 @@ function ProfilePersonalInfo() {
                 </div>
               </Col>
             </Row>
+            <Analisi></Analisi>
           </Container>
         </Modal.Body>
         <Modal.Footer>

@@ -8,9 +8,9 @@ const Card2SidebarSx = () => {
           Accedi a strumenti per trovare nuovi clienti
         </Card.Text>
         <Card.Text className="small mb-0 fw-bold">
-          <div className="premium-icon-box">
-            <div className="premium-icon-diagonal"></div>
-          </div>
+          <span className="premium-icon-box">
+            <span className="premium-icon-diagonal"></span>
+          </span>
           Prova Premium per 0 €
         </Card.Text>
       </Card.Body>
