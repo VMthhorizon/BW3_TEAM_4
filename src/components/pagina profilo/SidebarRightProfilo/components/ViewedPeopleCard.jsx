@@ -1,46 +1,21 @@
 import { useEffect, useState } from "react"
 import { Modal } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+
 import SidebarItem from "./SidebarItem"
 
+import getProfileAllListAction from "../../../../redux/actions/profileAction/ProfileAllList"
+
 const ViewedPeopleCard = function () {
-  // prova di map
-  // const viewedPeople = [
-  //   {
-  //     name: "Lucy van Pelt",
-  //     role: "Senior Psychiatric Booth Consultant",
-  //   },
-
-  //   {
-  //     name: "Linus van Pelt",
-  //     role: "Security Specialist",
-  //   },
-
-  //   {
-  //     name: "Schroeder",
-  //     role: "Classical Music Enthusiast",
-  //   },
-  // ]
-
   const [show, setShow] = useState(false)
-  const [viewedPeople, setViewedPeople] = useState([])
+
+  const dispatch = useDispatch()
+
+  const viewedPeople = useSelector((state) => state.profile.profiles)
 
   useEffect(() => {
-    const token = localStorage.getItem("token")
-
-    fetch("https://striveschool-api.herokuapp.com/api/profile/", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        setViewedPeople(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+    dispatch(getProfileAllListAction())
+  }, [dispatch])
 
   return (
     <>
@@ -49,7 +24,7 @@ const ViewedPeopleCard = function () {
           <h5>Altri profili consultati</h5>
 
           {/* viewed people map start */}
-          {viewedPeople.slice(10,15).map((person) => (
+          {viewedPeople.slice(10, 15).map((person) => (
             <SidebarItem
               key={person._id}
               image={person.image}
