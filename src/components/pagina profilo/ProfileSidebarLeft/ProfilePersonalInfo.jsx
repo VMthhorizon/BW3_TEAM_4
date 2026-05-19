@@ -1,115 +1,179 @@
-import { Col, Container, Row, Nav } from "react-bootstrap"
-import { Apple, PatchCheck, Pencil } from "react-bootstrap-icons"
-import Button from "react-bootstrap/Button"
-import Card from "react-bootstrap/Card"
-import MyCarousel from "./MyCarousel"
-import Analisi from "../../Analisi"
+import { Col, Container, Row, Nav, Modal, NavLink } from "react-bootstrap";
+import {
+  Apple,
+  Envelope,
+  Linkedin,
+  PatchCheck,
+  Pencil,
+  TelephoneFill,
+} from "react-bootstrap-icons";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import MyCarousel from "./MyCarousel";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
+import { useEffect, useState } from "react";
+import Analisi from "../../Analisi";
+import AddImages from "../../AddImages";
 
 function ProfilePersonalInfo() {
-  return (
-    <Container className="my-5">
-      <Card>
-        <div className="position-relative">
-          <Card.Img
-            style={{ height: 200, objectFit: "cover" }}
-            variant="top"
-            src="https://placecats.com/300/200"
-          />
-          <Pencil className="m-3 bg-white border border-1 border-black rounded-circle position-absolute fs-1 top-0 end-0 "></Pencil>
-          <img
-            className="m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
-            style={{
-              bottom: "-60px",
-              position: "absolute",
-              width: "100px",
-              height: "100px",
-            }}
-            src="https://placecats.com/300/200"
-          />
-        </div>
+  const dispatch = useDispatch();
+  const profilo = useSelector((storeRedux) => {
+    return storeRedux.profile.me;
+  });
+  const [show, setShow] = useState(false);
 
-        <Card.Body>
-          <Row>
-            <Col className="text-end" xs={12}>
-              <Pencil className="fs-4"></Pencil>
-            </Col>
-          </Row>
-          <Row className="align-items-center">
-            <Col xs={8} className="d-flex flex-column flex-md-row  gap-1">
-              <Card.Title className="fs-1 text-nowrap">
-                Vincenzo Mola
-              </Card.Title>
-              <Button
-                variant="outline-primary"
-                className="p-1 d-flex align-items-center rounded-4 justify-content-center flex-nowrap gap-1"
-                style={{
-                  borderColor: "blue",
-                  borderWidth: "2px",
-                  borderStyle: "dashed",
-                }}
-              >
-                <PatchCheck></PatchCheck>
-                <span className="flex-nowrap">Add verification badge</span>
-              </Button>
-            </Col>
-            <Col
-              xs={4}
-              className="d-flex justify-content-end align-items-center gap-1"
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  useEffect(() => {
+    dispatch(getProfilePersonaleAction());
+  }, []);
+  return (
+    <Card className="mb-3">
+      <div className="position-relative">
+        <Card.Img
+          style={{ height: 200, objectFit: "cover" }}
+          variant="top"
+          src={profilo?.image}
+        />
+        <Pencil className="m-3 bg-white border border-1 border-black rounded-circle position-absolute fs-1 top-0 end-0 "></Pencil>
+        <img
+          className="m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
+          style={{
+            bottom: "-60px",
+            position: "absolute",
+            width: "100px",
+            height: "100px",
+          }}
+          src={profilo?.image}
+        />
+      </div>
+
+      <Card.Body>
+        <Row>
+          <Col className="text-end" xs={12}>
+            <AddImages></AddImages>
+          </Col>
+        </Row>
+        <Row className="align-items-center">
+          <Col xs={8} className="d-flex flex-column flex-md-row  gap-1">
+            <Card.Title className="fs-1 text-nowrap">
+              {profilo?.name} {profilo?.surname}
+            </Card.Title>
+            <Button
+              variant="outline-primary"
+              className="p-1 d-flex align-items-center rounded-4 justify-content-center flex-nowrap gap-1"
+              style={{
+                borderColor: "blue",
+                borderWidth: "2px",
+                borderStyle: "dashed",
+              }}
             >
-              <Apple></Apple>
-              <Card.Title className="mb-0">Apple Inc.</Card.Title>
-            </Col>
-            <Col xs={12}>
-              <Card.Text className="fs-5 text-nowrap mb-0">
-                Student at Epicode
-              </Card.Text>
-              <div className="d-flex gap-1">
-                <Card.Text className="fs-6 text-muted">
-                  Italy, Naples, Campania ·
-                </Card.Text>
-                <Nav.Link href="#" className="text-primary">
-                  Contact info
-                </Nav.Link>
-              </div>
-            </Col>
-            <Col
-              xs={12}
-              className="d-flex justify-content-start gap-1 flex-wrap mb-3"
+              <PatchCheck></PatchCheck>
+              <span className="flex-nowrap">Add verification badge</span>
+            </Button>
+          </Col>
+          <Col
+            xs={4}
+            className="d-flex justify-content-end align-items-center gap-1"
+          >
+            <Apple></Apple>
+            <Card.Title className="mb-0">Apple Inc.</Card.Title>
+          </Col>
+          <Col xs={12}>
+            <Card.Text className="fs-5 mb-0">{profilo?.bio}</Card.Text>
+            <div className="d-flex gap-1">
+              <Card.Text className="fs-6 text-muted">{profilo?.area}</Card.Text>
+              <Nav.Link href="#" className="text-primary" onClick={handleShow}>
+                Contact info
+              </Nav.Link>
+            </div>
+          </Col>
+          <Col
+            xs={12}
+            className="d-flex justify-content-start gap-1 flex-wrap mb-3"
+          >
+            <Button
+              variant="primary"
+              className="rounded-4 text-nowrap py-1 fw-bolder"
             >
-              <Button
-                variant="primary"
-                className="rounded-4 text-nowrap py-1 fw-bolder"
-              >
-                Open to
-              </Button>
-              <Button
-                variant="outline-primary"
-                className="rounded-4 text-nowrap py-1 fw-bolder"
-              >
-                Add section
-              </Button>
-              <Button
-                variant="outline-primary"
-                className="rounded-4 text-nowrap py-1 fw-bolder"
-              >
-                Enhance profile
-              </Button>
-              <Button
-                variant="outline-secondary"
-                className="rounded-4 text-nowrap py-1 fw-bolder"
-              >
-                Resources
-              </Button>
-            </Col>
-          </Row>
-          <Row>
-            <MyCarousel></MyCarousel>
-          </Row>
-        </Card.Body>
-      </Card>
-      <Analisi />
-    </Container>
-  )
+              Open to
+            </Button>
+            <Button
+              variant="outline-primary"
+              className="rounded-4 text-nowrap py-1 fw-bolder"
+            >
+              Add section
+            </Button>
+            <Button
+              variant="outline-primary"
+              className="rounded-4 text-nowrap py-1 fw-bolder"
+            >
+              Enhance profile
+            </Button>
+            <Button
+              variant="outline-secondary"
+              className="rounded-4 text-nowrap py-1 fw-bolder"
+            >
+              Resources
+            </Button>
+          </Col>
+        </Row>
+        <Row>
+          <MyCarousel></MyCarousel>
+        </Row>
+      </Card.Body>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Contact Info</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Container>
+            <Row className="g-4">
+              <Col xs={12} className="d-flex gap-2 align-items-start">
+                <Linkedin className="fs-4"></Linkedin>
+                <div className="d-flex flex-column">
+                  <h6 className="mb-0"> Your Profile</h6>
+                  <NavLink
+                    className="text-primary"
+                    href="https://www.linkedin.com/in/me/"
+                  >
+                    https://www.linkedin.com/in/me/
+                  </NavLink>
+                </div>
+              </Col>
+              <Col xs={12} className="d-flex gap-2 align-items-start">
+                <TelephoneFill className="fs-4"></TelephoneFill>
+                <div className="d-flex flex-column">
+                  <h6 className="mb-0"> Phone</h6>
+                  <h6 className="fw-lighter">
+                    +39 3334445566
+                    <span className="text-muted"> (mobile)</span>
+                  </h6>
+                </div>
+              </Col>
+              <Col xs={12} className="d-flex gap-2 align-items-start">
+                <Envelope className="fs-4"></Envelope>
+                <div className="d-flex flex-column">
+                  <h6 className="mb-0"> Email</h6>
+                  <NavLink className="text-primary" href={profilo?.email}>
+                    {profilo?.email}
+                  </NavLink>
+                </div>
+              </Col>
+            </Row>
+            <Analisi></Analisi>
+          </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </Card>
+  );
 }
 
-export default ProfilePersonalInfo
+export default ProfilePersonalInfo;
