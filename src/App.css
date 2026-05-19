@@ -120,6 +120,12 @@ color: #666666 !important;
   min-width: 300px !important;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
+.profile-dropdown .dropdown-item:active, 
+.profile-dropdown .dropdown-item:focus,
+.profile-dropdown .dropdown-item:hover {
+  background-color: transparent !important; 
+  color: inherit !important;              
+}
 .btn-verify-custom, .btn-profile-custom {
    height: 3.5em;
    border-color: #0a66c2 !important;
