@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
 import MyCarousel from "./MyCarousel"
 import Analisi from "../../Analisi"
+import AddImages from "../../AddImages"
 
 function ProfilePersonalInfo() {
   return (
@@ -31,7 +32,7 @@ function ProfilePersonalInfo() {
         <Card.Body>
           <Row>
             <Col className="text-end" xs={12}>
-              <Pencil className="fs-4"></Pencil>
+              <AddImages />
             </Col>
           </Row>
           <Row className="align-items-center">
