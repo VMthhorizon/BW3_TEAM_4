@@ -1,6 +1,7 @@
 import { Container, Row, Col } from "react-bootstrap"
 
 import SideBarSxPaginaHome from "./SidebarSxPaginaHome"
+import HPSidebarRight from "./HPSidebarRight"
 
 const Home = function () {
   return (
@@ -18,7 +19,7 @@ const Home = function () {
 
         {/* sidebar destra */}
         <Col xs={12} lg={3}>
-          <div>Sidebar destra</div>
+          <HPSidebarRight />
         </Col>
       </Row>
     </Container>
