@@ -1,6 +1,6 @@
-import { Container, Row, Col } from "react-bootstrap";
-import ProfilePersonalInfo from "../ProfileSidebarLeft/ProfilePersonalInfo";
-import SidebarRight from "../SidebarRight/SidebarRight";
+import { Container, Row, Col } from "react-bootstrap"
+import ProfilePersonalInfo from "./ProfileSidebarLeft/ProfilePersonalInfo"
+import SidebarRight from "./SidebarRightProfilo/SidebarRight"
 
 const ProfilePage = () => {
   return (
@@ -14,7 +14,7 @@ const ProfilePage = () => {
         </Col>
       </Row>
     </Container>
-  );
-};
+  )
+}
 
-export default ProfilePage;
+export default ProfilePage

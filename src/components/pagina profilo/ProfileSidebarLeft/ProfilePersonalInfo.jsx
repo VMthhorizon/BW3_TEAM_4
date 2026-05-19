@@ -3,6 +3,7 @@ import { Apple, PatchCheck, Pencil } from "react-bootstrap-icons";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import MyCarousel from "./MyCarousel";
+import Analisi from "../Analisi";
 
 function ProfilePersonalInfo() {
   return (
@@ -106,6 +107,7 @@ function ProfilePersonalInfo() {
           </Row>
         </Card.Body>
       </Card>
+      <Analisi />
     </Container>
   );
 }

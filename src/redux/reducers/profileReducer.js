@@ -1,6 +1,6 @@
-import { GET_PROFILE_ALL } from "../actions/ProfileAllList"
-import { GET_PROFILE_BY_ID } from "../actions/profileById"
-import { GET_PROFILE_PERSONALE } from "../actions/profiloPersonal"
+import { GET_PROFILE_ALL } from "../actions/profileAction/ProfileAllList"
+import { GET_PROFILE_BY_ID } from "../actions/profileAction/profileById"
+import { GET_PROFILE_PERSONALE } from "../actions/profileAction/profiloPersonal"
 
 const initialState = {
   me: null,
