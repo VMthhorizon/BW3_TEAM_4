@@ -9,34 +9,39 @@ import {
   Row,
   Col,
   Modal,
-} from "react-bootstrap"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal"
-import { useNavigate } from "react-router-dom"
-import { Link } from "react-router-dom"
+} from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/" },
   { id: "rete", label: "Rete", icon: "bi-people-fill" },
-  { id: "lavoro", label: "Lavoro", icon: "bi-briefcase-fill" },
+  {
+    id: "lavoro",
+    label: "Lavoro",
+    icon: "bi-briefcase-fill",
+    navigate: "/jobs",
+  },
   { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
-]
+];
 
 const NavbarLinkedin = function () {
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
-  })
+    return storeRedux.profile.me;
+  });
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction())
+    dispatch(getProfilePersonaleAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  const [activeBtn, setActiveBtn] = useState("home")
+  }, []);
+  const [activeBtn, setActiveBtn] = useState("home");
   const profileDropdown = (
     <div className="d-flex flex-column align-items-center">
       <img
@@ -48,7 +53,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Tu</span>
       </div>
     </div>
-  )
+  );
   const profile = (
     <div
       className="linkedin-profile-menu-container"
@@ -91,7 +96,7 @@ const NavbarLinkedin = function () {
               className="w-100 rounded-pill fw-bold py-1 btn-profile-custom"
               style={{ fontSize: "14px", whiteSpace: "wrap" }}
               onClick={() => {
-                navigate("/me")
+                navigate("/me");
               }}
             >
               Visualizza profilo
@@ -183,7 +188,7 @@ const NavbarLinkedin = function () {
         Esci
       </NavDropdown.Item>
     </div>
-  )
+  );
   const perleaziendeDropdown = (
     <div className="d-flex flex-column align-items-center">
       <i
@@ -194,7 +199,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Per le aziende</span>
       </div>
     </div>
-  )
+  );
   const perleaziende = (
     <Container fluid className="p-3" style={{ width: "560px" }}>
       <Row>
@@ -408,11 +413,11 @@ const NavbarLinkedin = function () {
         </Col>
       </Row>
     </Container>
-  )
+  );
 
-  const [showPremiumModal, setShowPremiumModal] = useState(false)
-  const handleClose = () => setShowPremiumModal(false)
-  const handleShow = () => setShowPremiumModal(true)
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const handleClose = () => setShowPremiumModal(false);
+  const handleShow = () => setShowPremiumModal(true);
 
   return (
     <Container>
@@ -452,7 +457,7 @@ const NavbarLinkedin = function () {
                         variant="link"
                         className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                         onClick={() => {
-                          ;(setActiveBtn(btn.id), navigate(btn.navigate))
+                          (setActiveBtn(btn.id), navigate(btn.navigate));
                         }}
                       >
                         <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
@@ -521,6 +526,6 @@ const NavbarLinkedin = function () {
         </Col>
       </Row>
     </Container>
-  )
-}
-export default NavbarLinkedin
+  );
+};
+export default NavbarLinkedin;

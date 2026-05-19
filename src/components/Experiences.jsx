@@ -78,7 +78,7 @@ const ExperienceSection = () => {
                     <p className="mb-0 text-black">{exp.role}</p>
                     <p className="mb-0">
                       {exp.startDate.slice(0, 10)} –{" "}
-                      {exp.endDate.slice(0, 10) || "Presente"}
+                      {exp.endDate ? exp.endDate.slice(0, 10) : "Presente"}
                     </p>
                     <p className="mb-0">{exp.area}</p>
                     {exp.description && (
