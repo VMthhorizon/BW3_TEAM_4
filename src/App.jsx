@@ -11,10 +11,6 @@ import ChatBox from "./components/Chatbox"
 import "swiper/css"
 
 function App() {
-  localStorage.setItem(
-    "token",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjMGE5Njc0MDQxZjAwMTUwYmZiMTEiLCJpYXQiOjE3NzkxNzQwMzgsImV4cCI6MTc4MDM4MzYzOH0.wearIW19fddf_JOanSJ0_whZTAwxzq7Awf2dOtinIxM",
-  )
   return (
     <Provider store={store}>
       <BrowserRouter>
