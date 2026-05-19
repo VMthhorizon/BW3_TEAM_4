@@ -124,3 +124,23 @@
 .pencil-icon {
   cursor: pointer;
 }
+
+/* language modal */
+.language-modal-body {
+  padding: 2rem;
+}
+
+.language-label {
+  font-size: 14px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.language-pill {
+  display: inline-block;
+  background-color: #eef3f8;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
