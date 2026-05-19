@@ -2,10 +2,15 @@ import { Pencil } from "react-bootstrap-icons"
 import { useState } from "react"
 import { Modal, Button } from "react-bootstrap"
 import { useNavigate } from "react-router-dom"
+import { useSelector } from "react-redux"
 
 const LanguageCard = function () {
-  const [showLanguageModal, setShowLanguageModal] = useState(false)
   const [language, setLanguage] = useState("Italiano")
+  const [showLanguageModal, setShowLanguageModal] = useState(false)
+
+  const me = useSelector((state) => state.profile.me)
+  const profileUrl = `www.linkedin.com/in/${me?.name?.toLowerCase()}-${me?.surname?.toLowerCase()}`
+
   const navigate = useNavigate()
 
   return (
@@ -13,7 +18,7 @@ const LanguageCard = function () {
       <div className="sidebar-card">
         <div className="sidebar-card-content">
           <div className="language-row">
-            <h5>Profile language</h5>
+            <h5>Lingua del profilo</h5>
             <Pencil
               className="pencil-icon"
               onClick={() => setShowLanguageModal(true)}
@@ -24,13 +29,13 @@ const LanguageCard = function () {
           <hr />
 
           <div className="language-row">
-            <h5>Public profile & URL</h5>
+            <h5>Profilo pubblico & URL</h5>
             <Pencil
               className="pencil-icon"
               onClick={() => navigate("/settings")}
             />
           </div>
-          <p>www.linkedin.com/in/name</p>
+          <p>{profileUrl}</p>
         </div>
       </div>
 
@@ -41,9 +46,9 @@ const LanguageCard = function () {
         centered
       >
         <Modal.Body className="language-modal-body">
-          <h4 className="mb-4">Profile language</h4>
+          <h4 className="mb-4">Lingua del profilo</h4>
 
-          <p className="language-label">Current language</p>
+          <p className="language-label">Lingua corrente</p>
 
           <div className="language-pill">{language}</div>
 
