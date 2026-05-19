@@ -13,9 +13,11 @@ import {
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import getProfilePersonaleAction from "../redux/actions/profiloPersonal";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const buttons = [
-  { id: "home", label: "Home", icon: "bi-house-door-fill" },
+  { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/" },
   { id: "rete", label: "Rete", icon: "bi-people-fill" },
   { id: "lavoro", label: "Lavoro", icon: "bi-briefcase-fill" },
   { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
@@ -28,6 +30,7 @@ const NavbarLinkedin = function () {
   });
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProfilePersonaleAction());
@@ -87,6 +90,9 @@ const NavbarLinkedin = function () {
               variant="outline-primary"
               className="w-100 rounded-pill fw-bold py-1 btn-profile-custom"
               style={{ fontSize: "14px", whiteSpace: "wrap" }}
+              onClick={() => {
+                navigate("/me");
+              }}
             >
               Visualizza profilo
             </Button>
@@ -414,9 +420,9 @@ const NavbarLinkedin = function () {
         <Col xs={12} className="text-center justify-content-around">
           <Navbar expand="lg" className="bg-white navbar-linkedin">
             <Container>
-              <Navbar.Brand href="#home">
+              <Link to="/" className="navbar.brand me-1">
                 <i className="bi bi-linkedin logo-linkedin"></i>
-              </Navbar.Brand>
+              </Link>
               <InputGroup className="me-sm-2 search-input-linkedin">
                 <InputGroup.Text
                   id="search-addon"
@@ -442,7 +448,9 @@ const NavbarLinkedin = function () {
                         key={btn.id}
                         variant="link"
                         className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
-                        onClick={() => setActiveBtn(btn.id)}
+                        onClick={() => {
+                          (setActiveBtn(btn.id), navigate(btn.navigate));
+                        }}
                       >
                         <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
                         <span className="linkedin-btn-text">{btn.label}</span>
