@@ -81,3 +81,5 @@ const ExperienceSection = ({ experiences = [] }) => {
 };
 
 export default ExperienceSection;
+
+//da modificare dinamicamente
