@@ -22,7 +22,7 @@ const AddImages = function () {
       <Button
         disabled={!selectedPicture || !profilo}
         onClick={() => {
-          dispatch(AddImagesAction(selectedPicture, profilo._id))
+          dispatch(AddImagesAction(selectedPicture, profilo?._id))
         }}
       >
         Carica Foto
