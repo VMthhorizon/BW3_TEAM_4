@@ -1,7 +1,8 @@
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap";
 
-import SideBarSxPaginaHome from "./SidebarSxPaginaHome"
-import HPSidebarRight from "./HPSidebarRight"
+import SideBarSxPaginaHome from "./SidebarSxPaginaHome";
+import HPSidebarRight from "./HPSidebarRight";
+import PostHomePage from "./PostHomePage";
 
 const Home = function () {
   return (
@@ -14,7 +15,7 @@ const Home = function () {
 
         {/* feed centrale */}
         <Col xs={12} lg={6}>
-          <div>Feed centrale</div>
+          <PostHomePage></PostHomePage>
         </Col>
 
         {/* sidebar destra */}
@@ -23,7 +24,7 @@ const Home = function () {
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

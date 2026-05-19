@@ -6,29 +6,61 @@ import { CalendarWeek, Newspaper } from "react-bootstrap-icons";
 
 const PostHomePage = () => {
   const [show, setShow] = useState(false);
+  const [postText, setPostText] = useState("");
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setPostText("");
+  };
   const handleShow = () => setShow(true);
 
   const dispatch = useDispatch();
   const profilo = useSelector((storeRedux) => {
     return storeRedux.profile.me;
   });
+
+  const postFetch = async () => {
+    try {
+      const response = await fetch(
+        "https://striveschool-api.herokuapp.com/api/posts/",
+        {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjOGRiNzc0MDQxZjAwMTUwYmZiYTAiLCJpYXQiOjE3NzkyMDc2MDcsImV4cCI6MTc4MDQxNzIwN30.HMrBR3Fc1AQqNEUSWBcW6BdUr9vynsKNjitPN7CA_dU",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            text: postText,
+          }),
+        },
+      );
+      if (response.ok) {
+        alert("POST CREATO CON SUCCESSO");
+        handleClose();
+      } else {
+        console.log("ERRORE NEL FILE JSON", response.status);
+      }
+    } catch (error) {
+      console.log("ERRORE SERVER", error);
+    }
+  };
+
   useEffect(() => {
     dispatch(getProfilePersonaleAction());
-  });
+  }, [dispatch]);
 
   return (
-    <Container className="mt-3">
+    <Container>
       <Row>
-        <Col xs={6} className="bg-white p-2 rounded-3 border border-1">
+        <Col xs={12} className="bg-white p-3 rounded-3 border border-1">
           <Row>
-            <Col xs={12} className="d-flex gap-1 justify-content-between">
+            <Col xs={12} className="d-flex gap-3 justify-content-between">
               <img
-                className="rounded-circle"
+                className="rounded-circle object-fit-cover"
                 style={{
                   width: "60px",
-                  height: "50px",
+                  height: "60px",
                 }}
                 src={profilo?.image}
               ></img>
@@ -50,6 +82,7 @@ const PostHomePage = () => {
             >
               <div className="d-flex align-items-center gap-1">
                 <CalendarWeek
+                  className="fs-4"
                   style={{
                     color: "purple",
                   }}
@@ -58,6 +91,7 @@ const PostHomePage = () => {
               </div>
               <div className="d-flex align-items-start gap-1 align-items-center">
                 <Newspaper
+                  className="fs-4"
                   style={{
                     color: "red",
                   }}
@@ -72,13 +106,12 @@ const PostHomePage = () => {
         <Form
           onSubmit={(e) => {
             e.preventDefault();
-            alert("POST CREATO CON SUCCESSO");
-            handleClose();
+            postFetch();
           }}
         >
           <Modal.Header className="d-flex gap-3 align-items-center" closeButton>
             <img
-              className="rounded-circle"
+              className="rounded-circle object-fit-cover"
               style={{
                 width: "70px",
                 height: "70px",
@@ -94,6 +127,10 @@ const PostHomePage = () => {
                 as="textarea"
                 rows={10}
                 placeholder="Di cosa vuoi parlare?"
+                value={postText}
+                onChange={(e) => {
+                  setPostText(e.target.value);
+                }}
               />
             </Form.Group>
           </Modal.Body>
