@@ -1,25 +1,25 @@
-import { useEffect } from "react"
-import { Col, Container, Row } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
-import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal"
-import Card1SidebarSx from "./card1SidebarSx"
-import Card2SidebarSx from "./Card2SidebarSx"
-import Card3SidebarSx from "./Card3Sidevasx"
+import { useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
+import Card1SidebarSx from "./card1SidebarSx";
+import Card2SidebarSx from "./Card2SidebarSx";
+import Card3SidebarSx from "./Card3Sidevasx";
 
 const SideBarSxPaginaHome = () => {
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
-  })
+    return storeRedux.profile.me;
+  });
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction())
-  }, [])
+    dispatch(getProfilePersonaleAction());
+  }, []);
 
-  if (!profilo) return null
+  if (!profilo) return null;
   return (
-    <Container>
+    <Container className="mt-3">
       <Row>
         <Col xs={2}>
           <Card1SidebarSx profilo={profilo} />
@@ -28,6 +28,6 @@ const SideBarSxPaginaHome = () => {
         </Col>
       </Row>
     </Container>
-  )
-}
-export default SideBarSxPaginaHome
+  );
+};
+export default SideBarSxPaginaHome;
