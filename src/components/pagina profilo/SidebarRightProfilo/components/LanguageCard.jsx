@@ -9,7 +9,9 @@ const LanguageCard = function () {
   const [showLanguageModal, setShowLanguageModal] = useState(false)
 
   const me = useSelector((state) => state.profile.me)
-  const profileUrl = `www.linkedin.com/in/${me?.name?.toLowerCase()}-${me?.surname?.toLowerCase()}`
+  const selected = useSelector((state) => state.profile.selectedProfile)
+  const profileUrlMe = `www.linkedin.com/in/${me?.name?.toLowerCase()}-${me?.surname?.toLowerCase()}`
+  const profileUrlById = `www.linkedin.com/in/${selected?.name?.toLowerCase()}-${selected?.surname?.toLowerCase()}`
 
   const navigate = useNavigate()
 
@@ -35,7 +37,7 @@ const LanguageCard = function () {
               onClick={() => navigate("/settings")}
             />
           </div>
-          <p>{profileUrl}</p>
+          <p>{selected ? profileUrlById : profileUrlMe}</p>
         </div>
       </div>
 

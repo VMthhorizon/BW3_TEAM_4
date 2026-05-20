@@ -10,6 +10,7 @@ import ChatBox from "./components/Chatbox"
 import "swiper/css"
 import HomePage from "./components/pagina home/HomePage"
 import JobsPage from "./components/pagina lavoro/JobsPage"
+import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetail"
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/me" element={<ProfilePage />} />
+            <Route path="/profile/:userId" element={<ProfilePageDetail />} />
             <Route path="/jobs" element={<JobsPage />} />
           </Routes>
         </BrowserRouter>

@@ -17,6 +17,7 @@ import { useState, useEffect } from "react"
 import postDeleteAction from "../../redux/actions/postAction/postDelete"
 import AddPostImagesAction from "../../redux/actions/images action/picturePost"
 import CommentSection from "./CommentSection"
+import { useNavigate } from "react-router-dom"
 
 const PostCard = function ({ post }) {
   const [show, setShow] = useState(false)
@@ -41,6 +42,8 @@ const PostCard = function ({ post }) {
     return storeRedux.profile.me
   })
 
+  const navigate = useNavigate()
+
   const myPost = post?.username === profilo?.username
 
   useEffect(() => {
@@ -52,7 +55,12 @@ const PostCard = function ({ post }) {
       <div className="sidebar-card my-2">
         <div className="sidebar-card-content">
           {/* header */}
-          <div className="d-flex align-items-center gap-2 mb-3">
+          <div
+            className="d-flex align-items-center gap-2 mb-3"
+            onClick={() => {
+              navigate(`/profile/${post.user._id}`)
+            }}
+          >
             <img
               src={post.user.image}
               alt="avatar"
