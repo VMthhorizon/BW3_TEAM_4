@@ -1,6 +1,27 @@
-import { HandThumbsUp, ChatText, Repeat, Send } from "react-bootstrap-icons"
+import {
+  HandThumbsUp,
+  ChatText,
+  Repeat,
+  Send,
+  Trash3,
+  PencilSquare,
+} from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal";
 
 const PostCard = function ({ post }) {
+  const dispatch = useDispatch();
+  const profilo = useSelector((storeRedux) => {
+    return storeRedux.profile.me;
+  });
+
+  const myPost = post?.username === profilo?.username;
+  console.log(profilo?.username);
+
+  useDispatch(() => {
+    dispatch(getProfilePersonaleAction);
+  }, [dispatch]);
+
   return (
     <div className="sidebar-card my-2">
       <div className="sidebar-card-content">
@@ -57,10 +78,23 @@ const PostCard = function ({ post }) {
             <Send />
             <span>Invia</span>
           </div>
+          {myPost && (
+            <>
+              <div className="post-action">
+                <PencilSquare />
+                <span>Modifica</span>
+              </div>
+
+              <div className="post-action">
+                <Trash3 />
+                <span>Elimina</span>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PostCard
+export default PostCard;
