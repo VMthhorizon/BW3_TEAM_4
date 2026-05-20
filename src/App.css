@@ -275,6 +275,12 @@ body {
   color: black;
 }
 
+.comment-number:hover {
+  color: #0a66c2;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /*CSS DELLA CHATBOX*/
 
 .chat-wrapper {

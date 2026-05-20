@@ -1,3 +1,6 @@
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDViOTA2YmJlOTAwMTVkZWU1N2YiLCJpYXQiOjE3NzkwOTQ5NjksImV4cCI6MTc4MDMwNDU2OX0.lCWAGVeHSActGSTjMyk8RMF3Ua0zXKkTnQcNrIuiP20"
+
 import {
   HandThumbsUp,
   ChatText,
@@ -29,6 +32,8 @@ const PostCard = function ({ post }) {
   const [selectedPostId, setSelectedPostId] = useState(null)
   const [image, setImage] = useState(null)
 
+  const [commentsCount, setCommentsCount] = useState(0)
+
   const handleClose = () => {
     setShow(false)
     setPostText("")
@@ -49,6 +54,34 @@ const PostCard = function ({ post }) {
   useEffect(() => {
     dispatch(getProfilePersonaleAction())
   }, [dispatch])
+
+  // fetch numero commenti
+  useEffect(() => {
+    fetch("https://striveschool-api.herokuapp.com/api/comments/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+
+        throw new Error("Errore recupero commenti")
+      })
+
+      .then((data) => {
+        const filteredComments = data.filter(
+          (comment) => comment.elementId === post._id,
+        )
+
+        setCommentsCount(filteredComments.length)
+      })
+
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [post._id])
 
   return (
     <>
@@ -94,6 +127,12 @@ const PostCard = function ({ post }) {
               className="img-fluid rounded mb-3"
             />
           )}
+
+          {/* numero commenti */}
+            <div className="comment-number d-flex justify-content-end small mb-2">
+              <span>{commentsCount} commenti</span>
+            </div>
+
 
           {/* footer */}
           <div className="d-flex justify-content-around border-top pt-2">
