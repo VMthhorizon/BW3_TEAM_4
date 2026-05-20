@@ -1,23 +1,24 @@
-import { useEffect } from "react";
-import { Col, Row } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
-import Card1SidebarSx from "./card1SidebarSx";
-import Card2SidebarSx from "./Card2SidebarSx";
-import Card3SidebarSx from "./Card3Sidevasx";
+import { useEffect } from "react"
+import { Col, Row } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal"
+import Card1SidebarSx from "./card1SidebarSx"
+import Card2SidebarSx from "./Card2SidebarSx"
+import Card3SidebarSx from "./Card3Sidevasx"
 
 const SidebarSxPaginaHome = () => {
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me;
-  });
+    return storeRedux.profile.me
+  })
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction());
-  }, []);
+    dispatch(getProfilePersonaleAction())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  if (!profilo) return null;
+  if (!profilo) return null
   return (
     <Row>
       <Col xs={12}>
@@ -26,6 +27,6 @@ const SidebarSxPaginaHome = () => {
         <Card3SidebarSx />
       </Col>
     </Row>
-  );
-};
-export default SidebarSxPaginaHome;
+  )
+}
+export default SidebarSxPaginaHome

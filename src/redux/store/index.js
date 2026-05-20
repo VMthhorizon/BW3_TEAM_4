@@ -11,6 +11,12 @@ const store = configureStore({
     post: postReducer,
     comments: commentsReducer,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      immutableCheck: false,
+      serializableCheck: false,
+    }),
 })
 
 export default store
