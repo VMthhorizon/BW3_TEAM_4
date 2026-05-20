@@ -11,7 +11,7 @@ const Feed = function () {
   const posts = useSelector((state) => state.post.list)
 
   // quanti post mostrare
-  const [visiblePosts, setVisiblePosts] = useState(20)
+  const [visiblePosts, setVisiblePosts] = useState(10)
 
   useEffect(() => {
     dispatch(getPostAllAction())
