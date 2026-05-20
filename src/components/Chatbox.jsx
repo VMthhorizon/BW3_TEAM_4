@@ -157,20 +157,17 @@ const ChatBox = () => {
         minute: "2-digit",
       }),
     };
-
     setChats(
-      chats.map((chat) => {
-        if (chat.id === activeChatId) {
-          return {
-            ...chat,
-            msg: "Tu: " + textInput,
-            history: [...chat.history, newMessage],
-          };
-        }
-        return chat;
-      }),
+      chats.map((chat) =>
+        chat.id === activeChatId
+          ? {
+              ...chat,
+              msg: "Tu: " + textInput,
+              history: [...chat.history, newMessage],
+            }
+          : chat,
+      ),
     );
-
     playSendSound();
     setTextInput("");
   };
@@ -178,7 +175,13 @@ const ChatBox = () => {
   const addEmoji = (emoji) => setTextInput((prev) => prev + emoji);
 
   return (
-    <div className="chat-wrapper fixed-bottom d-flex align-items-end justify-content-end pe-4">
+    <div className="chat-wrapper">
+      {!isOpen && !activeChat && (
+        <div className="mobile-chat-toggle" onClick={() => setIsOpen(true)}>
+          <i className="bi bi-chat-dots-fill fs-4"></i>
+        </div>
+      )}
+
       {activeChat && (
         <div className="active-chat shadow-lg bg-white border">
           <div className="chat-header d-flex justify-content-between align-items-center p-2 border-bottom">
@@ -303,7 +306,7 @@ const ChatBox = () => {
         className={`list-container shadow-lg bg-white border ${isOpen ? "open" : "closed"}`}
       >
         <div
-          className="list-header d-flex justify-content-between align-items-center pointer"
+          className="list-header d-flex justify-content-between align-items-center pointer p-2"
           onClick={() => setIsOpen(!isOpen)}
         >
           <div className="d-flex align-items-center gap-2">
@@ -324,6 +327,7 @@ const ChatBox = () => {
             className={`bi ${isOpen ? "bi-chevron-down" : "bi-chevron-up"}`}
           ></i>
         </div>
+
         <div className="list-scroll">
           <div className="p-2 border-bottom">
             <InputGroup size="sm" className="bg-search rounded-1">

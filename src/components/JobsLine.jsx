@@ -1,6 +1,7 @@
 import { Row, Col, Badge } from "react-bootstrap";
 
 const JobsLine = function ({ job, onClick }) {
+  console.log(job);
   if (job.company_logo_url) {
     return (
       <div
