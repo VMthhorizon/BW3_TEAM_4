@@ -210,3 +210,83 @@ color: #666666 !important;
 .post-action:hover {
   background-color: #f3f3f3;
 }
+
+
+/*CSS DELLA CHATBOX*/
+   
+ 
+.chat-wrapper {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  z-index: 2000;
+  pointer-events: none;
+}
+.chat-wrapper > div { pointer-events: auto; }
+
+ 
+.bg-primary.msg-bubble {
+  background-color: #0a66c2 !important;  
+  color: white !important;
+  border: none !important;
+  box-shadow: none !important;  
+  border-radius: 12px 12px 0 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+ 
+.bg-light.msg-bubble {
+  background-color: #f3f3f3 !important;
+  color: rgba(0,0,0,0.9);
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 0 12px 12px 12px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+ 
+.no-focus-outline:focus, 
+.send-btn:focus,
+.form-control:focus {
+  box-shadow: none !important;
+  outline: none !important;
+  border-color: transparent !important;
+}
+ 
+.online-dot {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  background-color: #057642;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+ 
+.pointer, .item-row, .bi, .send-btn, .list-header {
+  cursor: pointer !important;
+}
+
+ 
+.active-chat {
+  width: 400px;
+  height: 580px;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  margin-right: 15px;
+}
+
+.list-container {
+  width: 300px;
+  border-radius: 8px 8px 0 0;
+  transition: transform 0.3s ease-in-out;
+}
+.list-container.closed { transform: translateY(calc(100% - 48px)); }
+.list-scroll { height: 450px; overflow-y: auto; }
+
+.bg-search { background-color: #edf3f8 !important; }
+.send-btn { background-color: #0a66c2 !important; border: none; }
+.send-btn:disabled { background-color: #ebebeb !important; color: #888 !important; }
+ 

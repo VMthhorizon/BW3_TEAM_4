@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import getPostAllAction from "../../redux/actions/post Action/postAll"
+import getPostAllAction from "../../redux/actions/postAction/postAll"
 
 import PostCard from "./PostCard"
 
@@ -20,11 +20,9 @@ const Feed = function () {
   return (
     <>
       {/* lista posts */}
-      {posts
+      {[...posts]
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-
         .slice(0, visiblePosts)
-
         .map((post) => (
           <PostCard key={post._id} post={post} />
         ))}

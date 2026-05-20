@@ -2,7 +2,17 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import JobsLine from "./JobsLine";
 import { ChevronExpand } from "react-bootstrap-icons";
+import casetta from "../assets/casetta.png";
+import edilizia from "../assets/edilizia.png";
+import finanza from "../assets/finanza.png";
+import governo from "../assets/governo.png";
+import ibrido from "../assets/ibrido.png";
+import industriamanifatturiera from "../assets/industriamanifatturiera.png";
+import risorse from "../assets/risorse.png";
+import media from "../assets/media.png";
+import it from "../assets/it.png";
 
+import { Col, Container, Row } from "react-bootstrap";
 const Job = function () {
   const [jobs, setJobs] = useState([]);
 
@@ -12,7 +22,7 @@ const Job = function () {
   const searchParams = new URLSearchParams(location.search);
   const query = searchParams.get("search");
   const [showJobs, setShowJobs] = useState(false);
-  const jobSliced = showJobs ? jobs : jobs.slice(0, 3);
+  const jobSliced = showJobs ? jobs : jobs.slice(0, 15);
   useEffect(() => {
     const prepareFetch = setTimeout(() => {
       setLoading(true);
@@ -82,11 +92,137 @@ const Job = function () {
       </div>
       <div className="max-w-4xl mx-auto p-6 bg-white rounded-3 mt-3">
         <h3 className="text-2xl font-bold px-3 pt-4">
-          {query
-            ? `Risultati di ricerca per: "${query}"`
-            : "Esplora altre categorie di offerte"}
+          Esplora altre categorie di offerte
         </h3>
-
+        <div>
+          <Container>
+            <Row>
+              <Col xs={12} className="d-flex justify-content-between">
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={casetta}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Piccole imprese</small>
+                  </p>
+                </div>
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={risorse}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Risorse Umane</small>
+                  </p>
+                </div>
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={media}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Media</small>
+                  </p>
+                </div>
+              </Col>
+              <Col xs={12} className="d-flex justify-content-between mt-1">
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={industriamanifatturiera}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Industria Manifatturiera</small>
+                  </p>
+                </div>
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={ibrido}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Ibrido</small>
+                  </p>
+                </div>
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={it}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">IT</small>
+                  </p>
+                </div>
+              </Col>
+              <Col xs={12} className="d-flex justify-content-between mt-1">
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={governo}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Governo</small>
+                  </p>
+                </div>
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={edilizia}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Edilizia</small>
+                  </p>
+                </div>
+                <div
+                  className="d-flex align-items-center border border-1 rounded-2"
+                  style={{ width: "33%" }}
+                >
+                  <img
+                    src={finanza}
+                    alt="piccole-imprese"
+                    style={{ width: "45px", height: "45px" }}
+                  />
+                  <p className="m-0">
+                    <small className="ps-1">Finanza</small>
+                  </p>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </div>
         {loading && (
           <p className="text-center text-gray-500 py-10">Caricamento...</p>
         )}
@@ -97,7 +233,7 @@ const Job = function () {
         )}
         {!loading && !error && (
           <div className="bg-white rounded-xl shadow-sm">
-            {jobSliced.slice(1, 4).map((job) => (
+            {jobSliced.slice(0, 10).map((job) => (
               <JobsLine key={job._id} job={job} />
             ))}
             <div
