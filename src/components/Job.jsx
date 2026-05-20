@@ -12,7 +12,7 @@ import risorse from "../assets/risorse.png";
 import media from "../assets/media.png";
 import it from "../assets/it.png";
 
-import { Alert, Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 const Job = function () {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
