@@ -13,7 +13,7 @@ import media from "../assets/media.png";
 import it from "../assets/it.png";
 
 import { Button, Col, Container, Modal, Row } from "react-bootstrap";
-const Job = function (job) {
+const Job = function () {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -93,32 +93,6 @@ const Job = function (job) {
               {showJobs ? "Mostra meno" : "Mostra altro"}
               <ChevronExpand />
             </div>
-            {selectedJob && (
-              <div
-                onClose={() => setselectedJob(null)}
-                className="modal show"
-                style={{ display: "block", position: "initial" }}
-              >
-                <Modal.Dialog>
-                  <Modal.Header closeButton>
-                    <Modal.Title>{job.company_name}</Modal.Title>
-                  </Modal.Header>
-                  <Modal.Body>
-                    <p>
-                      {job.candidate_required_location} ({job.category})
-                    </p>
-                  </Modal.Body>
-                  <Modal.Footer>
-                    <Button
-                      onClose={() => setselectedJob(null)}
-                      variant="secondary"
-                    >
-                      Close
-                    </Button>
-                  </Modal.Footer>
-                </Modal.Dialog>
-              </div>
-            )}
           </div>
         )}
       </div>
@@ -313,6 +287,31 @@ const Job = function (job) {
           </div>
         )}
       </div>
+
+      <Modal
+        show={selectedJob !== null}
+        onHide={() => setselectedJob(null)}
+        centered
+      >
+        {selectedJob && (
+          <>
+            <Modal.Header closeButton>
+              <Modal.Title>{selectedJob.company_name}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <p>
+                {selectedJob.candidate_required_location} (
+                {selectedJob.category})
+              </p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={() => setselectedJob(null)}>
+                Close
+              </Button>
+            </Modal.Footer>
+          </>
+        )}
+      </Modal>
     </>
   );
 };
