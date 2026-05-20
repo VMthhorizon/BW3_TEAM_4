@@ -72,7 +72,7 @@ const Job = function () {
           </InputGroup.Text>
           <Form.Control
             type="text"
-            placeholder="Cerca un azienda o un lavoro..."
+            placeholder="Cerca un un lavoro..."
             aria-label="Search"
             aria-describedby="search-addon"
             className="border-start-0 ps-0"
