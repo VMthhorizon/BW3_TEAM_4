@@ -10,7 +10,7 @@ const Home = function () {
     <Container className="my-4">
       <Row>
         {/* sidebar sinistra */}
-        <Col xs={12} lg={3}>
+        <Col xs={12} lg={3} className="mb-2">
           <SidebarSxPaginaHome />
         </Col>
 
