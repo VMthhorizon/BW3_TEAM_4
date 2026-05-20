@@ -82,7 +82,6 @@ const PostCard = function ({ post }) {
         const filteredComments = data.filter(
           (comment) => comment.elementId === post._id,
         )
-
         setCommentsCount(filteredComments.length)
       })
 
@@ -137,23 +136,27 @@ const PostCard = function ({ post }) {
           )}
 
           {/* numero commenti */}
-          <div className="comment-number d-flex justify-content-end small mb-2">
-            <span>{commentsCount} commenti</span>
+          <div className="comment-number d-flex justify-content-between align-items-center small mb-2">
+            <div className="d-flex ">
+              {liked[post._id] ? (
+                <>
+                  <HandThumbsUpFill className="text-primary" />
+                  <p className="ms-2 mb-0">
+                    {profilo.name.charAt(0).toUpperCase() +
+                      profilo.name.slice(1)}{" "}
+                    {""}
+                    {profilo.surname.charAt(0).toUpperCase() +
+                      profilo.surname.slice(1)}
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+            <span>
+              {commentsCount} {commentsCount !== 1 ? "commenti" : "commento"}
+            </span>
           </div>
-
-          {liked[post._id] ? (
-            <>
-              <HandThumbsUpFill className="text-primary" />
-              <p className="d-inline-block ms-2 mb-2">
-                {profilo.name.charAt(0).toUpperCase() + profilo.name.slice(1)}{" "}
-                {""}
-                {profilo.surname.charAt(0).toUpperCase() +
-                  profilo.surname.slice(1)}
-              </p>
-            </>
-          ) : (
-            ""
-          )}
 
           {/* footer */}
           <div className="d-flex justify-content-around border-top pt-2">
