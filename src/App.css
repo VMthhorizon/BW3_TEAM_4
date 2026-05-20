@@ -290,3 +290,17 @@ color: #666666 !important;
 .send-btn { background-color: #0a66c2 !important; border: none; }
 .send-btn:disabled { background-color: #ebebeb !important; color: #888 !important; }
  
+/* comments */
+.comment-input {
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #d0d0d0;
+  padding: 10px 16px;
+  background-color: white;
+  transition: 0.2s;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #888;
+}
