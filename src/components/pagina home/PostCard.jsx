@@ -5,46 +5,47 @@ import {
   Send,
   Trash3,
   PencilSquare,
-} from "react-bootstrap-icons";
+} from "react-bootstrap-icons"
 
-import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal";
-import { Button, Form, Modal, Col } from "react-bootstrap";
-import postPutAction from "../../redux/actions/postAction/postPut";
-import getPostAllListAction from "../../redux/actions/postAction/postAll";
-import postPostAction from "../../redux/actions/postAction/postPost";
-import { useState, useEffect } from "react";
-import postDeleteAction from "../../redux/actions/postAction/postDelete";
-import AddPostImagesAction from "../../redux/actions/images action/picturePost";
-import CommentSection from "./CommentSection";
+import { useDispatch, useSelector } from "react-redux"
+import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal"
+import { Button, Form, Modal, Col } from "react-bootstrap"
+import postPutAction from "../../redux/actions/postAction/postPut"
+import getPostAllListAction from "../../redux/actions/postAction/postAll"
+import postPostAction from "../../redux/actions/postAction/postPost"
+import { useState, useEffect } from "react"
+import postDeleteAction from "../../redux/actions/postAction/postDelete"
+import AddPostImagesAction from "../../redux/actions/images action/picturePost"
+import CommentSection from "./CommentSection"
 
 const PostCard = function ({ post }) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
-  const [showComments, setShowComments] = useState(false);
+  const [showComments, setShowComments] = useState(false)
 
-  const [postText, setPostText] = useState("");
+  const [postText, setPostText] = useState("")
 
-  const [selectedPostId, setSelectedPostId] = useState(null);
+  const [selectedPostId, setSelectedPostId] = useState(null)
+  const [image, setImage] = useState(null)
 
   const handleClose = () => {
-    setShow(false);
-    setPostText("");
-  };
+    setShow(false)
+    setPostText("")
+  }
 
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShow(true)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me;
-  });
+    return storeRedux.profile.me
+  })
 
-  const myPost = post?.username === profilo?.username;
+  const myPost = post?.username === profilo?.username
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction());
-  }, [dispatch]);
+    dispatch(getProfilePersonaleAction())
+  }, [dispatch])
 
   return (
     <>
@@ -118,13 +119,13 @@ const PostCard = function ({ post }) {
 
                   <span
                     onClick={() => {
-                      setPostText(post.text);
+                      setPostText(post.text)
 
-                      setSelectedPostId(post._id);
+                      setSelectedPostId(post._id)
 
-                      setShow(true);
+                      setShow(true)
 
-                      handleShow();
+                      handleShow()
                     }}
                   >
                     Modifica
@@ -136,7 +137,7 @@ const PostCard = function ({ post }) {
 
                   <span
                     onClick={() => {
-                      dispatch(postDeleteAction(post._id));
+                      dispatch(postDeleteAction(post._id))
                     }}
                   >
                     Elimina
@@ -175,8 +176,18 @@ const PostCard = function ({ post }) {
                 placeholder="Di cosa vuoi parlare?"
                 value={postText}
                 onChange={(e) => {
-                  setPostText(e.target.value);
+                  setPostText(e.target.value)
                 }}
+              />
+            </Form.Group>
+            <Form.Group
+              as={Col}
+              controlId="validationCustom01"
+              className="mt-2"
+            >
+              <Form.Control
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
               />
             </Form.Group>
           </Modal.Body>
@@ -185,26 +196,29 @@ const PostCard = function ({ post }) {
             <Button
               variant="primary"
               type="submit"
-              onClick={() => {
+              onClick={async () => {
                 if (selectedPostId) {
-                  dispatch(
-                    postPutAction(selectedPostId, {
-                      text: postText,
-                    }),
-                  ).then(() => {
-                    dispatch(getPostAllListAction());
-                  });
+                  await dispatch(
+                    postPutAction(selectedPostId, { text: postText }),
+                  )
+                  if (image) {
+                    await dispatch(AddPostImagesAction(image, selectedPostId))
+                  }
+                  dispatch(getPostAllListAction())
                 } else {
-                  dispatch(
-                    postPostAction({
-                      text: postText,
-                    }),
-                  ).then(() => {
-                    dispatch(getPostAllListAction());
-                  });
+                  const resp = await dispatch(
+                    postPostAction({ text: postText }),
+                  )
+
+                  const newIdPost = resp.payload._id
+
+                  if (image) {
+                    await dispatch(AddPostImagesAction(image, newIdPost))
+                  }
+                  dispatch(getPostAllListAction())
                 }
 
-                setShow(false);
+                setShow(false)
               }}
             >
               Post
@@ -213,7 +227,7 @@ const PostCard = function ({ post }) {
         </Form>
       </Modal>
     </>
-  );
-};
+  )
+}
 
-export default PostCard;
+export default PostCard
