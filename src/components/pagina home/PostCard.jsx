@@ -145,11 +145,10 @@ const PostCard = function ({ post }) {
             <>
               <HandThumbsUpFill className="text-primary" />
               <p className="d-inline-block ms-2 mb-2">
-                {post.user.name.charAt(0).toUpperCase() +
-                  post.user.name.slice(1)}{" "}
+                {profilo.name.charAt(0).toUpperCase() + profilo.name.slice(1)}{" "}
                 {""}
-                {post.user.surname.charAt(0).toUpperCase() +
-                  post.user.surname.slice(1)}
+                {profilo.surname.charAt(0).toUpperCase() +
+                  profilo.surname.slice(1)}
               </p>
             </>
           ) : (
