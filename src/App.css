@@ -211,10 +211,10 @@ body {
 }
 
 /*CSS DELLA CHATBOX*/
-
+ 
+ 
 .chat-wrapper {
-  font-family:
-    -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   z-index: 2000;
   pointer-events: none;
 }
@@ -317,6 +317,12 @@ body {
   border-color: 888;
 }
 
+.comment-box {
+  border-radius: 25px;
+  border: 1px solid #d0d0d0;
+  background-color: white;
+}
+
 /*responsive*/
 
 .active-chat {
@@ -325,29 +331,103 @@ body {
   position: fixed;
   bottom: 0;
   right: 20px;
-  z-index: 2000;
+  display: flex;
+  align-items: flex-end;
+  gap: 15px;
+}
+
+.chat-wrapper > div { pointer-events: auto; }
+
+ 
+.active-chat {
+  width: 550px;   
+  height: 680px; 
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px 8px 0 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
 .list-container {
-  width: 300px;
-  position: fixed;
-  bottom: 0;
-  right: 400px;
-  z-index: 2000;
+  width: 350px;   
+  height: 680px; 
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px 8px 0 0;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
-  .list-container {
-    width: 100% !important;
-    right: 0 !important;
-    border-radius: 10px 10px 0 0 !important;
-  }
+ 
+.list-container.closed { transform: translateY(632px); }  
+.list-container.open { transform: translateY(0); }
 
-  .active-chat {
-    width: 100% !important;
-    height: 100% !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    border-radius: 0 !important;
+.list-scroll { 
+  flex-grow: 1; 
+  overflow-y: auto; 
+}
+
+ 
+.msg-bubble { 
+  padding: 12px 18px; 
+  font-size: 15px; 
+  border-radius: 12px; 
+  max-width: 85%;
+}
+.bg-primary.msg-bubble { background-color: #0a66c2 !important; color: white !important; }
+.bg-light.msg-bubble { background-color: #f3f3f3 !important; color: black !important; }
+
+ 
+.pointer { cursor: pointer !important; }
+.online-dot { position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background-color: #057642; border-radius: 50%; border: 2px solid white; }
+.send-btn { background-color: #0a66c2 !important; border: none !important; font-weight: bold; }
+.bg-search { background-color: #edf3f8 !important; }
+ 
+@media (max-width: 768px) {
+  .chat-wrapper { 
+    right: 0 !important; 
+    left: 0 !important; 
+    padding: 0 !important; 
+    gap: 0 !important; 
+  }
+  
+  .list-container { 
+    width: 100% !important; 
+    height: 100vh !important; 
+    border-radius: 0 !important; 
+    position: fixed !important; 
+    bottom: 0; 
+  }
+  
+  .list-container.closed { transform: translateY(100vh) !important; }
+  
+  .active-chat { 
+    width: 100% !important; 
+    height: 100% !important; 
+    border-radius: 0 !important; 
+    position: fixed !important; 
+    top: 0; 
+    left: 0; 
+    z-index: 2001; 
+  }
+  
+  .mobile-chat-toggle {
+    display: flex !important;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #0a66c2;
+    color: white;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 3000;
+    cursor: pointer;
   }
 }
