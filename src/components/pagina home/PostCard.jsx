@@ -14,11 +14,13 @@ import getPostAllListAction from "../../redux/actions/postAction/postAll"
 import postPostAction from "../../redux/actions/postAction/postPost"
 import { useState } from "react"
 import postDeleteAction from "../../redux/actions/postAction/postDelete"
+import AddPostImagesAction from "../../redux/actions/images action/picturePost"
 
 const PostCard = function ({ post }) {
   const [show, setShow] = useState(false)
   const [postText, setPostText] = useState("")
   const [selectedPostId, setSelectedPostId] = useState(null)
+  const [image, setImage] = useState(null)
 
   const handleClose = () => {
     setShow(false)
@@ -158,22 +160,56 @@ const PostCard = function ({ post }) {
                 }}
               />
             </Form.Group>
+            <Form.Group
+              as={Col}
+              controlId="validationCustom01"
+              className="mt-2"
+            >
+              <Form.Control
+                type="file"
+                onChange={(e) => setImage(e.target.files[0])}
+              />
+            </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button
               variant="primary"
               type="submit"
-              onClick={() => {
+              // onClick={() => {
+              //   if (selectedPostId) {
+              //     dispatch(
+              //       postPutAction(selectedPostId, { text: postText }),
+              //     ).then(() => {
+              //       dispatch(getPostAllListAction())
+              //     })
+              //   } else {
+              //     dispatch(postPostAction({ text: postText })).then(() => {
+              //       dispatch(getPostAllListAction())
+              //     })
+              //   }
+              //   setShow(false)
+              // }}
+
+              onClick={async () => {
                 if (selectedPostId) {
-                  dispatch(
+                  await dispatch(
                     postPutAction(selectedPostId, { text: postText }),
-                  ).then(() => {
-                    dispatch(getPostAllListAction())
-                  })
+                  )
+                  if (image) {
+                    await dispatch(AddPostImagesAction(image, selectedPostId))
+                  }
+                  dispatch(getPostAllListAction())
                 } else {
-                  dispatch(postPostAction({ text: postText })).then(() => {
-                    dispatch(getPostAllListAction())
-                  })
+                  const resp = await dispatch(
+                    postPostAction({ text: postText }),
+                  )
+
+                  const newIdPost = resp.payload._id
+
+                  if (image) {
+                    await dispatch(AddPostImagesAction(image, newIdPost))
+                  }
+                  dispatch(getPostAllListAction())
                 }
                 setShow(false)
               }}

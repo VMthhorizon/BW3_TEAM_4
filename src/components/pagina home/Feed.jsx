@@ -8,7 +8,7 @@ import PostCard from "./PostCard"
 const Feed = function () {
   const dispatch = useDispatch()
 
-  const posts = useSelector((state) => state.post.list)
+  const posts = useSelector((state) => state.post.list || [])
 
   // quanti post mostrare
   const [visiblePosts, setVisiblePosts] = useState(20)
