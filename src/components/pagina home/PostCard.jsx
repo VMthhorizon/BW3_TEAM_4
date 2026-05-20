@@ -2,13 +2,14 @@ import { HandThumbsUp, ChatText, Repeat, Send } from "react-bootstrap-icons"
 import linkedinAvatar from "../../assets/linkedin-avatar.png"
 
 const PostCard = function ({ post }) {
+  console.log(post)
   return (
     <div className="sidebar-card my-2">
       <div className="sidebar-card-content">
         {/* header */}
         <div className="d-flex align-items-center gap-2 mb-3">
           <img
-            src={linkedinAvatar}
+            src={post.user.image}
             alt="avatar"
             className="round-avatar"
             style={{
@@ -19,14 +20,15 @@ const PostCard = function ({ post }) {
           />
 
           <div>
-            <h6 className="mb-0">{post.username}</h6>
+            <h6 className="mb-0">
+              {post.user.name} {post.user.surname}
+            </h6>
 
             <p className="text-muted mb-0">
               {new Date(post.createdAt).toLocaleDateString()}
             </p>
           </div>
         </div>
-
         {/* testo */}
         <h5 className="mb-3 fw-light">{post.text}</h5>
 
