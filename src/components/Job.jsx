@@ -11,8 +11,16 @@ import industriamanifatturiera from "../assets/industriamanifatturiera.png";
 import risorse from "../assets/risorse.png";
 import media from "../assets/media.png";
 import it from "../assets/it.png";
+import {
+  Button,
+  Col,
+  Container,
+  Modal,
+  Row,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
 
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
 const Job = function () {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -23,6 +31,8 @@ const Job = function () {
   const [showJobs, setShowJobs] = useState(false);
   const jobSliced = showJobs ? jobs : jobs.slice(0, 15);
   const [selectedJob, setselectedJob] = useState(null);
+  const [search, setSearch] = useState("");
+
   useEffect(() => {
     const prepareFetch = setTimeout(() => {
       setLoading(true);
@@ -55,8 +65,24 @@ const Job = function () {
 
   return (
     <>
-      <div className="max-w-4xl mx-auto p-6 bg-white rounded-3">
-        <h3 className="text-2xl font-bold px-3 pt-4">
+      <div className="max-w-4xl mx-auto p-6 bg-white rounded-3 pt-2">
+        <InputGroup className="m-auto search-input-linkedin ">
+          <InputGroup.Text id="search-addon" className="bg-white border-end-0">
+            <i className="bi bi-search text-muted"></i>
+          </InputGroup.Text>
+          <Form.Control
+            type="text"
+            placeholder="Cerca un un lavoro..."
+            aria-label="Search"
+            aria-describedby="search-addon"
+            className="border-start-0 ps-0"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
+          />
+        </InputGroup>
+        <h3 className="text-2xl font-bold px-3 pt-2">
           {query
             ? `Risultati di ricerca per: "${query}"`
             : "Le principali offerte di lavoro per te"}
@@ -77,16 +103,41 @@ const Job = function () {
         )}
         {!loading && !error && (
           <div className="bg-white rounded-xl shadow-sm">
-            {jobSliced.map((job) => (
-              <JobsLine
-                style={{ cursor: "pointer" }}
-                key={job._id}
-                job={job}
-                onClick={() => {
-                  setselectedJob(job);
-                }}
-              />
-            ))}
+            {search
+              ? jobs
+                  .filter((job) => {
+                    if (
+                      job.title.toLowerCase().includes(search.toLowerCase())
+                    ) {
+                      return true;
+                    } else {
+                      return false;
+                    }
+                  })
+                  .map((job) => {
+                    return (
+                      <JobsLine
+                        style={{ cursor: "pointer" }}
+                        key={job._id}
+                        job={job}
+                        onClick={() => {
+                          setselectedJob(job);
+                        }}
+                      />
+                    );
+                  })
+              : jobSliced.map((job) => {
+                  return (
+                    <JobsLine
+                      style={{ cursor: "pointer" }}
+                      key={job._id}
+                      job={job}
+                      onClick={() => {
+                        setselectedJob(job);
+                      }}
+                    />
+                  );
+                })}
             <div
               className="show-all m-0"
               onClick={() => setShowJobs(!showJobs)}

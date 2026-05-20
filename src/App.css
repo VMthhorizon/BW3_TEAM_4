@@ -244,6 +244,21 @@ body {
   color: #222;
 }
 
+.comment-edit,
+.comment-delete {
+  cursor: pointer;
+  color: #666;
+  transition: 0.2s;
+}
+
+.comment-edit:hover {
+  color: #0a66c2;
+}
+
+.comment-delete:hover {
+  color: #d11124;
+}
+
 /*CSS DELLA CHATBOX*/
 
 .chat-wrapper {
