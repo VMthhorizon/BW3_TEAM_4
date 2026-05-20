@@ -5,6 +5,7 @@ import {
   Send,
   Trash3,
   PencilSquare,
+  HandThumbsUpFill,
 } from "react-bootstrap-icons"
 
 import { useDispatch, useSelector } from "react-redux"
@@ -21,7 +22,7 @@ import { useNavigate } from "react-router-dom"
 
 const PostCard = function ({ post }) {
   const [show, setShow] = useState(false)
-
+  const [liked, setliked] = useState({})
   const [showComments, setShowComments] = useState(false)
 
   const [postText, setPostText] = useState("")
@@ -32,6 +33,13 @@ const PostCard = function ({ post }) {
   const handleClose = () => {
     setShow(false)
     setPostText("")
+  }
+
+  const toggleLike = (postId) => {
+    setliked((prev) => ({
+      ...prev,
+      [postId]: !prev[postId],
+    }))
   }
 
   const handleShow = () => setShow(true)
@@ -91,15 +99,45 @@ const PostCard = function ({ post }) {
             <img
               src={post.image}
               alt="post"
-              className="img-fluid rounded mb-3"
+              className="img-fluid rounded mb-2"
             />
+          )}
+
+          {liked[post._id] ? (
+            <>
+              <HandThumbsUpFill className="text-primary" />
+              <p className="d-inline-block ms-2 mb-2">
+                {post.user.name.charAt(0).toUpperCase() +
+                  post.user.name.slice(1)}{" "}
+                {""}
+                {post.user.surname.charAt(0).toUpperCase() +
+                  post.user.surname.slice(1)}
+              </p>
+            </>
+          ) : (
+            ""
           )}
 
           {/* footer */}
           <div className="d-flex justify-content-around border-top pt-2">
-            <div className="post-action">
-              <HandThumbsUp />
-              <span>Consiglia</span>
+            <div
+              className="post-action"
+              onClick={() => {
+                toggleLike(post._id)
+              }}
+            >
+              {liked[post._id] ? (
+                <>
+                  {" "}
+                  <HandThumbsUpFill className="text-primary" />{" "}
+                  <span className="text-primary">Consiglia</span>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <HandThumbsUp /> <span>Consiglia</span>
+                </>
+              )}
             </div>
 
             <div
