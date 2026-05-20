@@ -229,7 +229,7 @@ body {
 
  
 .active-chat {
-  width: 550px;   
+  width: 480px;   
   height: 680px; 
   background: white;
   border: 1px solid #ddd;
@@ -240,8 +240,8 @@ body {
 }
 
 .list-container {
-  width: 350px;   
-  height: 680px; 
+  width: 350px;
+  height: 680px;  
   background: white;
   border: 1px solid #ddd;
   border-radius: 8px 8px 0 0;
@@ -251,7 +251,7 @@ body {
 }
 
  
-.list-container.closed { transform: translateY(632px); }  
+.list-container.closed { transform: translateY(632px); } 
 .list-container.open { transform: translateY(0); }
 
 .list-scroll { 
@@ -261,8 +261,8 @@ body {
 
  
 .msg-bubble { 
-  padding: 12px 18px; 
-  font-size: 15px; 
+  padding: 10px 14px; 
+  font-size: 14px; 
   border-radius: 12px; 
   max-width: 85%;
 }
@@ -274,34 +274,16 @@ body {
 .online-dot { position: absolute; bottom: 2px; right: 2px; width: 12px; height: 12px; background-color: #057642; border-radius: 50%; border: 2px solid white; }
 .send-btn { background-color: #0a66c2 !important; border: none !important; font-weight: bold; }
 .bg-search { background-color: #edf3f8 !important; }
+.no-focus-outline:focus { box-shadow: none !important; }
+
  
 @media (max-width: 768px) {
-  .chat-wrapper { 
-    right: 0 !important; 
-    left: 0 !important; 
-    padding: 0 !important; 
-    gap: 0 !important; 
-  }
+  .chat-wrapper { right: 0 !important; left: 0 !important; padding: 0 !important; gap: 0 !important; }
   
-  .list-container { 
-    width: 100% !important; 
-    height: 100vh !important; 
-    border-radius: 0 !important; 
-    position: fixed !important; 
-    bottom: 0; 
-  }
-  
+  .list-container { width: 100% !important; height: 100vh !important; border-radius: 0 !important; position: fixed !important; bottom: 0; }
   .list-container.closed { transform: translateY(100vh) !important; }
   
-  .active-chat { 
-    width: 100% !important; 
-    height: 100% !important; 
-    border-radius: 0 !important; 
-    position: fixed !important; 
-    top: 0; 
-    left: 0; 
-    z-index: 2001; 
-  }
+  .active-chat { width: 100% !important; height: 100% !important; border-radius: 0 !important; position: fixed !important; top: 0; left: 0; z-index: 2001; }
   
   .mobile-chat-toggle {
     display: flex !important;
