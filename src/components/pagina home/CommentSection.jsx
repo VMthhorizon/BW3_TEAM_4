@@ -7,6 +7,8 @@ import postCommentAction from "../../redux/actions/commentsActions/postComment"
 import deleteCommentAction from "../../redux/actions/commentsActions/deleteComment"
 import putCommentAction from "../../redux/actions/commentsActions/putComment"
 
+import avatarPlaceholder from "../../assets/avatar-corretto.png"
+
 import { Pencil, Trash3 } from "react-bootstrap-icons"
 
 const CommentSection = function ({ postId }) {
@@ -23,6 +25,7 @@ const CommentSection = function ({ postId }) {
   const [editingCommentId, setEditingCommentId] = useState(null)
 
   const [editedText, setEditedText] = useState("")
+
 
   useEffect(() => {
     dispatch(getCommentsAction(postId))
@@ -76,47 +79,61 @@ const CommentSection = function ({ postId }) {
         const myComment = comment.author === profilo?.username
 
         return (
-          <div key={comment._id} className="comment-box mb-2">
-            <div className="py-2 px-3">
-              {editingCommentId === comment._id ? (
-                <input
-                  type="text"
-                  className="comment-input"
-                  value={editedText}
-                  onChange={(e) => setEditedText(e.target.value)}
-                  onKeyDown={(e) => {
-                    if (e.key === "Enter") {
-                      e.preventDefault()
+          <div key={comment._id} className="comment-wrapper mb-3">
+            <div className="d-flex gap-2 align-items-start">
+              {/* avatar */}
+              <img
+                src={avatarPlaceholder}
+                alt="avatar"
+                className="comment-avatar"
+              />
 
-                      handleEditSubmit(comment._id)
-                    }
-                  }}
-                />
-              ) : (
-                <div className="d-flex justify-content-between align-items-center">
-                  <p className="mb-0 fs-6">{comment.comment}</p>
+              {/* contenuto */}
+              <div className="comment-content">
+                <div className="comment-bubble">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <span className="comment-author">{comment.author}</span>
 
-                  {myComment && (
-                    <div className="d-flex gap-2">
-                      <Pencil
-                        className="comment-edit"
-                        onClick={() => {
-                          setEditingCommentId(comment._id)
+                    {myComment && (
+                      <div className="d-flex gap-2">
+                        <Pencil
+                          className="comment-edit"
+                          onClick={() => {
+                            setEditingCommentId(comment._id)
 
-                          setEditedText(comment.comment)
-                        }}
-                      />
+                            setEditedText(comment.comment)
+                          }}
+                        />
 
-                      <Trash3
-                        className="comment-delete"
-                        onClick={() => {
-                          dispatch(deleteCommentAction(comment._id, postId))
-                        }}
-                      />
-                    </div>
+                        <Trash3
+                          className="comment-delete"
+                          onClick={() => {
+                            dispatch(deleteCommentAction(comment._id, postId))
+                          }}
+                        />
+                      </div>
+                    )}
+                  </div>
+
+                  {editingCommentId === comment._id ? (
+                    <input
+                      type="text"
+                      className="comment-input mt-2"
+                      value={editedText}
+                      onChange={(e) => setEditedText(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault()
+
+                          handleEditSubmit(comment._id)
+                        }
+                      }}
+                    />
+                  ) : (
+                    <p className="comment-text">{comment.comment}</p>
                   )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         )
