@@ -175,7 +175,7 @@ const ChatBox = () => {
   const addEmoji = (emoji) => setTextInput((prev) => prev + emoji)
 
   return (
-    <div className="chat-wrapper d-none d-lg-flex">
+    <div className="chat-wrapper d-inline-block d-lg-none">
       {!isOpen && !activeChat && (
         <div className="mobile-chat-toggle " onClick={() => setIsOpen(true)}>
           <i className="bi bi-chat-dots-fill fs-4"></i>

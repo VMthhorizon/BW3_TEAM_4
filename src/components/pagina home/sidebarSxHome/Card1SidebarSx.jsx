@@ -1,25 +1,28 @@
-import { Card, Image } from "react-bootstrap";
+import { Card, Image } from "react-bootstrap"
 
 const Card1SidebarSx = ({ profilo }) => {
-  if (!profilo) return null;
+  if (!profilo) return null
 
   return (
-    <Card className="position-relative">
+    <Card className="position-relative ">
       <Card.Img
         variant="top"
         src="https://img.magnific.com/foto-gratuito/pianta-della-palma-dell-agave-su-fondo-grigio_53876-110285.jpg"
         height={50}
       />
-      <Image
-        src={profilo.image}
-        className="position-absolute w-25 mt-4 ms-3 border border-2 border-light"
-        style={{
-          height: "67px",
-          width: "50px",
-          borderRadius: "50%",
-          objectFit: "cover",
-        }}
-      />
+      <div>
+        <Image
+          src={profilo.image}
+          className="position-absolute mt-4 ms-3 border border-2 border-light image-container"
+          style={{
+            height: "67px",
+            width: "50px",
+            borderRadius: "50%",
+            objectFit: "cover",
+          }}
+        />
+      </div>
+
       <Card.Body>
         <Card.Title className="mb-0 mt-5 fw-bold">
           {profilo.name.charAt(0).toUpperCase() +
@@ -32,7 +35,7 @@ const Card1SidebarSx = ({ profilo }) => {
         <Card.Text className="small text-secondary">{profilo.area}</Card.Text>
       </Card.Body>
     </Card>
-  );
-};
+  )
+}
 
-export default Card1SidebarSx;
+export default Card1SidebarSx

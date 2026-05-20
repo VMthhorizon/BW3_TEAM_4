@@ -9,12 +9,14 @@ import {
   Row,
   Col,
   Modal,
-} from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+  Image,
+} from "react-bootstrap"
+import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import ChatboxMobile from "./ChatboxMobile"
 
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/" },
@@ -27,21 +29,21 @@ const buttons = [
   },
   { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
-];
+]
 
 const NavbarLinkedin = function () {
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me;
-  });
+    return storeRedux.profile.me
+  })
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction());
+    dispatch(getProfilePersonaleAction())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const [activeBtn, setActiveBtn] = useState("home");
+  }, [])
+  const [activeBtn, setActiveBtn] = useState("home")
   const profileDropdown = (
     <div className="d-flex flex-column align-items-center">
       <img
@@ -53,7 +55,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Tu</span>
       </div>
     </div>
-  );
+  )
   const profile = (
     <div
       className="linkedin-profile-menu-container"
@@ -96,7 +98,7 @@ const NavbarLinkedin = function () {
               className="w-100 rounded-pill fw-bold py-1 btn-profile-custom"
               style={{ fontSize: "14px", whiteSpace: "wrap" }}
               onClick={() => {
-                navigate("/me");
+                navigate("/me")
               }}
             >
               Visualizza profilo
@@ -188,7 +190,7 @@ const NavbarLinkedin = function () {
         Esci
       </NavDropdown.Item>
     </div>
-  );
+  )
   const perleaziendeDropdown = (
     <div className="d-flex flex-column align-items-center">
       <i
@@ -199,7 +201,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Per le aziende</span>
       </div>
     </div>
-  );
+  )
   const perleaziende = (
     <Container fluid className="p-3" style={{ width: "560px" }}>
       <Row>
@@ -413,11 +415,11 @@ const NavbarLinkedin = function () {
         </Col>
       </Row>
     </Container>
-  );
+  )
 
-  const [showPremiumModal, setShowPremiumModal] = useState(false);
-  const handleClose = () => setShowPremiumModal(false);
-  const handleShow = () => setShowPremiumModal(true);
+  const [showPremiumModal, setShowPremiumModal] = useState(false)
+  const handleClose = () => setShowPremiumModal(false)
+  const handleShow = () => setShowPremiumModal(true)
 
   return (
     <Container>
@@ -425,10 +427,22 @@ const NavbarLinkedin = function () {
         <Col xs={12} className="text-center justify-content-around">
           <Navbar expand="lg" className="bg-white navbar-linkedin rounded-2">
             <Container>
+              <Link
+                to="/me"
+                className="profile-dropdown me-4 container-img d-lg-none"
+                align="end"
+              >
+                <Image
+                  roundedCircle
+                  src={profilo?.image}
+                  className="object-fit-cover image-container"
+                />
+              </Link>
               <Link to="/" className="navbar.brand me-1">
                 <i className="bi bi-linkedin logo-linkedin"></i>
               </Link>
-              <InputGroup className="me-sm-2 search-input-linkedin">
+
+              <InputGroup className="me-sm-2 w-50 search-input-linkedin">
                 <InputGroup.Text
                   id="search-addon"
                   className="bg-white border-end-0"
@@ -443,21 +457,23 @@ const NavbarLinkedin = function () {
                   className="border-start-0 ps-0"
                 />
               </InputGroup>
-              <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+              <ChatboxMobile />
+              {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
               <Navbar.Collapse
                 className="justify-content-end"
                 id="basic-navbar-nav"
               >
                 <Nav className="align-items-center">
                   {/* BOTTONI */}
-                  <div className="d-flex bg-white">
+                  <div className="d-none d-lg-flex bg-white ">
                     {buttons.map((btn) => (
                       <Button
                         key={btn.id}
                         variant="link"
                         className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                         onClick={() => {
-                          (setActiveBtn(btn.id), navigate(btn.navigate));
+                          ;(setActiveBtn(btn.id), navigate(btn.navigate))
                         }}
                       >
                         <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
@@ -465,6 +481,7 @@ const NavbarLinkedin = function () {
                       </Button>
                     ))}
                   </div>
+
                   <NavDropdown
                     title={profileDropdown}
                     className="profile-dropdown me-4"
@@ -476,7 +493,7 @@ const NavbarLinkedin = function () {
                   </NavDropdown>
                   <NavDropdown
                     title={perleaziendeDropdown}
-                    className="profile-dropdown border-start border-secondary ps-2 "
+                    className="profile-dropdown border-start border-secondary ps-2 d-none d-lg-inline-block"
                     align="end"
                   >
                     <NavDropdown.Item href="#action/3.1">
@@ -485,7 +502,7 @@ const NavbarLinkedin = function () {
                   </NavDropdown>
                   <Nav.Link
                     as="button"
-                    className="premium-nav-link d-flex flex-column align-items-center justify-content-center"
+                    className="premium-nav-link d-flex flex-column align-items-center justify-content-center d-none d-lg-flex"
                     onClick={handleShow}
                   >
                     <div className="premium-icon-box">
@@ -521,11 +538,30 @@ const NavbarLinkedin = function () {
                   </Modal>
                 </Nav>
               </Navbar.Collapse>
+
+              <div
+                className="d-flex d-lg-none position-fixed bottom-0 start-0 w-100 bg-light justify-content-center"
+                style={{ zIndex: "30000" }}
+              >
+                {buttons.map((btn) => (
+                  <Button
+                    key={btn.id}
+                    variant="link"
+                    className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
+                    onClick={() => {
+                      ;(setActiveBtn(btn.id), navigate(btn.navigate))
+                    }}
+                  >
+                    <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
+                    <span className="linkedin-btn-text">{btn.label}</span>
+                  </Button>
+                ))}
+              </div>
             </Container>
           </Navbar>
         </Col>
       </Row>
     </Container>
-  );
-};
-export default NavbarLinkedin;
+  )
+}
+export default NavbarLinkedin
