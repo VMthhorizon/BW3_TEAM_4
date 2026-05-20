@@ -4,8 +4,7 @@ import { useSelector } from "react-redux"
 
 import soundFile from "../assets/chatbox.mp3"
 
-const ChatBox = () => {
-  const [isOpen, setIsOpen] = useState(false)
+const ChatBox = ({ isOpen, setIsOpen }) => {
   const [activeChatId, setActiveChatId] = useState(null)
   const [textInput, setTextInput] = useState("")
 
