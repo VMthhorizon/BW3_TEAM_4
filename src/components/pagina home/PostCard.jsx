@@ -16,6 +16,7 @@ import postPostAction from "../../redux/actions/postAction/postPost"
 import { useState, useEffect } from "react"
 import postDeleteAction from "../../redux/actions/postAction/postDelete"
 import AddPostImagesAction from "../../redux/actions/images action/picturePost"
+import CommentSection from "./CommentSection"
 
 const PostCard = function ({ post }) {
   const [show, setShow] = useState(false)

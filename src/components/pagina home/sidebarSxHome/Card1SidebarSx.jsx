@@ -13,8 +13,8 @@ const Card1SidebarSx = ({ profilo }) => {
       />
       <Image
         src={profilo.image}
-        roundedCircle
-        className="position-absolute w-25 mt-4 ms-3 border border-2 border-light"
+        className="position-absolute rounded-circle object-fit-cover w-25 mt-4 ms-3 border border-2 border-light"
+        style={{ height: "40px", width: "40px" }}
       />
       <Card.Body>
         <Card.Title className="mb-0 mt-3 fw-bold">
