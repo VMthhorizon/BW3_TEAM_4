@@ -79,6 +79,7 @@ const Job = function () {
           <div className="bg-white rounded-xl shadow-sm">
             {jobSliced.map((job) => (
               <JobsLine
+                style={{ cursor: "pointer" }}
                 key={job._id}
                 job={job}
                 onClick={() => {
