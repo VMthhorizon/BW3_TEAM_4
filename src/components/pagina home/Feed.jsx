@@ -16,9 +16,11 @@ const Feed = function () {
 
   return (
     <>
-      {posts.map((post) => (
-        <PostCard key={post._id} post={post} />
-      ))}
+      {posts
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .map((post) => (
+          <PostCard key={post._id} post={post} />
+        ))}
     </>
   )
 }
