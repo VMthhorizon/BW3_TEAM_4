@@ -146,7 +146,6 @@ const ExperienceSection = () => {
                   type="file"
                   onChange={(e) => setImage(e.target.files[0])}
                 />
-                {console.log(image ? "true" : "false")}
               </Form.Group>
             ) : (
               ""
@@ -250,7 +249,6 @@ const ExperienceSection = () => {
                   experiencePutAction(profilo._id, selectedExpId, formExp),
                 ).then(() => {
                   if (image) {
-                    console.log("2")
                     dispatch(
                       AddExperienceImagesAction(
                         image,

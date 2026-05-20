@@ -14,16 +14,18 @@ import JobsPage from "./components/pagina lavoro/JobsPage"
 function App() {
   return (
     <Provider store={store}>
-      <BrowserRouter>
-        <NavabarLinkedin />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/me" element={<ProfilePage />} />
-          <Route path="/jobs" element={<JobsPage />} />
-        </Routes>
-      </BrowserRouter>
-      <MyFooter />
-      <ChatBox />
+      <div className="overflow-x-hidden">
+        <BrowserRouter>
+          <NavabarLinkedin />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/me" element={<ProfilePage />} />
+            <Route path="/jobs" element={<JobsPage />} />
+          </Routes>
+        </BrowserRouter>
+        <MyFooter />
+        <ChatBox />
+      </div>
     </Provider>
   )
 }

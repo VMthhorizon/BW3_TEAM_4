@@ -4,7 +4,6 @@ export const POST_POST = "POST_POST"
 
 const postPostAction = (post) => {
   return (dispatch) => {
-    console.log(post)
     return fetch(`https://striveschool-api.herokuapp.com/api/posts`, {
       method: "POST",
       headers: {
