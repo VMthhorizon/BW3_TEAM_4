@@ -52,10 +52,6 @@
   border-radius: 50%;
 }
 
-.round-avatar.default-avatar {
-  transform: scale(1.4);
-}
-
 /* CONTENT */
 /* testo verticale + bottone */
 .sidebar-content {

@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom"
-import avatar from "../../../../assets/linkedin-avatar.png"
+import avatar from "../../../../assets/avatar-corretto.png"
 
 const SidebarItem = function ({
   image,
