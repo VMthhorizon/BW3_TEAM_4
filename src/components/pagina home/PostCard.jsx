@@ -3,7 +3,7 @@ import linkedinAvatar from "../../assets/linkedin-avatar.png"
 
 const PostCard = function ({ post }) {
   return (
-    <div className="sidebar-card mb-2">
+    <div className="sidebar-card my-2">
       <div className="sidebar-card-content">
         {/* header */}
         <div className="d-flex align-items-center gap-2 mb-3">
@@ -28,7 +28,7 @@ const PostCard = function ({ post }) {
         </div>
 
         {/* testo */}
-        <p className="mb-3">{post.text}</p>
+        <h5 className="mb-3 fw-light">{post.text}</h5>
 
         {/* footer */}
         <div className="d-flex justify-content-around border-top pt-2">
