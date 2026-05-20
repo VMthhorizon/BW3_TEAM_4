@@ -106,7 +106,7 @@ const Job = function () {
               <Col xs={12} className="d-flex justify-content-between">
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={casetta}
@@ -119,7 +119,7 @@ const Job = function () {
                 </div>
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={risorse}
@@ -132,7 +132,7 @@ const Job = function () {
                 </div>
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={media}
@@ -147,7 +147,7 @@ const Job = function () {
               <Col xs={12} className="d-flex justify-content-between mt-1">
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={industriamanifatturiera}
@@ -160,7 +160,7 @@ const Job = function () {
                 </div>
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={ibrido}
@@ -173,7 +173,7 @@ const Job = function () {
                 </div>
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={it}
@@ -188,7 +188,7 @@ const Job = function () {
               <Col xs={12} className="d-flex justify-content-between mt-1">
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={governo}
@@ -201,7 +201,7 @@ const Job = function () {
                 </div>
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={edilizia}
@@ -214,7 +214,7 @@ const Job = function () {
                 </div>
                 <div
                   className="d-flex align-items-center border border-1 rounded-2"
-                  style={{ width: "33%" }}
+                  style={{ width: "33%", cursor: "pointer" }}
                 >
                   <img
                     src={finanza}
