@@ -232,7 +232,12 @@ const PostCard = function ({ post }) {
         </div>
 
         {/* commenti */}
-        {showComments && <CommentSection postId={post._id} />}
+        {showComments && (
+          <CommentSection
+            postId={post._id}
+            setCommentsCount={setCommentsCount}
+          />
+        )}
       </div>
 
       <Modal show={show} onHide={handleClose}>

@@ -11,7 +11,7 @@ import avatarPlaceholder from "../../assets/avatar-corretto.png"
 
 import { Pencil, Trash3 } from "react-bootstrap-icons"
 
-const CommentSection = function ({ postId }) {
+const CommentSection = function ({ postId, setCommentsCount }) {
   const dispatch = useDispatch()
 
   const comments = useSelector((state) => state.comments.list)
@@ -26,10 +26,13 @@ const CommentSection = function ({ postId }) {
 
   const [editedText, setEditedText] = useState("")
 
-
   useEffect(() => {
     dispatch(getCommentsAction(postId))
   }, [dispatch, postId])
+
+  useEffect(() => {
+    setCommentsCount(comments.length)
+  }, [comments])
 
   // submit nuovo commento
   const handleSubmit = () => {
