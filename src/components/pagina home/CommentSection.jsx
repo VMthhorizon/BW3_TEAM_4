@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 
 import getCommentsAction from "../../redux/actions/commentsActions/getComments"
 
+import postCommentAction from "../../redux/actions/commentsActions/postComment"
+
 const CommentSection = function ({ postId }) {
   const dispatch = useDispatch()
 
@@ -16,6 +18,22 @@ const CommentSection = function ({ postId }) {
     dispatch(getCommentsAction(postId))
   }, [dispatch, postId])
 
+  const handleSubmit = () => {
+    if (!newComment.trim()) return
+
+    dispatch(postCommentAction(newComment, postId))
+
+    setNewComment("")
+  }
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault()
+
+      handleSubmit()
+    }
+  }
+
   return (
     <div className="my-3 px-3">
       {/* input commento */}
@@ -26,6 +44,7 @@ const CommentSection = function ({ postId }) {
           placeholder="Scrivi un commento..."
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </div>
 
