@@ -12,7 +12,7 @@ import risorse from "../assets/risorse.png";
 import media from "../assets/media.png";
 import it from "../assets/it.png";
 
-import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+import { Alert, Button, Col, Container, Modal, Row } from "react-bootstrap";
 const Job = function () {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -296,16 +296,40 @@ const Job = function () {
         {selectedJob && (
           <>
             <Modal.Header closeButton>
-              <Modal.Title>{selectedJob.company_name}</Modal.Title>
+              <Modal.Title>
+                <img
+                  src={selectedJob.company_logo_url}
+                  alt="logo"
+                  style={{ height: "75px", width: "75px", borderRadius: "2em" }}
+                  className=" me-2"
+                />
+                {selectedJob.title}
+              </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <p>
-                {selectedJob.candidate_required_location} (
-                {selectedJob.category})
-              </p>
+              <h2>{selectedJob.company_name}</h2>
+              <h3>Category: {selectedJob.category}.</h3>
+              <h6>
+                Required location - {selectedJob.candidate_required_location}.
+              </h6>
+              <p>{selectedJob.job_type}</p>
+              <p>{selectedJob.salary}</p>
             </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={() => setselectedJob(null)}>
+            <Modal.Footer className="justify-content-center g-2">
+              <Button
+                style={{ width: "160px" }}
+                variant="outline-info"
+                onClick={() => {
+                  alert("CANDIDATURA INVIATA CON SUCCESSO");
+                }}
+              >
+                Invia candidatura
+              </Button>
+              <Button
+                style={{ width: "160px" }}
+                variant="outline-info"
+                onClick={() => setselectedJob(null)}
+              >
                 Close
               </Button>
             </Modal.Footer>
@@ -317,3 +341,12 @@ const Job = function () {
 };
 
 export default Job;
+
+// ;
+// description;
+// job_type;
+// publication_date;
+// salary;
+// title;
+// url;
+// _id;
