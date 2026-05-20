@@ -10,6 +10,7 @@ import putCommentAction from "../../redux/actions/commentsActions/putComment"
 import avatarPlaceholder from "../../assets/avatar-corretto.png"
 
 import { Pencil, Trash3 } from "react-bootstrap-icons"
+import getProfileAllListAction from "../../redux/actions/profileAction/ProfileAllList"
 
 const CommentSection = function ({ postId, setCommentsCount }) {
   const dispatch = useDispatch()
@@ -26,12 +27,20 @@ const CommentSection = function ({ postId, setCommentsCount }) {
 
   const [editedText, setEditedText] = useState("")
 
+  const profiles = useSelector((state) => {
+    return state.profile.profiles
+  })
+
   useEffect(() => {
     dispatch(getCommentsAction(postId))
   }, [dispatch, postId])
 
   useEffect(() => {
     setCommentsCount(comments.length)
+  }, [comments])
+
+  useEffect(() => {
+    dispatch(getProfileAllListAction())
   }, [comments])
 
   // submit nuovo commento
@@ -80,13 +89,19 @@ const CommentSection = function ({ postId, setCommentsCount }) {
       {/* lista commenti */}
       {comments.map((comment) => {
         const myComment = comment.author === profilo?.username
-
+        const matchProfile = profiles.find(
+          (profile) => profile.username === comment.author,
+        )
+        {
+          console.log(profiles)
+        }
         return (
           <div key={comment._id} className="comment-wrapper mb-3">
             <div className="d-flex gap-2 align-items-start">
               {/* avatar */}
+
               <img
-                src={avatarPlaceholder}
+                src={matchProfile?.image || avatarPlaceholder}
                 alt="avatar"
                 className="comment-avatar"
               />
