@@ -73,6 +73,9 @@ const PostCard = function ({ post }) {
             </div>
           </div>
 
+          {/* testo post */}
+          <h5 className="mb-3 fw-light">{post.text}</h5>
+
           {/* immagine post */}
           {post.image && (
             <img
