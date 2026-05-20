@@ -6,35 +6,43 @@ import {
   Trash3,
   PencilSquare,
 } from "react-bootstrap-icons"
+
 import { useDispatch, useSelector } from "react-redux"
 import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal"
 import { Button, Form, Modal, Col } from "react-bootstrap"
 import postPutAction from "../../redux/actions/postAction/postPut"
 import getPostAllListAction from "../../redux/actions/postAction/postAll"
 import postPostAction from "../../redux/actions/postAction/postPost"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import postDeleteAction from "../../redux/actions/postAction/postDelete"
+import CommentSection from "./CommentSection"
 
 const PostCard = function ({ post }) {
   const [show, setShow] = useState(false)
+
+  const [showComments, setShowComments] = useState(false)
+
   const [postText, setPostText] = useState("")
+
   const [selectedPostId, setSelectedPostId] = useState(null)
 
   const handleClose = () => {
     setShow(false)
     setPostText("")
   }
+
   const handleShow = () => setShow(true)
 
   const dispatch = useDispatch()
+
   const profilo = useSelector((storeRedux) => {
     return storeRedux.profile.me
   })
 
   const myPost = post?.username === profilo?.username
 
-  useDispatch(() => {
-    dispatch(getProfilePersonaleAction)
+  useEffect(() => {
+    dispatch(getProfilePersonaleAction())
   }, [dispatch])
 
   return (
@@ -65,7 +73,7 @@ const PostCard = function ({ post }) {
             </div>
           </div>
 
-          {/* testo */}
+          {/* testo post */}
           <h5 className="mb-3 fw-light">{post.text}</h5>
 
           {/* immagine post */}
@@ -84,7 +92,10 @@ const PostCard = function ({ post }) {
               <span>Consiglia</span>
             </div>
 
-            <div className="post-action">
+            <div
+              className="post-action"
+              onClick={() => setShowComments(!showComments)}
+            >
               <ChatText />
               <span>Commenta</span>
             </div>
@@ -98,11 +109,12 @@ const PostCard = function ({ post }) {
               <Send />
               <span>Invia</span>
             </div>
+
             {myPost && (
               <>
                 <div className="post-action">
                   <PencilSquare />
-                  {console.log(post)}
+
                   <span
                     onClick={() => {
                       setPostText(post.text)
@@ -110,6 +122,7 @@ const PostCard = function ({ post }) {
                       setSelectedPostId(post._id)
 
                       setShow(true)
+
                       handleShow()
                     }}
                   >
@@ -119,6 +132,7 @@ const PostCard = function ({ post }) {
 
                 <div className="post-action">
                   <Trash3 />
+
                   <span
                     onClick={() => {
                       dispatch(postDeleteAction(post._id))
@@ -131,7 +145,11 @@ const PostCard = function ({ post }) {
             )}
           </div>
         </div>
+
+        {/* commenti */}
+        {showComments && <CommentSection postId={post._id} />}
       </div>
+
       <Modal show={show} onHide={handleClose}>
         <Form onSubmit={(e) => e.preventDefault()}>
           <Modal.Header className="d-flex gap-3 align-items-center" closeButton>
@@ -142,9 +160,11 @@ const PostCard = function ({ post }) {
                 height: "70px",
               }}
               src={profilo?.image}
-            ></img>
+            />
+
             <Modal.Title>{profilo?.name.toUpperCase()}</Modal.Title>
           </Modal.Header>
+
           <Modal.Body>
             <Form.Group as={Col} controlId="validationCustom01">
               <Form.Control
@@ -159,6 +179,7 @@ const PostCard = function ({ post }) {
               />
             </Form.Group>
           </Modal.Body>
+
           <Modal.Footer>
             <Button
               variant="primary"
@@ -166,15 +187,22 @@ const PostCard = function ({ post }) {
               onClick={() => {
                 if (selectedPostId) {
                   dispatch(
-                    postPutAction(selectedPostId, { text: postText }),
+                    postPutAction(selectedPostId, {
+                      text: postText,
+                    }),
                   ).then(() => {
                     dispatch(getPostAllListAction())
                   })
                 } else {
-                  dispatch(postPostAction({ text: postText })).then(() => {
+                  dispatch(
+                    postPostAction({
+                      text: postText,
+                    }),
+                  ).then(() => {
                     dispatch(getPostAllListAction())
                   })
                 }
+
                 setShow(false)
               }}
             >

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ChevronDown } from "react-bootstrap-icons";
+import { useState } from "react"
+import { ChevronDown, ChevronUp } from "react-bootstrap-icons"
 
 const HPSidebarRight = function () {
   const news = [
@@ -40,9 +40,9 @@ const HPSidebarRight = function () {
       title: "Aumentano i consumi per cani e gatti",
       info: "4 giorni fa • 360 lettori",
     },
-  ];
+  ]
 
-  const [showAllNews, setShowAllNews] = useState(false);
+  const [showAllNews, setShowAllNews] = useState(false)
 
   return (
     <div className="d-flex flex-column gap-2">
@@ -62,8 +62,8 @@ const HPSidebarRight = function () {
         </div>
 
         <div className="show-all" onClick={() => setShowAllNews(!showAllNews)}>
-          {showAllNews ? "Mostra meno" : "Mostra altro"}
-          <ChevronDown />
+          {showAllNews ? "Mostra meno " : "Mostra altro "}
+          {showAllNews ? <ChevronUp /> : <ChevronDown />}
         </div>
       </div>
 
@@ -90,7 +90,7 @@ const HPSidebarRight = function () {
         <p className="mb-0">LinkedIn Clone © 2026</p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HPSidebarRight;
+export default HPSidebarRight
