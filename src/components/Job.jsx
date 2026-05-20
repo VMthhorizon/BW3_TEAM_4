@@ -320,9 +320,7 @@ const Job = function () {
                 style={{ width: "160px" }}
                 variant="outline-info"
                 onClick={() => {
-                  <Alert key="primary" variant="primary">
-                    Candidatura inviata con successo
-                  </Alert>;
+                  alert("CANDIDATURA INVIATA CON SUCCESSO");
                 }}
               >
                 Invia candidatura
