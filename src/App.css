@@ -317,6 +317,12 @@ body {
   border-color: 888;
 }
 
+.comment-box {
+  border-radius: 25px;
+  border: 1px solid #d0d0d0;
+  background-color: white;
+}
+
 /*responsive*/
 
 .active-chat {

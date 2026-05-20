@@ -50,9 +50,9 @@ const CommentSection = function ({ postId }) {
 
       {/* lista commenti */}
       {comments.map((comment) => (
-        <div key={comment._id} className="sidebar-card mb-2">
-          <div className="sidebar-card-content">
-            <p className="mb-0">{comment.comment}</p>
+        <div key={comment._id} className="comment-box mb-2">
+          <div className="py-2 px-3">
+            <p className="mb-0 fs-6">{comment.comment}</p>
           </div>
         </div>
       ))}
