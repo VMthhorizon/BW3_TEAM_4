@@ -32,7 +32,6 @@ const PostCard = function ({ post }) {
   })
 
   const myPost = post?.username === profilo?.username
-  console.log(profilo?.username)
 
   useDispatch(() => {
     dispatch(getProfilePersonaleAction)
@@ -103,9 +102,10 @@ const PostCard = function ({ post }) {
               <>
                 <div className="post-action">
                   <PencilSquare />
+                  {console.log(post)}
                   <span
-                    onClick={(e) => {
-                      setPostText(e.target.value)
+                    onClick={() => {
+                      setPostText(post.text)
 
                       setSelectedPostId(post._id)
 

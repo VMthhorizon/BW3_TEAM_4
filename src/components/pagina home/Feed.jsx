@@ -20,11 +20,9 @@ const Feed = function () {
   return (
     <>
       {/* lista posts */}
-      {posts
+      {[...posts]
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-
         .slice(0, visiblePosts)
-
         .map((post) => (
           <PostCard key={post._id} post={post} />
         ))}
