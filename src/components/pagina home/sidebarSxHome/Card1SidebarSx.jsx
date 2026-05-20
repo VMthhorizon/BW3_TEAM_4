@@ -8,21 +8,19 @@ const Card1SidebarSx = ({ profilo }) => {
       <Card.Img
         variant="top"
         src="https://img.magnific.com/foto-gratuito/pianta-della-palma-dell-agave-su-fondo-grigio_53876-110285.jpg"
-        height={50}
+        height={200}
       />
-      <div>
-        <Image
-          src={profilo.image}
-          className="position-absolute mt-4 ms-3 border border-2 border-light image-container"
-          style={{
-            height: "67px",
-            width: "50px",
-            borderRadius: "50%",
-            objectFit: "cover",
-          }}
-        />
-      </div>
-
+      <Image
+        src={profilo.image}
+        className=" border border-2 border-light rounded-circle object-fit-cover
+              mt-3 ms-2"
+        style={{
+          position: "absolute",
+          width: "35%",
+          bottom: "100px",
+          aspectRatio: "1 / 1",
+        }}
+      />
       <Card.Body>
         <Card.Title className="mb-0 mt-5 fw-bold">
           {profilo.name.charAt(0).toUpperCase() +
