@@ -1,9 +1,13 @@
 import { Row, Col, Badge } from "react-bootstrap";
 
-const JobsLine = function ({ job }) {
+const JobsLine = function ({ job, onClick }) {
+  console.log(job);
   if (job.company_logo_url) {
     return (
-      <div className="p-3 border-bottom bg-white hover-bg-light transition-colors">
+      <div
+        onClick={onClick}
+        className="p-3 border-bottom bg-white hover-bg-light transition-colors"
+      >
         <Row className="align-items-start g-3">
           <Col xs="auto">
             <img

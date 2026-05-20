@@ -12,10 +12,9 @@ import risorse from "../assets/risorse.png";
 import media from "../assets/media.png";
 import it from "../assets/it.png";
 
-import { Col, Container, Row } from "react-bootstrap";
+import { Alert, Button, Col, Container, Modal, Row } from "react-bootstrap";
 const Job = function () {
   const [jobs, setJobs] = useState([]);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const location = useLocation();
@@ -23,6 +22,7 @@ const Job = function () {
   const query = searchParams.get("search");
   const [showJobs, setShowJobs] = useState(false);
   const jobSliced = showJobs ? jobs : jobs.slice(0, 15);
+  const [selectedJob, setselectedJob] = useState(null);
   useEffect(() => {
     const prepareFetch = setTimeout(() => {
       setLoading(true);
@@ -78,7 +78,13 @@ const Job = function () {
         {!loading && !error && (
           <div className="bg-white rounded-xl shadow-sm">
             {jobSliced.map((job) => (
-              <JobsLine key={job._id} job={job} />
+              <JobsLine
+                key={job._id}
+                job={job}
+                onClick={() => {
+                  setselectedJob(job);
+                }}
+              />
             ))}
             <div
               className="show-all m-0"
@@ -281,8 +287,66 @@ const Job = function () {
           </div>
         )}
       </div>
+
+      <Modal
+        show={selectedJob !== null}
+        onHide={() => setselectedJob(null)}
+        centered
+      >
+        {selectedJob && (
+          <>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                <img
+                  src={selectedJob.company_logo_url}
+                  alt="logo"
+                  style={{ height: "75px", width: "75px", borderRadius: "2em" }}
+                  className=" me-2"
+                />
+                {selectedJob.title}
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <h2>{selectedJob.company_name}</h2>
+              <h3>Category: {selectedJob.category}.</h3>
+              <h6>
+                Required location - {selectedJob.candidate_required_location}.
+              </h6>
+              <p>{selectedJob.job_type}</p>
+              <p>{selectedJob.salary}</p>
+            </Modal.Body>
+            <Modal.Footer className="justify-content-center g-2">
+              <Button
+                style={{ width: "160px" }}
+                variant="outline-info"
+                onClick={() => {
+                  alert("CANDIDATURA INVIATA CON SUCCESSO");
+                }}
+              >
+                Invia candidatura
+              </Button>
+              <Button
+                style={{ width: "160px" }}
+                variant="outline-info"
+                onClick={() => setselectedJob(null)}
+              >
+                Close
+              </Button>
+            </Modal.Footer>
+          </>
+        )}
+      </Modal>
     </>
   );
 };
 
 export default Job;
+
+// ;
+// description;
+// job_type;
+// publication_date;
+// salary;
+// title;
+// url;
+// _id;
