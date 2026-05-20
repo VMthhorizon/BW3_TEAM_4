@@ -1,4 +1,4 @@
-export const DELETE_POST = "DELETE_POST"
+export const DELETE_POST = "DELETE_POST";
 
 // FETCH PER ELIMINARE UNA EXPERIENCE
 
@@ -16,15 +16,15 @@ const postDeleteAction = (postId) => {
           dispatch({
             type: DELETE_POST,
             payload: postId,
-          })
+          });
         } else {
-          throw new Error("errore nella response")
+          throw new Error("errore nella response");
         }
       })
       .catch((error) => {
-        console.log("errore nella fetch", error)
-      })
-  }
-}
+        console.log("errore nella fetch", error);
+      });
+  };
+};
 
-export default postDeleteAction
+export default postDeleteAction;

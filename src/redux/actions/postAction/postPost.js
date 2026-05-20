@@ -1,10 +1,10 @@
-export const POST_POST = "POST_POST"
+export const POST_POST = "POST_POST";
 
 // FETCH PER POSTARE UN POST
 
 const postPostAction = (post) => {
   return (dispatch) => {
-    console.log(post)
+    console.log(post);
     return fetch(`https://striveschool-api.herokuapp.com/api/posts`, {
       method: "POST",
       headers: {
@@ -16,22 +16,22 @@ const postPostAction = (post) => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error("errore nella response")
+          throw new Error("errore nella response");
         }
       })
       .then((data) => {
         dispatch({
           type: POST_POST,
           payload: data,
-        })
-        return { payload: data }
+        });
+        return { payload: data };
       })
       .catch((error) => {
-        console.log("errore nella fetch", error)
-      })
-  }
-}
+        console.log("errore nella fetch", error);
+      });
+  };
+};
 
-export default postPostAction
+export default postPostAction;

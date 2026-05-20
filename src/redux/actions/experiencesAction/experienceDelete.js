@@ -1,4 +1,4 @@
-export const DELETE_EXPERIENCES = "DELETE_EXPERIENCES"
+export const DELETE_EXPERIENCES = "DELETE_EXPERIENCES";
 
 // FETCH PER ELIMINARE UNA EXPERIENCE
 
@@ -19,15 +19,15 @@ const experienceDeleteAction = (userId, expId) => {
           dispatch({
             type: DELETE_EXPERIENCES,
             payload: expId,
-          })
+          });
         } else {
-          throw new Error("errore nella response")
+          throw new Error("errore nella response");
         }
       })
       .catch((error) => {
-        console.log("errore nella fetch", error)
-      })
-  }
-}
+        console.log("errore nella fetch", error);
+      });
+  };
+};
 
-export default experienceDeleteAction
+export default experienceDeleteAction;

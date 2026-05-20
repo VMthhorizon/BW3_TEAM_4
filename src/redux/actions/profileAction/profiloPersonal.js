@@ -1,4 +1,4 @@
-export const GET_PROFILE_PERSONALE = "GET_PROFILE_PERSONALE"
+export const GET_PROFILE_PERSONALE = "GET_PROFILE_PERSONALE";
 
 // FETCH PROFILO PERSONALE
 const getProfilePersonaleAction = () => {
@@ -11,20 +11,20 @@ const getProfilePersonaleAction = () => {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error("errore nella response")
+          throw new Error("errore nella response");
         }
       })
       .then((data) => {
         dispatch({
           type: GET_PROFILE_PERSONALE,
           payload: data,
-        })
+        });
       })
       .catch((error) => {
-        console.log("errore nella fetch", error)
-      })
-  }
-}
-export default getProfilePersonaleAction
+        console.log("errore nella fetch", error);
+      });
+  };
+};
+export default getProfilePersonaleAction;
