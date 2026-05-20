@@ -481,6 +481,10 @@ const NavbarLinkedin = function () {
                     <div
                       key={profile._id}
                       className="search-item d-flex align-items-center gap-2 p-2"
+                      onClick={() => {
+                        navigate(`/profile/${profile._id}`)
+                        setSearchQuery("")
+                      }}
                     >
                       <img
                         src={profile.image}
