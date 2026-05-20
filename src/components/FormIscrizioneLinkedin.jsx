@@ -1,12 +1,19 @@
 import { Button, Form } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 const FormIscrizioneLinkedin = function () {
+  const navigate = useNavigate();
+  const handleSubmit = function (e) {
+    e.preventDefault();
+    navigate("/home");
+  };
   return (
     <Container fluid>
       <Row className="justify-content-center">
         <Col xs={3} className="bg-white border rounded-3 mt-5">
           <h4>Iscriviti subito a LinkedIn. È gratis!</h4>
-          <Form className="p-5">
+          <Form className="p-5" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" placeholder="" required />
