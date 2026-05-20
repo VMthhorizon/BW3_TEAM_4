@@ -1,6 +1,6 @@
 export const GET_COMMENTS = "GET_COMMENTS"
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjMGE5Njc0MDQxZjAwMTUwYmZiMTEiLCJpYXQiOjE3NzkxNzQwMzgsImV4cCI6MTc4MDM4MzYzOH0.wearIW19fddf_JOanSJ0_whZTAwxzq7Awf2dOtinIxM"
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDViOTA2YmJlOTAwMTVkZWU1N2YiLCJpYXQiOjE3NzkwOTQ5NjksImV4cCI6MTc4MDMwNDU2OX0.lCWAGVeHSActGSTjMyk8RMF3Ua0zXKkTnQcNrIuiP20"
 
 const getCommentsAction = function(postId){
     return function (dispatch){

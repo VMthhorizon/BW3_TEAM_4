@@ -226,7 +226,6 @@ body {
   box-shadow: 0 0 0 1px #0a66c2;
 }
 
-
 /* COMMENTI */
 .comment-box {
   border-radius: 18px;
@@ -243,6 +242,21 @@ body {
   margin: 0;
   font-size: 0.95rem;
   color: #222;
+}
+
+.comment-edit,
+.comment-delete {
+  cursor: pointer;
+  color: #666;
+  transition: 0.2s;
+}
+
+.comment-edit:hover {
+  color: #0a66c2;
+}
+
+.comment-delete:hover {
+  color: #d11124;
 }
 
 /*CSS DELLA CHATBOX*/
@@ -396,5 +410,3 @@ body {
   height: 50px;
   object-fit: cover;
 }
-
-
