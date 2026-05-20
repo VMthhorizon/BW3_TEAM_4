@@ -429,7 +429,7 @@ const NavbarLinkedin = function () {
     >
       <Row>
         <Col xs={12} className="text-center justify-content-around p-0 ">
-          <Navbar expand="lg" className=" navbar-linkedin rounded-2 ">
+          <Navbar expand="lg" className=" navbar-linkedin rounded-2 py-0">
             <Container>
               <Link
                 to="/me"
