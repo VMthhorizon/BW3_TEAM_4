@@ -1,35 +1,45 @@
-import { Provider } from "react-redux"
-import "./App.css"
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import store from "./redux/store"
-import NavabarLinkedin from "./components/Header"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import ProfilePage from "./components/pagina profilo/ProfilePage"
-import MyFooter from "./components/MyFooter"
-import ChatBox from "./components/Chatbox"
-import "swiper/css"
-import HomePage from "./components/pagina home/HomePage"
-import JobsPage from "./components/pagina lavoro/JobsPage"
-import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetail"
+import { Provider } from "react-redux";
+import "./App.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import store from "./redux/store";
+import NavabarLinkedin from "./components/Header";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import ProfilePage from "./components/pagina profilo/ProfilePage";
+import MyFooter from "./components/MyFooter";
+import ChatBox from "./components/Chatbox";
+import "swiper/css";
+import HomePage from "./components/pagina home/HomePage";
+import JobsPage from "./components/pagina lavoro/JobsPage";
+import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetail";
+import FormIscrizioneLinkedin from "./components/FormIscrizioneLinkedin";
 
-function App() {
+const MainLayout = () => {
+  return (
+    <>
+      <NavabarLinkedin />
+      <Outlet />
+      <MyFooter />
+      <ChatBox />
+    </>
+  );
+};
+
+export default function App() {
   return (
     <Provider store={store}>
       <div className="overflow-x-hidden">
         <BrowserRouter>
-          <NavabarLinkedin />
           <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/me" element={<ProfilePage />} />
-            <Route path="/profile/:userId" element={<ProfilePageDetail />} />
-            <Route path="/jobs" element={<JobsPage />} />
+            <Route path="/" element={<FormIscrizioneLinkedin />} />
+            <Route element={<MainLayout />}>
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/me" element={<ProfilePage />} />
+              <Route path="/profile/:userId" element={<ProfilePageDetail />} />
+              <Route path="/jobs" element={<JobsPage />} />
+            </Route>
           </Routes>
         </BrowserRouter>
-        <MyFooter />
-        <ChatBox />
       </div>
     </Provider>
-  )
+  );
 }
-
-export default App
