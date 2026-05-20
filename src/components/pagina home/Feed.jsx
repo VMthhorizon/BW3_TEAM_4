@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import getPostAllAction from "../../redux/actions/post Action/postAll"
+import getPostAllAction from "../../redux/actions/postAction/postAll"
 
 import PostCard from "./PostCard"
 
