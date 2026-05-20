@@ -10,7 +10,7 @@ const MyCarousel = () => {
       slidesPerView={1.7}
       className="mx-1"
     >
-      <SwiperSlide className="h-100 bg-info bg-opacity-10 rounded-3 py-2">
+      <SwiperSlide className="h-100 bg-info bg-opacity-10 rounded-3 py-2 cursor:pointer">
         <Container fluid className="d-flex flex-column h-100">
           <div className="flex-grow-1">
             <Row>
