@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux"
 import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal"
 import postPostAction from "../../redux/actions/postAction/postPost"
 import { CalendarWeek, Newspaper } from "react-bootstrap-icons"
-import postPutAction from "../../redux/actions/postAction/postPut"
+
 import getPostAllListAction from "../../redux/actions/postAction/postAll"
 
 const PostHomePage = () => {
   const [show, setShow] = useState(false)
   const [postText, setPostText] = useState("")
-  const [selectedPostId, setSelectedPostId] = useState(null)
 
   const handleClose = () => {
     setShow(false)
@@ -111,17 +110,10 @@ const PostHomePage = () => {
               variant="primary"
               type="submit"
               onClick={() => {
-                if (selectedPostId) {
-                  dispatch(
-                    postPutAction(selectedPostId, { text: postText }),
-                  ).then(() => {
-                    dispatch(getPostAllListAction())
-                  })
-                } else {
-                  dispatch(postPostAction({ text: postText })).then(() => {
-                    dispatch(getPostAllListAction())
-                  })
-                }
+                dispatch(postPostAction({ text: postText })).then(() => {
+                  dispatch(getPostAllListAction())
+                })
+
                 setShow(false)
               }}
             >

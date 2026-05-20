@@ -1,6 +1,6 @@
 const Analisi = () => {
   return (
-    <div className="card shadow-sm mb-3 rounded-3 border-0">
+    <div className="sidebar-card">
       <div className="card-body p-4">
         <div className="mb-3">
           <h5 className="fw-bold m-0 text-dark">Analisi</h5>
@@ -12,8 +12,8 @@ const Analisi = () => {
 
         <div className="row g-4">
           <div className="col-12 col-md-4">
-            <div className="d-flex align-items-start">
-              <i className="bi bi-people-fill fs-4 me-3 text-dark"></i>
+            <div className="analysis-item">
+              <i className="bi bi-people-fill"></i>
               <div>
                 <h6 className="fw-bold mb-0" style={{ fontSize: "0.95rem" }}>
                   0 visualizzazioni del profilo
@@ -26,8 +26,8 @@ const Analisi = () => {
           </div>
 
           <div className="col-12 col-md-4 border-start-md">
-            <div className="d-flex align-items-start">
-              <i className="bi bi-bar-chart-line-fill fs-4 me-3 text-dark"></i>
+            <div className="analysis-item">
+              <i className="bi bi-bar-chart-line-fill"></i>
               <div>
                 <h6 className="fw-bold mb-0" style={{ fontSize: "0.95rem" }}>
                   0 impressioni dei post
@@ -35,23 +35,19 @@ const Analisi = () => {
                 <p className="small text-secondary mb-0">
                   Crea un post per aumentare l’interesse.
                 </p>
-                <small className="text-muted" style={{ fontSize: "0.75rem" }}>
-                  Ultimi 7 giorni
-                </small>
               </div>
             </div>
           </div>
 
           <div className="col-12 col-md-4 border-start-md">
-            <div className="d-flex align-items-start">
-              <i className="bi bi-search fs-4 me-3 text-dark"></i>
+            <div className="analysis-item">
+              <i className="bi bi-search"></i>
               <div>
                 <h6 className="fw-bold mb-0" style={{ fontSize: "0.95rem" }}>
                   0 comparse nelle ricerche
                 </h6>
                 <p className="small text-secondary mb-0">
-                  Aggiorna il tuo profilo per comparire di più nei risultati di
-                  ricerca.
+                  Aggiorna il tuo profilo per comparire di più.
                 </p>
               </div>
             </div>
@@ -59,13 +55,8 @@ const Analisi = () => {
         </div>
       </div>
 
-      <div
-        className="card-footer bg-white border-top py-3 text-center"
-        style={{ cursor: "pointer" }}
-      >
-        <span className="fw-bold text-secondary small">
-          Mostra tutto <i className="bi bi-arrow-right ms-1"></i>
-        </span>
+      <div className="show-all">
+        Mostra tutto <i className="bi bi-arrow-right ms-1"></i>
       </div>
     </div>
   );

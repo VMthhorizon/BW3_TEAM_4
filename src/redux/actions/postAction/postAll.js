@@ -3,7 +3,7 @@ export const GET_POST_ALL = "GET_POST_ALL"
 // FETCH PER TUTTI I PROFILI
 const getPostAllListAction = () => {
   return (dispatch) => {
-    fetch(`https://striveschool-api.herokuapp.com/api/posts`, {
+    fetch(`https://striveschool-api.herokuapp.com/api/posts/`, {
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDViOTA2YmJlOTAwMTVkZWU1N2YiLCJpYXQiOjE3NzkwOTQ5NjksImV4cCI6MTc4MDMwNDU2OX0.lCWAGVeHSActGSTjMyk8RMF3Ua0zXKkTnQcNrIuiP20",
