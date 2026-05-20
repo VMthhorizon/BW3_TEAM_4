@@ -12,10 +12,9 @@ import risorse from "../assets/risorse.png";
 import media from "../assets/media.png";
 import it from "../assets/it.png";
 
-import { Col, Container, Row } from "react-bootstrap";
-const Job = function () {
+import { Button, Col, Container, Modal, Row } from "react-bootstrap";
+const Job = function (job) {
   const [jobs, setJobs] = useState([]);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const location = useLocation();
@@ -23,6 +22,7 @@ const Job = function () {
   const query = searchParams.get("search");
   const [showJobs, setShowJobs] = useState(false);
   const jobSliced = showJobs ? jobs : jobs.slice(0, 15);
+  const [selectedJob, setselectedJob] = useState(null);
   useEffect(() => {
     const prepareFetch = setTimeout(() => {
       setLoading(true);
@@ -78,7 +78,13 @@ const Job = function () {
         {!loading && !error && (
           <div className="bg-white rounded-xl shadow-sm">
             {jobSliced.map((job) => (
-              <JobsLine key={job._id} job={job} />
+              <JobsLine
+                key={job._id}
+                job={job}
+                onClick={() => {
+                  setselectedJob(job);
+                }}
+              />
             ))}
             <div
               className="show-all m-0"
@@ -87,6 +93,32 @@ const Job = function () {
               {showJobs ? "Mostra meno" : "Mostra altro"}
               <ChevronExpand />
             </div>
+            {selectedJob && (
+              <div
+                onClose={() => setselectedJob(null)}
+                className="modal show"
+                style={{ display: "block", position: "initial" }}
+              >
+                <Modal.Dialog>
+                  <Modal.Header closeButton>
+                    <Modal.Title>{job.company_name}</Modal.Title>
+                  </Modal.Header>
+                  <Modal.Body>
+                    <p>
+                      {job.candidate_required_location} ({job.category})
+                    </p>
+                  </Modal.Body>
+                  <Modal.Footer>
+                    <Button
+                      onClose={() => setselectedJob(null)}
+                      variant="secondary"
+                    >
+                      Close
+                    </Button>
+                  </Modal.Footer>
+                </Modal.Dialog>
+              </div>
+            )}
           </div>
         )}
       </div>
