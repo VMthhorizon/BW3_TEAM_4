@@ -290,3 +290,40 @@ color: #666666 !important;
 .send-btn { background-color: #0a66c2 !important; border: none; }
 .send-btn:disabled { background-color: #ebebeb !important; color: #888 !important; }
  
+/*responsive*/
+ 
+
+ 
+.active-chat {
+  width: 360px;
+  height: 500px;
+  position: fixed;
+  bottom: 0;
+  right: 20px;  
+  z-index: 2000;
+}
+
+.list-container {
+  width: 300px;
+  position: fixed;
+  bottom: 0;
+  right: 400px;  
+  z-index: 2000;
+}
+
+ 
+@media (max-width: 768px) {
+  .list-container {
+    width: 100% !important;
+    right: 0 !important;
+    border-radius: 10px 10px 0 0 !important;
+  }
+
+  .active-chat {
+    width: 100% !important;
+    height: 100% !important;  
+    right: 0 !important;
+    bottom: 0 !important;
+    border-radius: 0 !important;
+  }
+}
