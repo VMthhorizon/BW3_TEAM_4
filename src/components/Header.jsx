@@ -423,7 +423,7 @@ const NavbarLinkedin = function () {
     <Container>
       <Row>
         <Col xs={12} className="text-center justify-content-around">
-          <Navbar expand="lg" className="bg-white navbar-linkedin">
+          <Navbar expand="lg" className="bg-white navbar-linkedin rounded-2">
             <Container>
               <Link to="/" className="navbar.brand me-1">
                 <i className="bi bi-linkedin logo-linkedin"></i>

@@ -1,4 +1,6 @@
-import { GET_POST_ALL } from "../actions/post Action/postAll"
+import { GET_POST_ALL } from "../actions/postAction/postAll"
+import { DELETE_POST } from "../actions/postAction/postDelete"
+import { POST_POST } from "../actions/postAction/postPost"
 
 const initialState = {
   list: [],
@@ -11,7 +13,18 @@ const postReducer = (state = initialState, action) => {
         ...state,
         list: action.payload,
       }
-
+    case POST_POST:
+      return {
+        ...state,
+        list: [...state.list, action.payload],
+      }
+    case DELETE_POST:
+      return {
+        ...state,
+        list: state.list.filter((exp) => {
+          return exp._id !== action.payload
+        }),
+      }
     default:
       return state
   }
