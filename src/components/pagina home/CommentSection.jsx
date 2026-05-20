@@ -17,18 +17,16 @@ const CommentSection = function ({ postId }) {
   }, [dispatch, postId])
 
   return (
-    <div className="mt-3">
+    <div className="my-3 px-3">
       {/* input commento */}
       <div className="d-flex gap-2 mb-3">
         <input
           type="text"
-          className="form-control"
+          className="comment-input"
           placeholder="Scrivi un commento..."
           value={newComment}
           onChange={(e) => setNewComment(e.target.value)}
         />
-
-        <button className="btn">Invia</button>
       </div>
 
       {/* lista commenti */}
