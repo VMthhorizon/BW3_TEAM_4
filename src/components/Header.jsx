@@ -35,9 +35,20 @@ const NavbarLinkedin = function () {
   const profilo = useSelector((storeRedux) => {
     return storeRedux.profile.me
   })
+  const profili = useSelector((storeRedux) => {
+    return storeRedux.profile.profiles
+  })
+  const [searchQuery, setSearchQuery] = useState("")
+
+  const profiliFiltrati = profili.filter((profilo) =>
+    `${profilo.name} ${profilo.surname}`
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase()),
+  )
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     dispatch(getProfilePersonaleAction())
@@ -59,7 +70,7 @@ const NavbarLinkedin = function () {
   const profile = (
     <div
       className="linkedin-profile-menu-container"
-      style={{ width: "280px", padding: "8px 0" }}
+      style={{ width: "280px", padding: "8px 0", zIndex: "100" }}
     >
       <Container fluid className="px-3 pt-2 ">
         <Row className="align-items-start">
@@ -422,11 +433,14 @@ const NavbarLinkedin = function () {
   const handleShow = () => setShowPremiumModal(true)
 
   return (
-    <Container>
+    <Container
+      fluid
+      className="px-0 bg-white border-bottom border-2 border-body-tertiary "
+    >
       <Row>
-        <Col xs={12} className="text-center justify-content-around">
-          <Navbar expand="lg" className="bg-white navbar-linkedin rounded-2">
-            <Container>
+        <Col xs={12} className="text-center justify-content-around p-0 ">
+          <Navbar expand="lg" className=" navbar-linkedin rounded-2 py-0">
+            <Container className="position-relative">
               <Link
                 to="/me"
                 className="profile-dropdown me-4 container-img d-lg-none"
@@ -455,10 +469,38 @@ const NavbarLinkedin = function () {
                   aria-label="Search"
                   aria-describedby="search-addon"
                   className="border-start-0 ps-0"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value)
+                  }}
                 />
               </InputGroup>
+              <div className="search-dropdown">
+                {searchQuery &&
+                  profiliFiltrati.slice(0, 6).map((profile) => (
+                    <div
+                      key={profile._id}
+                      className="search-item d-flex align-items-center gap-2 p-2"
+                    >
+                      <img
+                        src={profile.image}
+                        width={40}
+                        height={40}
+                        className="rounded-circle object-fit-cover"
+                      />
 
-              <ChatboxMobile />
+                      <div>
+                        <p className="mb-0 fw-bold">
+                          {profile.name} {profile.surname}
+                        </p>
+
+                        <small className="text-muted">{profile.title}</small>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              <ChatboxMobile isOpen={isOpen} setIsOpen={setIsOpen} />
               {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
               <Navbar.Collapse
                 className="justify-content-end"
@@ -549,7 +591,13 @@ const NavbarLinkedin = function () {
                     variant="link"
                     className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                     onClick={() => {
-                      ;(setActiveBtn(btn.id), navigate(btn.navigate))
+                      setActiveBtn(btn.id)
+                      if (btn.id === "messaggi") {
+                        setIsOpen(true)
+                      } else if (btn.navigate) {
+                        navigate(btn.navigate)
+                        setIsOpen(false)
+                      }
                     }}
                   >
                     <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>

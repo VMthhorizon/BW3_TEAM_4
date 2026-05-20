@@ -1,7 +1,6 @@
-import { Row, Col, Badge } from "react-bootstrap";
+import { Row, Col, Badge } from "react-bootstrap"
 
 const JobsLine = function ({ job, onClick }) {
-  console.log(job);
   if (job.company_logo_url) {
     return (
       <div
@@ -80,8 +79,8 @@ const JobsLine = function ({ job, onClick }) {
           </Col>
         </Row>
       </div>
-    );
+    )
   }
-};
+}
 
-export default JobsLine;
+export default JobsLine

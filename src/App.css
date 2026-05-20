@@ -210,6 +210,55 @@ body {
   background-color: #f3f3f3;
 }
 
+/* INPUT COMMENTI */
+.comment-input {
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #d0d0d0;
+  padding: 10px 16px;
+  background-color: white;
+  transition: 0.2s;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 1px #0a66c2;
+}
+
+/* COMMENTI */
+.comment-box {
+  border-radius: 18px;
+  border: 1px solid #d0d0d0;
+  background-color: white;
+  transition: 0.2s;
+}
+
+.comment-box:hover {
+  background-color: #f8f8f8;
+}
+
+.comment-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #222;
+}
+
+.comment-edit,
+.comment-delete {
+  cursor: pointer;
+  color: #666;
+  transition: 0.2s;
+}
+
+.comment-edit:hover {
+  color: #0a66c2;
+}
+
+.comment-delete:hover {
+  color: #d11124;
+}
+
 /*CSS DELLA CHATBOX*/
 
 .chat-wrapper {
@@ -360,4 +409,36 @@ body {
   width: 50px;
   height: 50px;
   object-fit: cover;
+}
+
+/* DROPDOWN PROFILI RICERCA */
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+  margin-top: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.search-item {
+  cursor: pointer;
+
+  transition: background 0.2s;
+}
+
+.search-item:hover {
+  background-color: #f3f2ef;
+}
+
+@media (max-width: 580px) {
+  .search-dropdown {
+    top: 100%;
+    left: 10%;
+    width: 80%;
+  }
 }
