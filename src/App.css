@@ -210,6 +210,41 @@ body {
   background-color: #f3f3f3;
 }
 
+/* INPUT COMMENTI */
+.comment-input {
+  width: 100%;
+  border-radius: 25px;
+  border: 1px solid #d0d0d0;
+  padding: 10px 16px;
+  background-color: white;
+  transition: 0.2s;
+}
+
+.comment-input:focus {
+  outline: none;
+  border-color: #0a66c2;
+  box-shadow: 0 0 0 1px #0a66c2;
+}
+
+
+/* COMMENTI */
+.comment-box {
+  border-radius: 18px;
+  border: 1px solid #d0d0d0;
+  background-color: white;
+  transition: 0.2s;
+}
+
+.comment-box:hover {
+  background-color: #f8f8f8;
+}
+
+.comment-box p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #222;
+}
+
 /*CSS DELLA CHATBOX*/
 
 .chat-wrapper {
@@ -361,3 +396,5 @@ body {
   height: 50px;
   object-fit: cover;
 }
+
+
