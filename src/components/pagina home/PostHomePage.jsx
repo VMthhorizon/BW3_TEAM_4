@@ -1,54 +1,31 @@
-import { useEffect, useState } from "react";
-import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal";
-import { CalendarWeek, Newspaper } from "react-bootstrap-icons";
+import { useEffect, useState } from "react"
+import { Container, Row, Col, Button, Modal, Form } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal"
+import postPostAction from "../../redux/actions/postAction/postPost"
+import { CalendarWeek, Newspaper } from "react-bootstrap-icons"
+import postPutAction from "../../redux/actions/postAction/postPut"
+import getPostAllListAction from "../../redux/actions/postAction/postAll"
 
 const PostHomePage = () => {
-  const [show, setShow] = useState(false);
-  const [postText, setPostText] = useState("");
+  const [show, setShow] = useState(false)
+  const [postText, setPostText] = useState("")
+  const [selectedPostId, setSelectedPostId] = useState(null)
 
   const handleClose = () => {
-    setShow(false);
-    setPostText("");
-  };
-  const handleShow = () => setShow(true);
+    setShow(false)
+    setPostText("")
+  }
+  const handleShow = () => setShow(true)
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me;
-  });
-
-  const postFetch = async () => {
-    try {
-      const response = await fetch(
-        "https://striveschool-api.herokuapp.com/api/posts/",
-        {
-          method: "POST",
-          headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjOGRiNzc0MDQxZjAwMTUwYmZiYTAiLCJpYXQiOjE3NzkyMDc2MDcsImV4cCI6MTc4MDQxNzIwN30.HMrBR3Fc1AQqNEUSWBcW6BdUr9vynsKNjitPN7CA_dU",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            text: postText,
-          }),
-        },
-      );
-      if (response.ok) {
-        alert("POST CREATO CON SUCCESSO");
-        handleClose();
-      } else {
-        console.log("ERRORE NEL FILE JSON", response.status);
-      }
-    } catch (error) {
-      console.log("ERRORE SERVER", error);
-    }
-  };
+    return storeRedux.profile.me
+  })
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction());
-  }, [dispatch]);
+    dispatch(getProfilePersonaleAction())
+  }, [dispatch])
 
   return (
     <Container>
@@ -68,7 +45,7 @@ const PostHomePage = () => {
                 variant="outline-light"
                 className="px-4 text-start border border-1 w-100 text-black fw-bold rounded-5"
                 onClick={() => {
-                  handleShow();
+                  handleShow()
                 }}
               >
                 Crea un post
@@ -103,12 +80,7 @@ const PostHomePage = () => {
         </Col>
       </Row>
       <Modal show={show} onHide={handleClose}>
-        <Form
-          onSubmit={(e) => {
-            e.preventDefault();
-            postFetch();
-          }}
-        >
+        <Form onSubmit={(e) => e.preventDefault()}>
           <Modal.Header className="d-flex gap-3 align-items-center" closeButton>
             <img
               className="rounded-circle object-fit-cover"
@@ -129,20 +101,37 @@ const PostHomePage = () => {
                 placeholder="Di cosa vuoi parlare?"
                 value={postText}
                 onChange={(e) => {
-                  setPostText(e.target.value);
+                  setPostText(e.target.value)
                 }}
               />
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => {
+                if (selectedPostId) {
+                  dispatch(
+                    postPutAction(selectedPostId, { text: postText }),
+                  ).then(() => {
+                    dispatch(getPostAllListAction())
+                  })
+                } else {
+                  dispatch(postPostAction({ text: postText })).then(() => {
+                    dispatch(getPostAllListAction())
+                  })
+                }
+                setShow(false)
+              }}
+            >
               Post
             </Button>
           </Modal.Footer>
         </Form>
       </Modal>
     </Container>
-  );
-};
+  )
+}
 
-export default PostHomePage;
+export default PostHomePage
