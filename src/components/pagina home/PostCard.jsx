@@ -1,6 +1,10 @@
 import { HandThumbsUp, ChatText, Repeat, Send } from "react-bootstrap-icons"
+import CommentSection from "./CommentSection"
+import { useState } from "react"
 
 const PostCard = function ({ post }) {
+  const [showComments, setShowComments] = useState(false)
+
   return (
     <div className="sidebar-card my-2">
       <div className="sidebar-card-content">
@@ -43,7 +47,10 @@ const PostCard = function ({ post }) {
             <span>Consiglia</span>
           </div>
 
-          <div className="post-action">
+          <div
+            className="post-action"
+            onClick={() => setShowComments(!showComments)}
+          >
             <ChatText />
             <span>Commenta</span>
           </div>
@@ -58,6 +65,9 @@ const PostCard = function ({ post }) {
             <span>Invia</span>
           </div>
         </div>
+
+        {/* commenti */}
+        {showComments && <CommentSection postId={post._id} />}
       </div>
     </div>
   )
