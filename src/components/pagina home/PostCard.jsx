@@ -1,8 +1,6 @@
 import { HandThumbsUp, ChatText, Repeat, Send } from "react-bootstrap-icons"
-import linkedinAvatar from "../../assets/linkedin-avatar.png"
 
 const PostCard = function ({ post }) {
-  console.log(post)
   return (
     <div className="sidebar-card my-2">
       <div className="sidebar-card-content">
@@ -29,8 +27,14 @@ const PostCard = function ({ post }) {
             </p>
           </div>
         </div>
+
         {/* testo */}
         <h5 className="mb-3 fw-light">{post.text}</h5>
+
+        {/* immagine post */}
+        {post.image && (
+          <img src={post.image} alt="post" className="img-fluid rounded mb-3" />
+        )}
 
         {/* footer */}
         <div className="d-flex justify-content-around border-top pt-2">
