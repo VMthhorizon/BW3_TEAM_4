@@ -32,6 +32,7 @@ const ViewedPeopleCard = function () {
               description={person.title}
               buttonText="Visualizza"
               rounded={true}
+              id={person._id}
             />
           ))}
           {/* viewed people map end */}

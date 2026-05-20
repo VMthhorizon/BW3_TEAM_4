@@ -8,27 +8,32 @@ import {
 } from "react-bootstrap-icons"
 import Button from "react-bootstrap/Button"
 import Card from "react-bootstrap/Card"
-import MyCarousel from "./MyCarousel"
+import MyCarousel from "../pagina profilo/ProfileSidebarLeft/MyCarousel"
 import { useDispatch, useSelector } from "react-redux"
-import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal"
+
 import { useEffect, useState } from "react"
 
-import AddImages from "../../AddImages"
-import copertina from "../../../assets/van gogh ciliegio.jpg"
-function ProfilePersonalInfo() {
+import AddImages from "../AddImages"
+import copertina from "../../assets/van gogh ciliegio.jpg"
+import getProfileByIdAction from "../../redux/actions/profileAction/profileById"
+import { useParams } from "react-router-dom"
+
+function ProfileByIdInfo() {
   const dispatch = useDispatch()
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
+    return storeRedux.profile.selectedProfile
   })
   const [show, setShow] = useState(false)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  const { userId } = useParams()
+
   useEffect(() => {
-    dispatch(getProfilePersonaleAction())
+    dispatch(getProfileByIdAction(userId))
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [userId])
   return (
     <Card className="mb-3">
       <div className="position-relative">
@@ -185,4 +190,4 @@ function ProfilePersonalInfo() {
   )
 }
 
-export default ProfilePersonalInfo
+export default ProfileByIdInfo

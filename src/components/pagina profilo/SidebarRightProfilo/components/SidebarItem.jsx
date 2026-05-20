@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom"
 import avatar from "../../../../assets/linkedin-avatar.png"
 
 const SidebarItem = function ({
@@ -6,7 +7,9 @@ const SidebarItem = function ({
   description,
   buttonText,
   rounded,
+  id,
 }) {
+  const navigate = useNavigate()
   return (
     <div className="sidebar-item">
       <img
@@ -22,7 +25,13 @@ const SidebarItem = function ({
       <div className="sidebar-content">
         <h6>{title}</h6>
         <p>{description}</p>
-        <button>{buttonText}</button>
+        <button
+          onClick={() => {
+            navigate(`/profile/${id}`)
+          }}
+        >
+          {buttonText}
+        </button>
       </div>
     </div>
   )
