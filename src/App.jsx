@@ -1,20 +1,21 @@
-import { Provider } from "react-redux";
-import "./App.css";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import store from "./redux/store";
-import NavabarLinkedin from "./components/Header";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import ProfilePage from "./components/pagina profilo/ProfilePage";
-import MyFooter from "./components/MyFooter";
-import ChatBox from "./components/Chatbox";
-import "swiper/css";
-import HomePage from "./components/pagina home/HomePage";
-import JobsPage from "./components/pagina lavoro/JobsPage";
-import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetail";
-import FormIscrizioneLinkedin from "./components/FormIscrizioneLinkedin";
-import ChatPage from "./components/pagina messaggi/ChatPage";
+import { Provider } from "react-redux"
+import "./App.css"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import store from "./redux/store"
+import NavabarLinkedin from "./components/Header"
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom"
+import ProfilePage from "./components/pagina profilo/ProfilePage"
+import MyFooter from "./components/MyFooter"
+import ChatBox from "./components/Chatbox"
+import "swiper/css"
+import HomePage from "./components/pagina home/HomePage"
+import JobsPage from "./components/pagina lavoro/JobsPage"
+import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetail"
+import FormIscrizioneLinkedin from "./components/FormIscrizioneLinkedin"
+import ChatPage from "./components/pagina messaggi/ChatPage"
 
-import PaginaRete from "./components/pagina rete/PaginaRete";
+import PaginaRete from "./components/pagina rete/PaginaRete"
+import SettingsPage from "./components/pagina settings/SettingsPage"
 const MainLayout = () => {
   return (
     <>
@@ -23,8 +24,8 @@ const MainLayout = () => {
       <MyFooter />
       <ChatBox />
     </>
-  );
-};
+  )
+}
 
 export default function App() {
   return (
@@ -42,10 +43,11 @@ export default function App() {
               <Route path="/jobs" element={<JobsPage />} />
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/rete" element={<PaginaRete />} />
+              <Route path="/settings" element={<SettingsPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
       </div>
     </Provider>
-  );
+  )
 }
