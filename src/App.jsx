@@ -17,6 +17,7 @@ import ChatPage from "./components/pagina messaggi/ChatPage";
 import PaginaRete from "./components/pagina rete/PaginaRete";
 import PublicProfilePage from "./components/pagina public&url/PublicProfilePage";
 import Notifiche from "./components/pagina notifiche/Notifiche";
+import SettingsPage from "./components/pagina settings/SettingsPage";
 const MainLayout = () => {
   return (
     <>
@@ -46,6 +47,7 @@ export default function App() {
               <Route path="/rete" element={<PaginaRete />} />
               <Route path="/notifiche" element={<Notifiche />} />
               <Route path="/public&url" element={<PublicProfilePage />} />
+              <Route path="/settings" element={<SettingsPage/>}/>
             </Route>
           </Routes>
         </BrowserRouter>

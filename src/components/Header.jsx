@@ -253,7 +253,8 @@ const NavbarLinkedin = function () {
           </span>
         </NavDropdown.Item>
         <NavDropdown.Item
-          href="#settings"
+          as={Link}
+          to="/settings"
           className="py-2 text-muted"
           style={{ fontSize: "14px" }}
         >
