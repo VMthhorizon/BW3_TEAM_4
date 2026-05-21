@@ -11,7 +11,7 @@ const SettingsPage = function () {
   const navigate = useNavigate()
 
   return (
-    <Container className="mt-5 my-4 px-lg-5">
+    <Container className="settings-container mt-5 my-4 px-lg-5">
       <Row>
         <Col lg={8}>
           <div className="pt-5 mb-4">
@@ -38,7 +38,12 @@ const SettingsPage = function () {
               </h2>
               <p>{profilo?.title}</p>
               <p>{profilo?.area}</p>
-              <button className=" rounded-pill fw-bold px-4 py-3 settings-main-btn" onClick={() => {navigate("/me")}}>
+              <button
+                className=" rounded-pill fw-bold px-4 py-3 settings-main-btn"
+                onClick={() => {
+                  navigate("/me")
+                }}
+              >
                 Iscriviti per visualizzare il profilo
               </button>
             </Card.Body>
@@ -82,20 +87,32 @@ const SettingsPage = function () {
               <div className="d-flex justify-content-between align-items-center">
                 <div>
                   <h5 className="fw-semibold mb-1">
-                    Visibilità del profilo pubblico
+                    Modifica visibilità
                   </h5>
 
                   <p className="text-muted small mb-0">
-                    Controlla chi può vedere il tuo profilo pubblico.
+                    Puoi limitare i campi del profilo che possono essere mostrati alle persone che non hanno effettuato l’accesso a LinkedIn. Chi visualizza il tuo profilo negli strumenti di ricerca, nei badge del profilo o in altri servizi consentiti come Outlook potrebbe vedere tutti o alcuni dei campi che hai abilitato qui sotto.
                   </p>
+                  <p className="text-primary small mb-0">Per saperne di più</p>
                 </div>
-
+              </div>
                 <Form.Check
                   type="switch"
                   checked={publicProfile}
                   onChange={() => setPublicProfile(!publicProfile)}
                 />
-              </div>
+            </Card.Body>
+            <hr className="my-0" />
+            <Card.Body>
+              <h5 className="fw-semibold mb-2">Badge profilo pubblico</h5>
+
+              <p className="text-muted small mb-3">
+                Promuovi il tuo profilo aggiungendo un badge al tuo blog, curriculum online o sito web.
+              </p>
+
+              <button className="btn btn-outline-primary rounded-pill">
+                Crea un badge
+              </button>
             </Card.Body>
           </Card>
         </Col>
