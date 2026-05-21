@@ -512,6 +512,20 @@ body {
   margin-left: 20px;
 }
 
+.settings-description {
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+.settings-main-btn {
+  background-color: #0a66c2;
+  border: none;
+  color: white;
+}
+
+.settings-main-btn:hover {
+  background-color: #004182;
+}
 /*Modale logout*/
 .logout-modal-custom .modal-content {
   border-radius: 12px;

@@ -582,7 +582,7 @@ const NavbarLinkedin = function () {
                       <Button
                         key={btn.id}
                         variant="link"
-                        className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
+                        className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""} text-truncate`}
                         onClick={() => {
                           setActiveBtn(btn.id);
                           if (btn.id === "notifiche") {
