@@ -265,7 +265,6 @@ body {
   right: 12px;
   display: flex;
   gap: 8px;
-
 }
 
 .comment-author {
@@ -500,11 +499,7 @@ body {
 .settings-banner {
   height: 220px;
 
-  background: linear-gradient(
-    135deg,
-    #0a66c2,
-    #57b3ff
-  );
+  background: linear-gradient(135deg, #0a66c2, #57b3ff);
 }
 
 .settings-avatar {
@@ -525,7 +520,7 @@ body {
 }
 
 .logout-modal-custom .btn-primary {
-  background-color: #0a66c2;  
+  background-color: #0a66c2;
   border: none;
   transition: all 0.2s ease;
 }
@@ -533,4 +528,25 @@ body {
 .logout-modal-custom .btn-primary:hover {
   background-color: #004182;
   transform: translateY(-1px);
+}
+
+.swiper {
+  overflow: visible;
+}
+
+.swiper-wrapper {
+  align-items: stretch;
+}
+
+.swiper-slide {
+  height: auto !important;
+  display: flex;
+}
+
+.swiper-slide > div {
+  width: 100%;
+}
+
+.sidebar-card {
+  width: 100%;
 }

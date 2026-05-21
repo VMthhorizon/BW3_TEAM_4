@@ -6,6 +6,7 @@ import Interessi from "../Interessi"
 import SidebarRight from "../pagina profilo/SidebarRightProfilo/SidebarRight"
 import ProfileByIdInfo from "./ProfileByIdInfo"
 import ExperienceByIdSection from "./ExperiencesById"
+import ListaPostPersonaliDetailedSection from "./ListaPostPersonaliDetailed"
 const ProfilePageDetail = () => {
   return (
     <Container className="my-4">
@@ -13,6 +14,7 @@ const ProfilePageDetail = () => {
         <Col xs={12} lg={9}>
           <ProfileByIdInfo></ProfileByIdInfo>
           <Analisi />
+          <ListaPostPersonaliDetailedSection />
           <ExperienceByIdSection />
           <Formazione />
           <Interessi />

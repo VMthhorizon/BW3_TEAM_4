@@ -1,15 +1,15 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import getPostAllListAction from "../redux/actions/postAction/postAll"
-import PostCardProfiloSelezionato from "./pagina home/PostCardProfiloSelezionato"
+import getPostAllListAction from "../../redux/actions/postAction/postAll"
+import PostCardProfiloSelezionato from "../pagina home/PostCardProfiloSelezionato"
 import { Swiper, SwiperSlide } from "swiper/react"
 // import experiencePutAction from "../redux/actions/experiencesAction/experiencePut"
 
-const ListaPostPersonaliSection = () => {
+const ListaPostPersonaliDetailedSection = () => {
   const dispatch = useDispatch()
 
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
+    return storeRedux.profile.selectedProfile
   })
 
   const listaPost = useSelector((storeRedux) => {
@@ -53,4 +53,4 @@ const ListaPostPersonaliSection = () => {
   )
 }
 
-export default ListaPostPersonaliSection
+export default ListaPostPersonaliDetailedSection

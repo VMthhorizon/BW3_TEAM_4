@@ -1,31 +1,34 @@
-import { useState } from "react";
-import { Button, Card, Col } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useState } from "react"
+import { Button, Card, Col } from "react-bootstrap"
+import { useSelector } from "react-redux"
 function timeAgo(timestamp) {
-  const diffMs = Date.now() - new Date(timestamp).getTime();
+  const diffMs = Date.now() - new Date(timestamp).getTime()
 
-  const seconds = Math.floor(diffMs / 1000);
-  const minutes = Math.floor(diffMs / 60000);
-  const hours = Math.floor(diffMs / 3600000);
-  const days = Math.floor(diffMs / 86400000);
+  const seconds = Math.floor(diffMs / 1000)
+  const minutes = Math.floor(diffMs / 60000)
+  const hours = Math.floor(diffMs / 3600000)
+  const days = Math.floor(diffMs / 86400000)
 
   if (seconds < 60) {
-    return `${seconds} secondi fa`;
+    return `${seconds} secondi fa`
   }
 
   if (minutes < 60) {
-    return `${minutes} minuti fa`;
+    return `${minutes} minuti fa`
   }
 
   if (hours < 24) {
-    return `${hours} ore fa`;
+    return `${hours} ore fa`
   }
 
-  return `${days} giorni fa`;
+  if (hours < 48 && hours >= 24) {
+    return `${days} giorno fa`
+  }
+  return `${days} giorni fa`
 }
 const CentralNotifiche = function () {
-  const [showNotifications, setShowNotifications] = useState(false);
-  const notifications = useSelector((state) => state.notification.list);
+  const [showNotifications, setShowNotifications] = useState(false)
+  const notifications = useSelector((state) => state.notification.list)
 
   return (
     <>
@@ -84,6 +87,6 @@ const CentralNotifiche = function () {
         </Card>
       </Col>
     </>
-  );
-};
-export default CentralNotifiche;
+  )
+}
+export default CentralNotifiche
