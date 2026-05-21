@@ -551,3 +551,24 @@ body {
   background-color: #004182;
   transform: translateY(-1px);
 }
+
+.swiper {
+  overflow: visible;
+}
+
+.swiper-wrapper {
+  align-items: stretch;
+}
+
+.swiper-slide {
+  height: auto !important;
+  display: flex;
+}
+
+.swiper-slide > div {
+  width: 100%;
+}
+
+.sidebar-card {
+  width: 100%;
+}

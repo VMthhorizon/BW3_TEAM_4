@@ -23,6 +23,32 @@ import AddPostImagesAction from "../../redux/actions/images action/picturePost"
 import CommentSection from "./CommentSection"
 import { useNavigate } from "react-router-dom"
 
+function timeAgo(timestamp) {
+  const diffMs = Date.now() - new Date(timestamp).getTime()
+
+  const seconds = Math.floor(diffMs / 1000)
+  const minutes = Math.floor(diffMs / 60000)
+  const hours = Math.floor(diffMs / 3600000)
+  const days = Math.floor(diffMs / 86400000)
+
+  if (seconds < 60) {
+    return `${seconds} secondi fa`
+  }
+
+  if (minutes < 60) {
+    return `${minutes} minuti fa`
+  }
+
+  if (hours < 24) {
+    return `${hours} ore fa`
+  }
+
+  if (hours < 48 && hours >= 24) {
+    return `${days} giorno fa`
+  }
+  return `${days} giorni fa`
+}
+
 const PostCardProfiloSelezionato = function ({ post }) {
   const [show, setShow] = useState(false)
   const [liked, setliked] = useState({})
@@ -91,12 +117,12 @@ const PostCardProfiloSelezionato = function ({ post }) {
   }, [post._id])
 
   return (
-    <Col sm={12} lg={4} className="h-100">
-      <div className="sidebar-card my-2">
-        <div className="sidebar-card-content">
+    <div className="h-100">
+      <div className="sidebar-card my-2 d-flex flex-column h-100">
+        <div className=" h-100 sidebar-card-content d-flex flex-column justify-content-between">
           {/* header */}
           <div
-            className="d-flex align-items-center gap-2 mb-3"
+            className="d-flex align-items-center gap-2 mb-3 "
             onClick={() => {
               navigate(`/profile/${post.user._id}`)
             }}
@@ -116,25 +142,25 @@ const PostCardProfiloSelezionato = function ({ post }) {
               <h6 className="mb-0">
                 {post.user.name} {post.user.surname}
               </h6>
-              {/* <p>{post.user.role}</p> */}
+              <p className="text-truncate mb-0">{post.user.title}</p>
 
-              <p className="text-muted mb-0">
-                {new Date(post.createdAt).toLocaleDateString()}
-              </p>
+              <p className="text-muted mb-0">{timeAgo(post.createdAt)}</p>
             </div>
           </div>
 
           {/* testo post */}
-          <h5 className="mb-3 fw-light">{post.text}</h5>
+          <div className="flex-grow-1">
+            <h5 className="mb-3 fw-light">{post.text}</h5>
 
-          {/* immagine post */}
-          {post.image && (
-            <img
-              src={post.image}
-              alt="post"
-              className="img-fluid rounded mb-2"
-            />
-          )}
+            {/* immagine post */}
+            {post.image && (
+              <img
+                src={post.image}
+                alt="post"
+                className="img-fluid rounded mb-2"
+              />
+            )}
+          </div>
 
           {/* numero commenti */}
           <div className="comment-number d-flex justify-content-between align-items-center small mb-2">
@@ -219,15 +245,11 @@ const PostCardProfiloSelezionato = function ({ post }) {
                 </div>
 
                 <div className="post-action">
-                  <Trash3 />
-
-                  <span
+                  <Trash3
                     onClick={() => {
                       dispatch(postDeleteAction(post._id))
                     }}
-                  >
-                    Elimina
-                  </span>
+                  />
                 </div>
               </>
             )}
@@ -290,7 +312,9 @@ const PostCardProfiloSelezionato = function ({ post }) {
               onClick={async () => {
                 if (selectedPostId) {
                   await dispatch(
-                    postPutAction(selectedPostId, { text: postText }),
+                    postPutAction(selectedPostId, {
+                      text: postText,
+                    }),
                   )
                   if (image) {
                     await dispatch(AddPostImagesAction(image, selectedPostId))
@@ -317,7 +341,7 @@ const PostCardProfiloSelezionato = function ({ post }) {
           </Modal.Footer>
         </Form>
       </Modal>
-    </Col>
+    </div>
   )
 }
 
