@@ -20,6 +20,29 @@ import ChatboxMobile from "./ChatboxMobile"
 
 let globalOldCommentsIds = []
 
+function timeAgo(timestamp) {
+  const diffMs = Date.now() - new Date(timestamp).getTime()
+
+  const seconds = Math.floor(diffMs / 1000)
+  const minutes = Math.floor(diffMs / 60000)
+  const hours = Math.floor(diffMs / 3600000)
+  const days = Math.floor(diffMs / 86400000)
+
+  if (seconds < 60) {
+    return `${seconds} secondi fa`
+  }
+
+  if (minutes < 60) {
+    return `${minutes} minuti fa`
+  }
+
+  if (hours < 24) {
+    return `${hours} ore fa`
+  }
+
+  return `${days} giorni fa`
+}
+
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/home" },
   {
@@ -117,7 +140,9 @@ const NavbarLinkedin = function () {
                   type: "ADD_NOTIFICATION",
                   payload: {
                     id: Date.now() + Math.random(),
-                    text: `${com.author} ha commentato il tuo post: "${com.comment}"`,
+                    text: `${com.comment}`,
+                    author: `${com.author}`,
+                    time: `${com.createdAt}`,
                     read: false,
                   },
                 })
@@ -679,8 +704,15 @@ const NavbarLinkedin = function () {
             <p className="text-muted mb-0">Nessuna notifica</p>
           ) : (
             notifications.map((notification) => (
-              <div key={notification.id} className="border-bottom py-2">
-                {notification.text}
+              <div
+                key={notification.id}
+                className="border-bottom py-2 d-flex justify-content-between"
+              >
+                <p className="mb-0">
+                  <span className="fw-bold">{notification.author}</span> ha
+                  commentato il tuo post: "{notification.text}"
+                </p>
+                <p className="mb-0">{timeAgo(notification.time)}</p>
               </div>
             ))
           )}
