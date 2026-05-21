@@ -43,7 +43,6 @@ const CommentSection = function ({ postId, setCommentsCount }) {
     dispatch(getProfileAllListAction())
   }, [comments])
 
-  // submit nuovo commento
   const handleSubmit = () => {
     if (!newComment.trim()) return
 
@@ -92,9 +91,7 @@ const CommentSection = function ({ postId, setCommentsCount }) {
         const matchProfile = profiles.find(
           (profile) => profile.username === comment.author,
         )
-        {
-          console.log(profiles)
-        }
+
         return (
           <div key={comment._id} className="comment-wrapper mb-3">
             <div className="d-flex gap-2 align-items-start">
