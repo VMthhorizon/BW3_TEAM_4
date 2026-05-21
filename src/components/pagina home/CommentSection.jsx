@@ -10,6 +10,7 @@ import putCommentAction from "../../redux/actions/commentsActions/putComment"
 import avatarPlaceholder from "../../assets/avatar-corretto.png"
 
 import { Pencil, Trash3 } from "react-bootstrap-icons"
+
 import getProfileAllListAction from "../../redux/actions/profileAction/ProfileAllList"
 
 const CommentSection = function ({ postId, setCommentsCount }) {
@@ -85,74 +86,88 @@ const CommentSection = function ({ postId, setCommentsCount }) {
         />
       </div>
 
-      {/* lista commenti */}
-      {comments.map((comment) => {
-        const myComment = comment.author === profilo?.username
-        const matchProfile = profiles.find(
-          (profile) => profile.username === comment.author,
-        )
+      {[...comments]
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
-        return (
-          <div key={comment._id} className="comment-wrapper mb-3">
-            <div className="d-flex gap-2 align-items-start">
-              {/* avatar */}
+        .map((comment) => {
+          const myComment = comment.author === profilo?.username
+          const matchProfile = profiles.find(
+            (profile) => profile.username === comment.author,
+          )
 
-              <img
-                src={matchProfile?.image || avatarPlaceholder}
-                alt="avatar"
-                className="comment-avatar"
-              />
+          return (
+            <div key={comment._id} className="comment-wrapper mb-3">
+              <div className="d-flex gap-2 align-items-start">
+                {/* avatar */}
+                <img
+                  src={matchProfile?.image || avatarPlaceholder}
+                  alt="avatar"
+                  className="comment-avatar"
+                />
 
-              {/* contenuto */}
-              <div className="comment-content">
-                <div className="comment-bubble">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <span className="comment-author">{comment.author}</span>
+                {/* contenuto */}
+                <div className="comment-content">
+                  <div className="comment-bubble">
+                    <div className="d-flex justify-content-between align-items-start">
+                      {/* autore */}
+                      <span className="comment-author">{comment.author}</span>
 
-                    {myComment && (
-                      <div className="d-flex gap-2">
-                        <Pencil
-                          className="comment-edit"
-                          onClick={() => {
-                            setEditingCommentId(comment._id)
+                      {/* data + azioni */}
+                      <div className="d-flex flex-column align-items-end">
+                        <span className="comment-date">
+                          {new Date(comment.createdAt).toLocaleDateString()}
+                        </span>
 
-                            setEditedText(comment.comment)
-                          }}
-                        />
+                        {myComment && (
+                          <div className="comment-icons">
+                            <Pencil
+                              className="comment-edit"
+                              onClick={() => {
+                                setEditingCommentId(comment._id)
 
-                        <Trash3
-                          className="comment-delete"
-                          onClick={() => {
-                            dispatch(deleteCommentAction(comment._id, postId))
-                          }}
-                        />
+                                setEditedText(comment.comment)
+                              }}
+                            />
+
+                            <Trash3
+                              className="comment-delete"
+                              onClick={() => {
+                                dispatch(
+                                  deleteCommentAction(comment._id, postId),
+                                )
+                              }}
+                            />
+                          </div>
+                        )}
                       </div>
+                    </div>
+
+                    {/* testo commento */}
+                    {editingCommentId === comment._id ? (
+                      <input
+                        type="text"
+                        className="comment-input mt-2"
+                        value={editedText}
+                        onChange={(e) => setEditedText(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === "Enter") {
+                            e.preventDefault()
+
+                            handleEditSubmit(comment._id)
+                          }
+                        }}
+                      />
+                    ) : (
+                      <p className="comment-text fs-6 mb-0">
+                        {comment.comment}
+                      </p>
                     )}
                   </div>
-
-                  {editingCommentId === comment._id ? (
-                    <input
-                      type="text"
-                      className="comment-input mt-2"
-                      value={editedText}
-                      onChange={(e) => setEditedText(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault()
-
-                          handleEditSubmit(comment._id)
-                        }
-                      }}
-                    />
-                  ) : (
-                    <p className="comment-text">{comment.comment}</p>
-                  )}
                 </div>
               </div>
             </div>
-          </div>
-        )
-      })}
+          )
+        })}
     </div>
   )
 }

@@ -22,14 +22,24 @@ let globalOldCommentsIds = []
 
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/home" },
-  { id: "rete", label: "Rete", icon: "bi-people-fill" },
+  {
+    id: "rete",
+    label: "La mia rete",
+    icon: "bi-people-fill",
+    navigate: "/rete",
+  },
   {
     id: "lavoro",
     label: "Lavoro",
     icon: "bi-briefcase-fill",
     navigate: "/jobs",
   },
-  { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
+  {
+    id: "messaggi",
+    label: "Messaggistica",
+    icon: "bi-chat-dots-fill",
+    navigate: "/chat",
+  },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
 ]
 
@@ -451,7 +461,7 @@ const NavbarLinkedin = function () {
   return (
     <Container
       fluid
-      className="px-0 bg-white border-bottom border-2 border-body-tertiary"
+      className="px-0 bg-white border-bottom border-2 border-body-tertiary sticky-navbar"
     >
       <Row>
         <Col xs={12} className="text-center justify-content-around p-0">
