@@ -20,7 +20,12 @@ import ChatboxMobile from "./ChatboxMobile";
 
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/home" },
-  { id: "rete", label: "Rete", icon: "bi-people-fill" },
+  {
+    id: "rete",
+    label: "La mia rete",
+    icon: "bi-people-fill",
+    navigate: "/rete",
+  },
   {
     id: "lavoro",
     label: "Lavoro",
