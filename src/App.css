@@ -464,3 +464,17 @@ body {
     width: 80%;
   }
 }
+
+/* sticky components*/
+.sticky-sidebar {
+  position: sticky;
+  top: 97px;
+  height: fit-content;
+  align-self: flex-start;
+}
+
+.sticky-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
