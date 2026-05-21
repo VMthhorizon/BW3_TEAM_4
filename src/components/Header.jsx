@@ -10,15 +10,15 @@ import {
   Col,
   Modal,
   Image,
-} from "react-bootstrap"
-import { useEffect, useRef, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal"
-import { useNavigate } from "react-router-dom"
-import { Link } from "react-router-dom"
-import ChatboxMobile from "./ChatboxMobile"
+} from "react-bootstrap";
+import { useEffect, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import ChatboxMobile from "./ChatboxMobile";
 
-let globalOldCommentsIds = []
+let globalOldCommentsIds = [];
 
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/home" },
@@ -41,42 +41,42 @@ const buttons = [
     navigate: "/chat",
   },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
-]
+];
 
 const NavbarLinkedin = function () {
-  const profilo = useSelector((storeRedux) => storeRedux.profile.me)
-  const profili = useSelector((storeRedux) => storeRedux.profile.profiles)
-  const posts = useSelector((state) => state.post.list)
-  const notifications = useSelector((state) => state.notification.list)
+  const profilo = useSelector((storeRedux) => storeRedux.profile.me);
+  const profili = useSelector((storeRedux) => storeRedux.profile.profiles);
+  const posts = useSelector((state) => state.post.list);
+  const notifications = useSelector((state) => state.notification.list);
 
-  const [searchQuery, setSearchQuery] = useState("")
-  const [activeBtn, setActiveBtn] = useState("home")
-  const [isOpen, setIsOpen] = useState(false)
-  const [showPremiumModal, setShowPremiumModal] = useState(false)
-  const [showNotifications, setShowNotifications] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("");
+  const [activeBtn, setActiveBtn] = useState("home");
+  const [isOpen, setIsOpen] = useState(false);
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const profiloRef = useRef(profilo);
+  const postsRef = useRef(posts);
 
-  const profiloRef = useRef(profilo)
-  const postsRef = useRef(posts)
-
-  const unreadNotifications = notifications.filter((n) => !n.read).length
+  const unreadNotifications = notifications.filter((n) => !n.read).length;
   const profiliFiltrati = profili.filter((p) =>
     `${p.name} ${p.surname}`.toLowerCase().includes(searchQuery.toLowerCase()),
-  )
+  );
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction())
+    dispatch(getProfilePersonaleAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   useEffect(() => {
-    profiloRef.current = profilo
-  }, [profilo])
+    profiloRef.current = profilo;
+  }, [profilo]);
   useEffect(() => {
-    postsRef.current = posts
-  }, [posts])
+    postsRef.current = posts;
+  }, [posts]);
 
   useEffect(() => {
     // FACCIO LA FETCH DEI COMMENTI OGNI 10 SECONDI
@@ -87,29 +87,29 @@ const NavbarLinkedin = function () {
         },
       })
         .then((response) => {
-          if (response.ok) return response.json()
-          throw new Error("Errore fetch commenti")
+          if (response.ok) return response.json();
+          throw new Error("Errore fetch commenti");
         })
         .then((data) => {
-          const profilo = profiloRef.current
-          const posts = postsRef.current
+          const profilo = profiloRef.current;
+          const posts = postsRef.current;
 
           // PRENDO I NUOVI COMMENTI, SCARTANDO QUELLI ESISTENTI
           const newComments = data.filter(
             (c) => !globalOldCommentsIds.includes(c._id),
-          )
+          );
 
           // AL PRIMO GIRO è UN ARRAY VUOTO QUINDI LO FACCIO SALTARE APPOSITAMENTE PER NON FAR APPARIRE LE NOTIFICHE DI TUTTI I COMMENTI VECCHI
           if (globalOldCommentsIds.length > 0) {
             // ESCLUDO I POST DEGLI ALTRI E CHE IL COMMENTO NON SIA STATO SCRITTO DAME
             const myComments = newComments.filter((c) => {
-              const post = posts.find((p) => p._id === c.elementId)
+              const post = posts.find((p) => p._id === c.elementId);
               return (
                 post !== undefined &&
                 post.user?._id === profilo?._id &&
                 c.author !== profilo?.username
-              )
-            })
+              );
+            });
             // SE ESISTONO COMMENTI NUOVI, FACCIO UN DISPATCH PER OGNI COMMENTO (FOREACH NEL CASO VENGANO POSTATI PIù DI 1 COMMENTO ENTRO I 10 SECONDI DEL REFRESH)
             if (myComments.length > 0) {
               myComments.forEach((com) => {
@@ -120,21 +120,21 @@ const NavbarLinkedin = function () {
                     text: `${com.author} ha commentato il tuo post: "${com.comment}"`,
                     read: false,
                   },
-                })
-              })
+                });
+              });
             }
           }
           // AGGIUNGO I COMMENTI DEL CICLO ATTUALE DI 10 SECONDI ALL'ARRAY CON TUTTI I COMMENTI VECCHI, COSì AL PROSIMO CICLO NON LI RIPRENDE COME NUOVI
-          globalOldCommentsIds = data.map((c) => c._id)
+          globalOldCommentsIds = data.map((c) => c._id);
         })
         .catch((err) => {
-          console.log("errore nella fetch", err)
-        })
-    }, 10000)
+          console.log("errore nella fetch", err);
+        });
+    }, 10000);
 
-    return () => clearInterval(interval)
+    return () => clearInterval(interval);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
   const profileDropdown = (
     <div className="d-flex flex-column align-items-center">
@@ -147,7 +147,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Tu</span>
       </div>
     </div>
-  )
+  );
   const profile = (
     <div
       className="linkedin-profile-menu-container"
@@ -274,11 +274,15 @@ const NavbarLinkedin = function () {
         href="#logout"
         className="py-2 text-muted"
         style={{ fontSize: "14px" }}
+        onClick={(e) => {
+          e.preventDefault();
+          setShowLogoutModal(true);
+        }}
       >
         Esci
       </NavDropdown.Item>
     </div>
-  )
+  );
 
   const perleaziendeDropdown = (
     <div className="d-flex flex-column align-items-center">
@@ -290,7 +294,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Per le aziende</span>
       </div>
     </div>
-  )
+  );
 
   const perleaziende = (
     <Container fluid className="p-3" style={{ width: "560px" }}>
@@ -465,7 +469,7 @@ const NavbarLinkedin = function () {
         </Col>
       </Row>
     </Container>
-  )
+  );
 
   return (
     <Container
@@ -516,8 +520,8 @@ const NavbarLinkedin = function () {
                       key={profile._id}
                       className="search-item d-flex align-items-center gap-2 p-2"
                       onClick={() => {
-                        navigate(`/profile/${profile._id}`)
-                        setSearchQuery("")
+                        navigate(`/profile/${profile._id}`);
+                        setSearchQuery("");
                       }}
                     >
                       <img
@@ -550,12 +554,12 @@ const NavbarLinkedin = function () {
                         variant="link"
                         className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                         onClick={() => {
-                          setActiveBtn(btn.id)
+                          setActiveBtn(btn.id);
                           if (btn.id === "notifiche") {
-                            dispatch({ type: "MARK_ALL_AS_READ" })
-                            setShowNotifications(true)
+                            dispatch({ type: "MARK_ALL_AS_READ" });
+                            setShowNotifications(true);
                           } else if (btn.navigate) {
-                            navigate(btn.navigate)
+                            navigate(btn.navigate);
                           }
                         }}
                       >
@@ -647,12 +651,12 @@ const NavbarLinkedin = function () {
                     variant="link"
                     className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                     onClick={() => {
-                      setActiveBtn(btn.id)
+                      setActiveBtn(btn.id);
                       if (btn.id === "messaggi") {
-                        setIsOpen(true)
+                        setIsOpen(true);
                       } else if (btn.navigate) {
-                        navigate(btn.navigate)
-                        setIsOpen(false)
+                        navigate(btn.navigate);
+                        setIsOpen(false);
                       }
                     }}
                   >
@@ -686,8 +690,78 @@ const NavbarLinkedin = function () {
           )}
         </Modal.Body>
       </Modal>
-    </Container>
-  )
-}
 
-export default NavbarLinkedin
+      {/* MODALE DI CONFERMA LOGOUT */}
+
+      <Modal
+        show={showLogoutModal}
+        onHide={() => setShowLogoutModal(false)}
+        centered
+        backdrop="static"
+        keyboard={false}
+        className="logout-modal-custom"
+      >
+        <Modal.Header closeButton className="border-0 pb-0"></Modal.Header>
+
+        <Modal.Body className="text-center px-4 pb-4">
+          {/* Icona Stylizzata */}
+          <div className="mb-4">
+            <div
+              className="bg-light rounded-circle d-inline-flex align-items-center justify-content-center"
+              style={{ width: "80px", height: "80px" }}
+            >
+              <i
+                className="bi bi-door-open text-primary"
+                style={{ fontSize: "2.5rem" }}
+              ></i>
+            </div>
+          </div>
+
+          <h4 className="fw-bold text-dark mb-3">
+            Arrivederci, {profilo?.name}!
+          </h4>
+
+          <p
+            className="text-muted mx-auto mb-4"
+            style={{ fontSize: "15px", maxWidth: "300px" }}
+          >
+            Sei sicuro di voler terminare la sessione? I tuoi progressi e le
+            notifiche saranno salvati per il tuo prossimo accesso.
+          </p>
+
+          <div
+            className="alert alert-info border-0 py-2 mb-4"
+            style={{ fontSize: "13px", backgroundColor: "#f0f7ff" }}
+          >
+            <i className="bi bi-shield-check me-2"></i>
+            Ricorda di uscire se stai usando un computer pubblico.
+          </div>
+
+          <div className="d-flex flex-column gap-2">
+            <Button
+              variant="primary"
+              className="rounded-pill fw-bold py-2 w-100 shadow-sm"
+              onClick={() => {
+                setShowLogoutModal(false);
+
+                navigate("/");
+              }}
+            >
+              Conferma uscita
+            </Button>
+
+            <Button
+              variant="link"
+              className="text-decoration-none text-secondary fw-bold py-2"
+              onClick={() => setShowLogoutModal(false)}
+            >
+              Rimani collegato
+            </Button>
+          </div>
+        </Modal.Body>
+      </Modal>
+    </Container>
+  );
+};
+
+export default NavbarLinkedin;
