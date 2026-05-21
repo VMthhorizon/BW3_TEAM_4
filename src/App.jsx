@@ -27,7 +27,9 @@ const MainLayout = () => {
 export default function App() {
   return (
     <Provider store={store}>
-      <div className="overflow-x-hidden">
+      {/* <div className="overflow-x-hidden"> */}
+      {/* commento perchè sovrascrive la proprietà sticky, se da problemi di scroll orizzontale lo mettiamo a posto. Vale */}
+      <div>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<FormIscrizioneLinkedin />} />

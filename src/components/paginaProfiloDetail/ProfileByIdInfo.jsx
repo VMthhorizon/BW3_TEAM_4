@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { useEffect, useState } from "react"
 
-import AddImages from "../AddImages"
 import copertina from "../../assets/van gogh ciliegio.jpg"
 import getProfileByIdAction from "../../redux/actions/profileAction/profileById"
 import { useParams } from "react-router-dom"
@@ -42,15 +41,6 @@ function ProfileByIdInfo() {
           variant="top"
           src={copertina}
         />
-        <Button
-          className="border border-1 bg-secondary bg-light bg-opacity-75 rounded-circle position-absolute top-0 end-0 m-3"
-          variant="light"
-        >
-          <i
-            className="bi bi-pencil pencil-icon"
-            style={{ fontSize: "0.9em" }}
-          ></i>
-        </Button>
         <img
           className="m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
           style={{
@@ -64,12 +54,8 @@ function ProfileByIdInfo() {
       </div>
 
       <Card.Body>
-        <Row>
-          <Col className="text-end" xs={12}>
-            <AddImages></AddImages>
-          </Col>
-        </Row>
-        <Row className="align-items-center">
+        <Row></Row>
+        <Row className="align-items-center mt-4">
           <Col xs={8} className="d-flex flex-column flex-md-row  gap-1">
             <Card.Title className="fs-1 text-nowrap">
               {profilo?.name.charAt(0).toUpperCase() + profilo?.name.slice(1)}{" "}
