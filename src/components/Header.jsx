@@ -108,13 +108,15 @@ const NavbarLinkedin = function () {
             })
 
             if (myComments.length > 0) {
-              dispatch({
-                type: "ADD_NOTIFICATION",
-                payload: {
-                  id: Date.now(),
-                  text: `${myComments[0].author} ha commentato il tuo post`,
-                  read: false,
-                },
+              myComments.forEach((com) => {
+                dispatch({
+                  type: "ADD_NOTIFICATION",
+                  payload: {
+                    id: Date.now() + Math.random(),
+                    text: `${com.author} ha commentato il tuo post: "${com.comment}"`,
+                    read: false,
+                  },
+                })
               })
             }
           }
