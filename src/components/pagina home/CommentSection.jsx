@@ -38,10 +38,12 @@ const CommentSection = function ({ postId, setCommentsCount }) {
 
   useEffect(() => {
     setCommentsCount(comments.length)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [comments])
 
   useEffect(() => {
     dispatch(getProfileAllListAction())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [comments])
 
   const handleSubmit = () => {
