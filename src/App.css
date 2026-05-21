@@ -240,6 +240,13 @@ body {
   margin-top: 15px;
 }
 
+.comment-avatar-input {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .comment-content {
   flex: 1;
 }

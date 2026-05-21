@@ -115,8 +115,15 @@ const CommentSection = function ({ postId, setCommentsCount }) {
 
   return (
     <div className="my-3 px-3">
-      {/* input commento */}
-      <div className="d-flex gap-2 mb-3">
+      {/* avatar + input commento */}
+      <div className="d-flex gap-2 mb-3 align-items-center">
+        {/* avatar input commento */}
+        <img
+          src={profilo?.image || avatarPlaceholder}
+          alt="avatar"
+          className="comment-avatar-input"
+          />
+          {/* input commento */}
         <input
           type="text"
           className="comment-input"
