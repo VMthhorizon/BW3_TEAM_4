@@ -495,7 +495,7 @@ body {
   z-index: 999;
 }
 
-/* SETTINGS PAGE */
+/* SETTINGS AND PUBLIC PROFILE PAGE */
 .settings-container {
   max-width: 1150px !important;
 }
@@ -532,6 +532,49 @@ body {
   background-color: #004182;
   transform: scale(1.02);
   cursor: pointer;
+}
+
+/* SETTINGS PAGE */
+.settings-page {
+  background-color: #f3f2ef;
+  min-height: 100vh;
+}
+
+.settings-sidebar {
+  background-color: white;
+  border-right: 1px solid #e0e0e0;
+  min-height: 100vh;
+}
+
+.settings-row:hover {
+  background-color: #f3f2ef;
+  cursor: pointer;
+}
+
+.settings-sidebar-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.settings-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  font-weight: 600;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.settings-sidebar-item:hover {
+  color: #0a66c2;
+}
+
+.settings-sidebar-item.active {
+  color: #057642;
 }
 
 /*Modale logout*/
