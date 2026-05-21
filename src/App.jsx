@@ -12,6 +12,7 @@ import HomePage from "./components/pagina home/HomePage";
 import JobsPage from "./components/pagina lavoro/JobsPage";
 import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetail";
 import FormIscrizioneLinkedin from "./components/FormIscrizioneLinkedin";
+import ChatPage from "./components/pagina messaggi/ChatPage";
 
 const MainLayout = () => {
   return (
@@ -36,6 +37,7 @@ export default function App() {
               <Route path="/me" element={<ProfilePage />} />
               <Route path="/profile/:userId" element={<ProfilePageDetail />} />
               <Route path="/jobs" element={<JobsPage />} />
+              <Route path="/chat" element={<ChatPage />} />
             </Route>
           </Routes>
         </BrowserRouter>

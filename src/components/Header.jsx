@@ -27,7 +27,12 @@ const buttons = [
     icon: "bi-briefcase-fill",
     navigate: "/jobs",
   },
-  { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
+  {
+    id: "messaggi",
+    label: "Messaggistica",
+    icon: "bi-chat-dots-fill",
+    navigate: "/chat",
+  },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
 ];
 
