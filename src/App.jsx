@@ -15,7 +15,7 @@ import FormIscrizioneLinkedin from "./components/FormIscrizioneLinkedin";
 import ChatPage from "./components/pagina messaggi/ChatPage";
 
 import PaginaRete from "./components/pagina rete/PaginaRete";
-import SettingsPage from "./components/pagina settings/SettingsPage";
+import PublicProfilePage from "./components/pagina public&url/PublicProfilePage";
 import Notifiche from "./components/pagina notifiche/Notifiche";
 const MainLayout = () => {
   return (
@@ -45,7 +45,7 @@ export default function App() {
               <Route path="/chat" element={<ChatPage />} />
               <Route path="/rete" element={<PaginaRete />} />
               <Route path="/notifiche" element={<Notifiche />} />
-              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/public&url" element={<PublicProfilePage />} />
             </Route>
           </Routes>
         </BrowserRouter>

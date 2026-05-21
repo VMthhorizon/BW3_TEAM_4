@@ -34,7 +34,7 @@ const LanguageCard = function () {
             <h5>Profilo pubblico & URL</h5>
             <Pencil
               className="bi bi-pencil pencil-icon"
-              onClick={() => navigate("/settings")}
+              onClick={() => navigate("/public&url")}
             />
           </div>
           <p>{selected ? profileUrlById : profileUrlMe}</p>

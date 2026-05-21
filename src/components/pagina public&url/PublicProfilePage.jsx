@@ -4,7 +4,7 @@ import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 import avatarPlaceholder from "../../assets/avatar-corretto.png"
 
-const SettingsPage = function () {
+const PublicProfilePage = function () {
   const profilo = useSelector((state) => state.profile.me)
 
   const [publicProfile, setPublicProfile] = useState(true)
@@ -122,4 +122,4 @@ const SettingsPage = function () {
   )
 }
 
-export default SettingsPage
+export default PublicProfilePage
