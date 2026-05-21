@@ -1,10 +1,9 @@
-import getCommentsAction from "./getComments"
+import getCommentsAction from "./getComments";
 
-export const POST_COMMENT = "POST_COMMENT"
+export const POST_COMMENT = "POST_COMMENT";
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjMGE5Njc0MDQxZjAwMTUwYmZiMTEiLCJpYXQiOjE3NzkxNzQwMzgsImV4cCI6MTc4MDM4MzYzOH0.wearIW19fddf_JOanSJ0_whZTAwxzq7Awf2dOtinIxM"
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjOGRiNzc0MDQxZjAwMTUwYmZiYTAiLCJpYXQiOjE3NzkyMDc2MDcsImV4cCI6MTc4MDQxNzIwN30.HMrBR3Fc1AQqNEUSWBcW6BdUr9vynsKNjitPN7CA_dU";
 
 const postCommentAction = function (newComment, postId) {
   return function (dispatch) {
@@ -12,7 +11,7 @@ const postCommentAction = function (newComment, postId) {
       comment: newComment,
       rate: "5",
       elementId: postId,
-    }
+    };
 
     fetch("https://striveschool-api.herokuapp.com/api/comments/", {
       method: "POST",
@@ -27,20 +26,20 @@ const postCommentAction = function (newComment, postId) {
     })
       .then((response) => {
         if (response.ok) {
-          return response.json()
+          return response.json();
         } else {
-          throw new Error("Errore nel POST commento")
+          throw new Error("Errore nel POST commento");
         }
       })
 
       .then(() => {
-        dispatch(getCommentsAction(postId))
+        dispatch(getCommentsAction(postId));
       })
 
       .catch((error) => {
-        console.log(error)
-      })
-  }
-}
+        console.log(error);
+      });
+  };
+};
 
-export default postCommentAction
+export default postCommentAction;
