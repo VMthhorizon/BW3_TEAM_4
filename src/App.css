@@ -495,3 +495,24 @@ body {
   top: 0;
   z-index: 999;
 }
+
+/* SETTINGS PAGE */
+.settings-banner {
+  height: 220px;
+
+  background: linear-gradient(
+    135deg,
+    #0a66c2,
+    #57b3ff
+  );
+}
+
+.settings-avatar {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  margin-top: -70px;
+  margin-left: 20px;
+}
