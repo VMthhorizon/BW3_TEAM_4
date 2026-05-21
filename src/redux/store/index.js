@@ -3,6 +3,7 @@ import profileReducer from "../reducers/profileReducer"
 import experienceReducer from "../reducers/experiencesReducer"
 import postReducer from "../reducers/postReducer"
 import commentsReducer from "../reducers/commentsReducer"
+import notificationReducer from "../reducers/notificationReducer"
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     experience: experienceReducer,
     post: postReducer,
     comments: commentsReducer,
+    notification: notificationReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

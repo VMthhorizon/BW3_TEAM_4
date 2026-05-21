@@ -12,6 +12,8 @@ import HomePage from "./components/pagina home/HomePage";
 import JobsPage from "./components/pagina lavoro/JobsPage";
 import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetail";
 import FormIscrizioneLinkedin from "./components/FormIscrizioneLinkedin";
+import ChatPage from "./components/pagina messaggi/ChatPage";
+
 import PaginaRete from "./components/pagina rete/PaginaRete";
 const MainLayout = () => {
   return (
@@ -38,6 +40,7 @@ export default function App() {
               <Route path="/me" element={<ProfilePage />} />
               <Route path="/profile/:userId" element={<ProfilePageDetail />} />
               <Route path="/jobs" element={<JobsPage />} />
+              <Route path="/chat" element={<ChatPage />} />
               <Route path="/rete" element={<PaginaRete />} />
             </Route>
           </Routes>

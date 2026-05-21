@@ -44,7 +44,6 @@ const CommentSection = function ({ postId, setCommentsCount }) {
     dispatch(getProfileAllListAction())
   }, [comments])
 
-  // submit nuovo commento
   const handleSubmit = () => {
     if (!newComment.trim()) return
 
@@ -128,13 +127,11 @@ const CommentSection = function ({ postId, setCommentsCount }) {
         />
       </div>
 
-      {/* lista commenti */}
       {[...comments]
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
 
         .map((comment) => {
           const myComment = comment.author === profilo?.username
-
           const matchProfile = profiles.find(
             (profile) => profile.username === comment.author,
           )

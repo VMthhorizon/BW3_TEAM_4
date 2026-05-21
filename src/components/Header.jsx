@@ -10,13 +10,15 @@ import {
   Col,
   Modal,
   Image,
-} from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import ChatboxMobile from "./ChatboxMobile";
+} from "react-bootstrap"
+import { useEffect, useRef, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal"
+import { useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
+import ChatboxMobile from "./ChatboxMobile"
+
+let globalOldCommentsIds = []
 
 const buttons = [
   { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/home" },
@@ -32,34 +34,101 @@ const buttons = [
     icon: "bi-briefcase-fill",
     navigate: "/jobs",
   },
-  { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
+  {
+    id: "messaggi",
+    label: "Messaggistica",
+    icon: "bi-chat-dots-fill",
+    navigate: "/chat",
+  },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
-];
+]
 
 const NavbarLinkedin = function () {
-  const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me;
-  });
-  const profili = useSelector((storeRedux) => {
-    return storeRedux.profile.profiles;
-  });
-  const [searchQuery, setSearchQuery] = useState("");
+  const profilo = useSelector((storeRedux) => storeRedux.profile.me)
+  const profili = useSelector((storeRedux) => storeRedux.profile.profiles)
+  const posts = useSelector((state) => state.post.list)
+  const notifications = useSelector((state) => state.notification.list)
 
-  const profiliFiltrati = profili.filter((profilo) =>
-    `${profilo.name} ${profilo.surname}`
-      .toLowerCase()
-      .includes(searchQuery.toLowerCase()),
-  );
+  const [searchQuery, setSearchQuery] = useState("")
+  const [activeBtn, setActiveBtn] = useState("home")
+  const [isOpen, setIsOpen] = useState(false)
+  const [showPremiumModal, setShowPremiumModal] = useState(false)
+  const [showNotifications, setShowNotifications] = useState(false)
 
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const profiloRef = useRef(profilo)
+  const postsRef = useRef(posts)
+
+  const unreadNotifications = notifications.filter((n) => !n.read).length
+  const profiliFiltrati = profili.filter((p) =>
+    `${p.name} ${p.surname}`.toLowerCase().includes(searchQuery.toLowerCase()),
+  )
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction());
+    dispatch(getProfilePersonaleAction())
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  const [activeBtn, setActiveBtn] = useState("home");
+  }, [])
+
+  useEffect(() => {
+    profiloRef.current = profilo
+  }, [profilo])
+  useEffect(() => {
+    postsRef.current = posts
+  }, [posts])
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetch("https://striveschool-api.herokuapp.com/api/comments/", {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDViOTA2YmJlOTAwMTVkZWU1N2YiLCJpYXQiOjE3NzkwOTQ5NjksImV4cCI6MTc4MDMwNDU2OX0.lCWAGVeHSActGSTjMyk8RMF3Ua0zXKkTnQcNrIuiP20`,
+        },
+      })
+        .then((response) => {
+          if (response.ok) return response.json()
+          throw new Error("Errore fetch commenti")
+        })
+        .then((data) => {
+          const profilo = profiloRef.current
+          const posts = postsRef.current
+
+          const newComments = data.filter(
+            (c) => !globalOldCommentsIds.includes(c._id),
+          )
+
+          if (globalOldCommentsIds.length > 0) {
+            const myComments = newComments.filter((c) => {
+              const post = posts.find((p) => p._id === c.elementId)
+              return (
+                post !== undefined &&
+                post.user?._id === profilo?._id &&
+                c.author !== profilo?.username
+              )
+            })
+
+            if (myComments.length > 0) {
+              myComments.forEach((com) => {
+                dispatch({
+                  type: "ADD_NOTIFICATION",
+                  payload: {
+                    id: Date.now() + Math.random(),
+                    text: `${com.author} ha commentato il tuo post: "${com.comment}"`,
+                    read: false,
+                  },
+                })
+              })
+            }
+          }
+
+          globalOldCommentsIds = data.map((c) => c._id)
+        })
+        .catch(console.log)
+    }, 10000)
+
+    return () => clearInterval(interval)
+  }, [])
+
   const profileDropdown = (
     <div className="d-flex flex-column align-items-center">
       <img
@@ -71,7 +140,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Tu</span>
       </div>
     </div>
-  );
+  )
   const profile = (
     <div
       className="linkedin-profile-menu-container"
@@ -113,9 +182,7 @@ const NavbarLinkedin = function () {
               variant="outline-primary"
               className="w-100 rounded-pill fw-bold py-1 btn-profile-custom"
               style={{ fontSize: "14px", whiteSpace: "wrap" }}
-              onClick={() => {
-                navigate("/me");
-              }}
+              onClick={() => navigate("/me")}
             >
               Visualizza profilo
             </Button>
@@ -148,7 +215,6 @@ const NavbarLinkedin = function () {
             Sblocca la tua prova gratuita di 1 mese
           </span>
         </NavDropdown.Item>
-
         <NavDropdown.Item
           href="#settings"
           className="py-2 text-muted"
@@ -171,7 +237,6 @@ const NavbarLinkedin = function () {
           Lingua
         </NavDropdown.Item>
       </div>
-
       <NavDropdown.Divider className="my-2" />
       <div className="menu-section">
         <h6 className="px-3 fw-bold text-dark" style={{ fontSize: "14px" }}>
@@ -206,7 +271,8 @@ const NavbarLinkedin = function () {
         Esci
       </NavDropdown.Item>
     </div>
-  );
+  )
+
   const perleaziendeDropdown = (
     <div className="d-flex flex-column align-items-center">
       <i
@@ -217,7 +283,8 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Per le aziende</span>
       </div>
     </div>
-  );
+  )
+
   const perleaziende = (
     <Container fluid className="p-3" style={{ width: "560px" }}>
       <Row>
@@ -339,85 +406,45 @@ const NavbarLinkedin = function () {
             <h6 className="fw-bold mb-3 text-dark" style={{ fontSize: "15px" }}>
               Scopri altro per il business
             </h6>
-            <div className="mb-3" style={{ cursor: "pointer" }}>
-              <p
-                className="mb-0 fw-bold text-dark"
-                style={{ fontSize: "13.5px" }}
-              >
-                Assumi su LinkedIn
-              </p>
-              <span className="text-muted" style={{ fontSize: "11.5px" }}>
-                Trova, attrai e assumi
-              </span>
-            </div>
-            <div className="mb-3" style={{ cursor: "pointer" }}>
-              <p
-                className="mb-0 fw-bold text-dark"
-                style={{ fontSize: "13.5px" }}
-              >
-                Vendi con LinkedIn
-              </p>
-              <span className="text-muted" style={{ fontSize: "11.5px" }}>
-                Sblocca nuove opportunità di vendita
-              </span>
-            </div>
-            <div className="mb-3" style={{ cursor: "pointer" }}>
-              <p
-                className="mb-0 fw-bold text-dark"
-                style={{ fontSize: "13.5px" }}
-              >
-                Offerta di lavoro gratuita
-              </p>
-              <span className="text-muted" style={{ fontSize: "11.5px" }}>
-                Ottieni rapidamente candidati qualificati
-              </span>
-            </div>
-            <div className="mb-3" style={{ cursor: "pointer" }}>
-              <p
-                className="mb-0 fw-bold text-dark"
-                style={{ fontSize: "13.5px" }}
-              >
-                Fai pubblicità su LinkedIn
-              </p>
-              <span className="text-muted" style={{ fontSize: "11.5px" }}>
-                Acquisisci clienti e fai crescere la tua azienda
-              </span>
-            </div>
-
-            <div className="mb-3" style={{ cursor: "pointer" }}>
-              <p
-                className="mb-0 fw-bold text-dark"
-                style={{ fontSize: "13.5px" }}
-              >
-                Inizia con Premium
-              </p>
-              <span className="text-muted" style={{ fontSize: "11.5px" }}>
-                Amplia e sfrutta la tua rete
-              </span>
-            </div>
-
-            <div className="mb-3" style={{ cursor: "pointer" }}>
-              <p
-                className="mb-0 fw-bold text-dark"
-                style={{ fontSize: "13.5px" }}
-              >
-                Impara con LinkedIn
-              </p>
-              <span className="text-muted" style={{ fontSize: "11.5px" }}>
-                Corsi per formare i tuoi dipendenti
-              </span>
-            </div>
-            <div className="mb-3" style={{ cursor: "pointer" }}>
-              <p
-                className="mb-0 fw-bold text-dark"
-                style={{ fontSize: "13.5px" }}
-              >
-                Centro per amministratori
-              </p>
-              <span className="text-muted" style={{ fontSize: "11.5px" }}>
-                Gestisci i dettagli di fatturazione e account
-              </span>
-            </div>
+            {[
+              { title: "Assumi su LinkedIn", sub: "Trova, attrai e assumi" },
+              {
+                title: "Vendi con LinkedIn",
+                sub: "Sblocca nuove opportunità di vendita",
+              },
+              {
+                title: "Offerta di lavoro gratuita",
+                sub: "Ottieni rapidamente candidati qualificati",
+              },
+              {
+                title: "Fai pubblicità su LinkedIn",
+                sub: "Acquisisci clienti e fai crescere la tua azienda",
+              },
+              {
+                title: "Inizia con Premium",
+                sub: "Amplia e sfrutta la tua rete",
+              },
+              {
+                title: "Impara con LinkedIn",
+                sub: "Corsi per formare i tuoi dipendenti",
+              },
+              {
+                title: "Centro per amministratori",
+                sub: "Gestisci i dettagli di fatturazione e account",
+              },
+            ].map(({ title, sub }) => (
+              <div key={title} className="mb-3" style={{ cursor: "pointer" }}>
+                <p
+                  className="mb-0 fw-bold text-dark"
+                  style={{ fontSize: "13.5px" }}
+                >
+                  {title}
+                </p>
+                <span className="text-muted" style={{ fontSize: "11.5px" }}>
+                  {sub}
+                </span>
+              </div>
+            ))}
           </div>
           <div
             className="mt-4 pt-3 d-flex align-items-center text-dark border-top"
@@ -431,11 +458,7 @@ const NavbarLinkedin = function () {
         </Col>
       </Row>
     </Container>
-  );
-
-  const [showPremiumModal, setShowPremiumModal] = useState(false);
-  const handleClose = () => setShowPremiumModal(false);
-  const handleShow = () => setShowPremiumModal(true);
+  )
 
   return (
     <Container
@@ -443,8 +466,8 @@ const NavbarLinkedin = function () {
       className="px-0 bg-white border-bottom border-2 border-body-tertiary sticky-navbar"
     >
       <Row>
-        <Col xs={12} className="text-center justify-content-around p-0 ">
-          <Navbar expand="lg" className=" navbar-linkedin rounded-2 py-0">
+        <Col xs={12} className="text-center justify-content-around p-0">
+          <Navbar expand="lg" className="navbar-linkedin rounded-2 py-0">
             <Container className="position-relative">
               <Link
                 to="/me"
@@ -475,11 +498,10 @@ const NavbarLinkedin = function () {
                   aria-describedby="search-addon"
                   className="border-start-0 ps-0"
                   value={searchQuery}
-                  onChange={(e) => {
-                    setSearchQuery(e.target.value);
-                  }}
+                  onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </InputGroup>
+
               <div className="search-dropdown">
                 {searchQuery &&
                   profiliFiltrati.slice(0, 6).map((profile) => (
@@ -487,8 +509,8 @@ const NavbarLinkedin = function () {
                       key={profile._id}
                       className="search-item d-flex align-items-center gap-2 p-2"
                       onClick={() => {
-                        navigate(`/profile/${profile._id}`);
-                        setSearchQuery("");
+                        navigate(`/profile/${profile._id}`)
+                        setSearchQuery("")
                       }}
                     >
                       <img
@@ -497,12 +519,10 @@ const NavbarLinkedin = function () {
                         height={40}
                         className="rounded-circle object-fit-cover"
                       />
-
                       <div>
                         <p className="mb-0 fw-bold">
                           {profile.name} {profile.surname}
                         </p>
-
                         <small className="text-muted">{profile.title}</small>
                       </div>
                     </div>
@@ -510,24 +530,37 @@ const NavbarLinkedin = function () {
               </div>
 
               <ChatboxMobile isOpen={isOpen} setIsOpen={setIsOpen} />
-              {/* <Navbar.Toggle aria-controls="basic-navbar-nav" /> */}
+
               <Navbar.Collapse
                 className="justify-content-end"
                 id="basic-navbar-nav"
               >
                 <Nav className="align-items-center">
-                  {/* BOTTONI */}
-                  <div className="d-none d-lg-flex bg-white ">
+                  <div className="d-none d-lg-flex bg-white">
                     {buttons.map((btn) => (
                       <Button
                         key={btn.id}
                         variant="link"
                         className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                         onClick={() => {
-                          (setActiveBtn(btn.id), navigate(btn.navigate));
+                          setActiveBtn(btn.id)
+                          if (btn.id === "notifiche") {
+                            dispatch({ type: "MARK_ALL_AS_READ" })
+                            setShowNotifications(true)
+                          } else if (btn.navigate) {
+                            navigate(btn.navigate)
+                          }
                         }}
                       >
-                        <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
+                        <div className="position-relative">
+                          <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
+                          {btn.id === "notifiche" &&
+                            unreadNotifications > 0 && (
+                              <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                {unreadNotifications}
+                              </span>
+                            )}
+                        </div>
                         <span className="linkedin-btn-text">{btn.label}</span>
                       </Button>
                     ))}
@@ -542,6 +575,7 @@ const NavbarLinkedin = function () {
                       {profile}
                     </NavDropdown.Item>
                   </NavDropdown>
+
                   <NavDropdown
                     title={perleaziendeDropdown}
                     className="profile-dropdown border-start border-secondary ps-2 d-none d-lg-inline-block"
@@ -551,10 +585,11 @@ const NavbarLinkedin = function () {
                       {perleaziende}
                     </NavDropdown.Item>
                   </NavDropdown>
+
                   <Nav.Link
                     as="button"
                     className="premium-nav-link d-flex flex-column align-items-center justify-content-center d-none d-lg-flex"
-                    onClick={handleShow}
+                    onClick={() => setShowPremiumModal(true)}
                   >
                     <div className="premium-icon-box">
                       <div className="premium-icon-diagonal"></div>
@@ -563,7 +598,12 @@ const NavbarLinkedin = function () {
                       Prova Premium per 0 €
                     </span>
                   </Nav.Link>
-                  <Modal show={showPremiumModal} onHide={handleClose} centered>
+
+                  <Modal
+                    show={showPremiumModal}
+                    onHide={() => setShowPremiumModal(false)}
+                    centered
+                  >
                     <Modal.Header closeButton>
                       <Modal.Title>
                         {profilo?.name}, metti il turbo alla tua carriera
@@ -600,12 +640,12 @@ const NavbarLinkedin = function () {
                     variant="link"
                     className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                     onClick={() => {
-                      setActiveBtn(btn.id);
+                      setActiveBtn(btn.id)
                       if (btn.id === "messaggi") {
-                        setIsOpen(true);
+                        setIsOpen(true)
                       } else if (btn.navigate) {
-                        navigate(btn.navigate);
-                        setIsOpen(false);
+                        navigate(btn.navigate)
+                        setIsOpen(false)
                       }
                     }}
                   >
@@ -618,7 +658,29 @@ const NavbarLinkedin = function () {
           </Navbar>
         </Col>
       </Row>
+
+      <Modal
+        show={showNotifications}
+        onHide={() => setShowNotifications(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Notifiche</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {notifications.length === 0 ? (
+            <p className="text-muted mb-0">Nessuna notifica</p>
+          ) : (
+            notifications.map((notification) => (
+              <div key={notification.id} className="border-bottom py-2">
+                {notification.text}
+              </div>
+            ))
+          )}
+        </Modal.Body>
+      </Modal>
     </Container>
-  );
-};
-export default NavbarLinkedin;
+  )
+}
+
+export default NavbarLinkedin

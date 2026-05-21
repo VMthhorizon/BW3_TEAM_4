@@ -1,7 +1,7 @@
-import { Card, Image } from "react-bootstrap"
+import { Card, Image } from "react-bootstrap";
 
 const Card1SidebarSx = ({ profilo }) => {
-  if (!profilo) return null
+  if (!profilo) return null;
 
   return (
     <Card className="position-relative ">
@@ -33,7 +33,7 @@ const Card1SidebarSx = ({ profilo }) => {
         <Card.Text className="small text-secondary">{profilo.area}</Card.Text>
       </Card.Body>
     </Card>
-  )
-}
+  );
+};
 
-export default Card1SidebarSx
+export default Card1SidebarSx;

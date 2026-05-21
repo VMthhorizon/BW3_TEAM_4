@@ -1,0 +1,2 @@
+export const ADD_NOTIFICATION = "ADD_NOTIFICATION"
+export const MARK_ALL_AS_READ = "MARK_ALL_AS_READ"
