@@ -248,17 +248,22 @@ body {
   background-color: white;
   border-radius: 14px;
   padding: 10px 10px 10px 3px;
+
+  position: relative;
+}
+
+.comment-icons {
+  position: absolute;
+  top: 35px;
+  right: 12px;
+  display: flex;
+  gap: 8px;
+
 }
 
 .comment-author {
   font-size: 0.9rem;
   font-weight: 600;
-  color: #222;
-}
-
-.comment-text {
-  margin: 4px 0 0 0;
-  font-size: 0.95rem;
   color: #222;
 }
 
@@ -279,6 +284,11 @@ body {
   color: #0a66c2;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.comment-date {
+  font-size: 0.8rem;
+  color: #666;
 }
 
 /*CSS DELLA CHATBOX*/
