@@ -23,7 +23,7 @@ import AddPostImagesAction from "../../redux/actions/images action/picturePost"
 import CommentSection from "./CommentSection"
 import { useNavigate } from "react-router-dom"
 
-const PostCard = function ({ post }) {
+const PostCardProfiloSelezionato = function ({ post }) {
   const [show, setShow] = useState(false)
   const [liked, setliked] = useState({})
   const [showComments, setShowComments] = useState(false)
@@ -91,7 +91,7 @@ const PostCard = function ({ post }) {
   }, [post._id])
 
   return (
-    <Col>
+    <Col sm={12} lg={4} className="h-100">
       <div className="sidebar-card my-2">
         <div className="sidebar-card-content">
           {/* header */}
@@ -116,6 +116,7 @@ const PostCard = function ({ post }) {
               <h6 className="mb-0">
                 {post.user.name} {post.user.surname}
               </h6>
+              {/* <p>{post.user.role}</p> */}
 
               <p className="text-muted mb-0">
                 {new Date(post.createdAt).toLocaleDateString()}
@@ -177,12 +178,11 @@ const PostCard = function ({ post }) {
                 <>
                   {" "}
                   <HandThumbsUpFill className="text-primary" />{" "}
-                  <span className="text-primary">Consiglia</span>
                 </>
               ) : (
                 <>
                   {" "}
-                  <HandThumbsUp /> <span>Consiglia</span>
+                  <HandThumbsUp />
                 </>
               )}
             </div>
@@ -192,25 +192,20 @@ const PostCard = function ({ post }) {
               onClick={() => setShowComments(!showComments)}
             >
               <ChatText />
-              <span>Commenta</span>
             </div>
 
             <div className="post-action">
               <Repeat />
-              <span>Diffondi</span>
             </div>
 
             <div className="post-action">
               <Send />
-              <span>Invia</span>
             </div>
 
             {myPost && (
               <>
                 <div className="post-action">
-                  <PencilSquare />
-
-                  <span
+                  <PencilSquare
                     onClick={() => {
                       setPostText(post.text)
 
@@ -220,9 +215,7 @@ const PostCard = function ({ post }) {
 
                       handleShow()
                     }}
-                  >
-                    Modifica
-                  </span>
+                  />
                 </div>
 
                 <div className="post-action">
@@ -328,4 +321,4 @@ const PostCard = function ({ post }) {
   )
 }
 
-export default PostCard
+export default PostCardProfiloSelezionato
