@@ -2,7 +2,20 @@ import { Button, Col, Container, Row } from "react-bootstrap";
 import sudoku from "../../assets/sukodu.png";
 import patches from "../../assets/patches.png";
 import zip from "../../assets/zip.png";
+import CardRete from "./CardRete";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import getProfileAllListAction from "../../../src/redux/actions/profileAction/ProfileAllList";
 const Rete = function () {
+  const users = useSelector((storeRedux) => {
+    return storeRedux.profile.profiles;
+  });
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getProfileAllListAction());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Container>
@@ -46,7 +59,7 @@ const Rete = function () {
                 <Row className="g-4">
                   <Col
                     xs={12}
-                    md={4}
+                    xl={4}
                     className="d-flex align-items-center justify-content-between"
                   >
                     <div className="d-flex align-items-center">
@@ -82,7 +95,7 @@ const Rete = function () {
                   </Col>
                   <Col
                     xs={12}
-                    md={4}
+                    xl={4}
                     className="d-flex align-items-center justify-content-between"
                   >
                     <div className="d-flex align-items-center">
@@ -116,7 +129,7 @@ const Rete = function () {
                   </Col>
                   <Col
                     xs={12}
-                    md={4}
+                    xl={4}
                     className="d-flex align-items-center justify-content-between"
                   >
                     <div className="d-flex align-items-center">
@@ -152,6 +165,11 @@ const Rete = function () {
                   </Col>
                 </Row>
               </Col>
+            </Row>
+          </Col>
+          <Col xs={12}>
+            <Row xs={2} md={3} lg={4}>
+              <CardRete users={users} />
             </Row>
           </Col>
         </Row>
