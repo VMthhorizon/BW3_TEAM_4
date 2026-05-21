@@ -435,7 +435,7 @@ const NavbarLinkedin = function () {
   return (
     <Container
       fluid
-      className="px-0 bg-white border-bottom border-2 border-body-tertiary sticky-navbar overflow-x-hidden"
+      className="px-0 bg-white border-bottom border-2 border-body-tertiary sticky-navbar"
     >
       <Row>
         <Col xs={12} className="text-center justify-content-around p-0 ">
