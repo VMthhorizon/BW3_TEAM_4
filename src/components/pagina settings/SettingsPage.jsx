@@ -2,6 +2,7 @@ import { useState } from "react"
 import { Container, Row, Col, Card, Form } from "react-bootstrap"
 import { useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
+import avatarPlaceholder from "../../assets/avatar-corretto.png"
 
 const SettingsPage = function () {
   const profilo = useSelector((state) => state.profile.me)
@@ -29,7 +30,7 @@ const SettingsPage = function () {
             <div className="settings-banner"> </div>
             <Card.Body className="pt-0">
               <img
-                src={profilo?.image}
+                src={avatarPlaceholder}
                 alt="avatar"
                 className="settings-avatar"
               />
