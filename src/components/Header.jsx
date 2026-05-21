@@ -79,6 +79,7 @@ const NavbarLinkedin = function () {
   }, [posts])
 
   useEffect(() => {
+    // FACCIO LA FETCH DEI COMMENTI OGNI 10 SECONDI
     const interval = setInterval(() => {
       fetch("https://striveschool-api.herokuapp.com/api/comments/", {
         headers: {
@@ -93,11 +94,14 @@ const NavbarLinkedin = function () {
           const profilo = profiloRef.current
           const posts = postsRef.current
 
+          // PRENDO I NUOVI COMMENTI, SCARTANDO QUELLI ESISTENTI
           const newComments = data.filter(
             (c) => !globalOldCommentsIds.includes(c._id),
           )
 
+          // AL PRIMO GIRO è UN ARRAY VUOTO QUINDI LO FACCIO SALTARE APPOSITAMENTE PER NON FAR APPARIRE LE NOTIFICHE DI TUTTI I COMMENTI VECCHI
           if (globalOldCommentsIds.length > 0) {
+            // ESCLUDO I POST DEGLI ALTRI E CHE IL COMMENTO NON SIA STATO SCRITTO DAME
             const myComments = newComments.filter((c) => {
               const post = posts.find((p) => p._id === c.elementId)
               return (
@@ -106,7 +110,7 @@ const NavbarLinkedin = function () {
                 c.author !== profilo?.username
               )
             })
-
+            // SE ESISTONO COMMENTI NUOVI, FACCIO UN DISPATCH PER OGNI COMMENTO (FOREACH NEL CASO VENGANO POSTATI PIù DI 1 COMMENTO ENTRO I 10 SECONDI DEL REFRESH)
             if (myComments.length > 0) {
               myComments.forEach((com) => {
                 dispatch({
@@ -120,10 +124,12 @@ const NavbarLinkedin = function () {
               })
             }
           }
-
+          // AGGIUNGO I COMMENTI DEL CICLO ATTUALE DI 10 SECONDI ALL'ARRAY CON TUTTI I COMMENTI VECCHI, COSì AL PROSIMO CICLO NON LI RIPRENDE COME NUOVI
           globalOldCommentsIds = data.map((c) => c._id)
         })
-        .catch(console.log)
+        .catch((err) => {
+          console.log("errore nella fetch", err)
+        })
     }, 10000)
 
     return () => clearInterval(interval)
