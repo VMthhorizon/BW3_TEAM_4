@@ -9,9 +9,40 @@ const SettingsPage = function () {
 
   return (
     <Container fluid className="settings-page">
+      {/* mobile nav */}
+      <div
+        className="
+          d-flex
+          d-md-none
+          gap-4
+          overflow-auto
+          px-3
+          py-3
+          settings-mobile-nav
+        "
+      >
+        <div className="settings-mobile-item active">Preferenze account</div>
+
+        <div className="settings-mobile-item">Accesso e sicurezza</div>
+
+        <div className="settings-mobile-item">Visibilità</div>
+
+        <div className="settings-mobile-item">Privacy dei dati</div>
+
+        <div className="settings-mobile-item">Notifiche</div>
+      </div>
+
       <Row>
         {/* sidebar */}
-        <Col lg={3} className="settings-sidebar">
+        <Col
+          md={4}
+          lg={3}
+          className="
+            settings-sidebar
+            d-none
+            d-md-block
+          "
+        >
           <div className="p-4">
             {/* profilo */}
             <div className="d-flex align-items-center gap-3 mb-5">
@@ -21,7 +52,6 @@ const SettingsPage = function () {
                 className="settings-sidebar-avatar"
               />
 
-              {/* titolo */}
               <h2 className="fw-bold mb-0">Impostazioni</h2>
             </div>
 
@@ -58,61 +88,56 @@ const SettingsPage = function () {
           </div>
         </Col>
 
-        {/* spazio */}
-        <Col lg={2}></Col>
+        {/* spazio desktop */}
+        <Col lg={2} className="d-none d-lg-block"></Col>
 
         {/* contenuto */}
-        <Col lg={5} className="py-4">
-          <h1 className="fw-bold mb-4">Preferenze account</h1>
-
-          <Card className="border-0 shadow-sm rounded-4">
+        <Col xs={12} md={8} lg={5} className="py-4">
+          {/* card */}
+          <Card className="settings-card border-0">
             <Card.Body>
-              <div className="settings-row">
-                <div>
-                  <h5 className="mb-1 fw-semibold">Informazioni profilo</h5>
+              <h3 className="settings-card-title mb-0">Informazioni profilo</h3>
 
-                  <p className="text-muted small mb-0">
-                    Modifica nome, foto e dettagli del profilo.
-                  </p>
-                </div>
+              <div className="settings-row">
+                <span>Nome, località e settore</span>
 
                 <i className="bi bi-chevron-right"></i>
               </div>
 
-              <hr />
+              <hr className="m-0" />
 
               <div className="settings-row">
-                <div>
-                  <h5 className="mb-1 fw-semibold">
-                    Email e numeri di telefono
-                  </h5>
-
-                  <p className="text-muted small mb-0">
-                    Gestisci email e recapiti associati.
-                  </p>
-                </div>
+                <span>Informazioni demografiche personali</span>
 
                 <i className="bi bi-chevron-right"></i>
               </div>
 
-              <hr />
+              <hr className="m-0" />
 
               <div className="settings-row">
-                <div>
-                  <h5 className="mb-1 fw-semibold">Password e sicurezza</h5>
+                <span>Verifiche</span>
 
-                  <p className="text-muted small mb-0">
-                    Aggiorna password e controlli di sicurezza.
-                  </p>
-                </div>
+                <i className="bi bi-chevron-right"></i>
+              </div>
+            </Card.Body>
+          </Card>
+
+          {/* card */}
+          <Card className="settings-card border-0 mt-3">
+            <Card.Body>
+              <h3 className="settings-card-title mb-0">Visualizzazione</h3>
+
+              <div className="settings-row">
+                <span>Modalità scura</span>
 
                 <i className="bi bi-chevron-right"></i>
               </div>
             </Card.Body>
           </Card>
         </Col>
-        {/* spazio */}
-        <Col lg={2}></Col>
+
+        {/* spazio desktop */}
+        <Col lg={2} className="d-none d-lg-block"></Col>
       </Row>
     </Container>
   )
