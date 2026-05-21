@@ -82,7 +82,7 @@ const NavbarLinkedin = function () {
   const [isOpen, setIsOpen] = useState(false);
   const [showPremiumModal, setShowPremiumModal] = useState(false);
   const [showNotifications, setShowNotifications] = useState(false);
-
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -304,6 +304,10 @@ const NavbarLinkedin = function () {
         href="#logout"
         className="py-2 text-muted"
         style={{ fontSize: "14px" }}
+        onClick={(e) => {
+          e.preventDefault();
+          setShowLogoutModal(true);
+        }}
       >
         Esci
       </NavDropdown.Item>
