@@ -10,16 +10,16 @@ import {
   Col,
   Modal,
   Image,
-} from "react-bootstrap"
-import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal"
-import { useNavigate } from "react-router-dom"
-import { Link } from "react-router-dom"
-import ChatboxMobile from "./ChatboxMobile"
+} from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../redux/actions/profileAction/profiloPersonal";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import ChatboxMobile from "./ChatboxMobile";
 
 const buttons = [
-  { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/" },
+  { id: "home", label: "Home", icon: "bi-house-door-fill", navigate: "/home" },
   { id: "rete", label: "Rete", icon: "bi-people-fill" },
   {
     id: "lavoro",
@@ -29,32 +29,32 @@ const buttons = [
   },
   { id: "messaggi", label: "Messaggistica", icon: "bi-chat-dots-fill" },
   { id: "notifiche", label: "Notifiche", icon: "bi bi-bell-fill" },
-]
+];
 
 const NavbarLinkedin = function () {
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
-  })
+    return storeRedux.profile.me;
+  });
   const profili = useSelector((storeRedux) => {
-    return storeRedux.profile.profiles
-  })
-  const [searchQuery, setSearchQuery] = useState("")
+    return storeRedux.profile.profiles;
+  });
+  const [searchQuery, setSearchQuery] = useState("");
 
   const profiliFiltrati = profili.filter((profilo) =>
     `${profilo.name} ${profilo.surname}`
       .toLowerCase()
       .includes(searchQuery.toLowerCase()),
-  )
+  );
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const [isOpen, setIsOpen] = useState(false)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction())
+    dispatch(getProfilePersonaleAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  const [activeBtn, setActiveBtn] = useState("home")
+  }, []);
+  const [activeBtn, setActiveBtn] = useState("home");
   const profileDropdown = (
     <div className="d-flex flex-column align-items-center">
       <img
@@ -66,7 +66,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Tu</span>
       </div>
     </div>
-  )
+  );
   const profile = (
     <div
       className="linkedin-profile-menu-container"
@@ -109,7 +109,7 @@ const NavbarLinkedin = function () {
               className="w-100 rounded-pill fw-bold py-1 btn-profile-custom"
               style={{ fontSize: "14px", whiteSpace: "wrap" }}
               onClick={() => {
-                navigate("/me")
+                navigate("/me");
               }}
             >
               Visualizza profilo
@@ -201,7 +201,7 @@ const NavbarLinkedin = function () {
         Esci
       </NavDropdown.Item>
     </div>
-  )
+  );
   const perleaziendeDropdown = (
     <div className="d-flex flex-column align-items-center">
       <i
@@ -212,7 +212,7 @@ const NavbarLinkedin = function () {
         <span className="profile-text-nav">Per le aziende</span>
       </div>
     </div>
-  )
+  );
   const perleaziende = (
     <Container fluid className="p-3" style={{ width: "560px" }}>
       <Row>
@@ -426,11 +426,11 @@ const NavbarLinkedin = function () {
         </Col>
       </Row>
     </Container>
-  )
+  );
 
-  const [showPremiumModal, setShowPremiumModal] = useState(false)
-  const handleClose = () => setShowPremiumModal(false)
-  const handleShow = () => setShowPremiumModal(true)
+  const [showPremiumModal, setShowPremiumModal] = useState(false);
+  const handleClose = () => setShowPremiumModal(false);
+  const handleShow = () => setShowPremiumModal(true);
 
   return (
     <Container
@@ -452,7 +452,7 @@ const NavbarLinkedin = function () {
                   className="object-fit-cover image-container"
                 />
               </Link>
-              <Link to="/" className="navbar.brand me-1">
+              <Link to="/home" className="navbar.brand me-1">
                 <i className="bi bi-linkedin logo-linkedin"></i>
               </Link>
 
@@ -471,7 +471,7 @@ const NavbarLinkedin = function () {
                   className="border-start-0 ps-0"
                   value={searchQuery}
                   onChange={(e) => {
-                    setSearchQuery(e.target.value)
+                    setSearchQuery(e.target.value);
                   }}
                 />
               </InputGroup>
@@ -482,8 +482,8 @@ const NavbarLinkedin = function () {
                       key={profile._id}
                       className="search-item d-flex align-items-center gap-2 p-2"
                       onClick={() => {
-                        navigate(`/profile/${profile._id}`)
-                        setSearchQuery("")
+                        navigate(`/profile/${profile._id}`);
+                        setSearchQuery("");
                       }}
                     >
                       <img
@@ -519,7 +519,7 @@ const NavbarLinkedin = function () {
                         variant="link"
                         className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                         onClick={() => {
-                          ;(setActiveBtn(btn.id), navigate(btn.navigate))
+                          (setActiveBtn(btn.id), navigate(btn.navigate));
                         }}
                       >
                         <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
@@ -595,12 +595,12 @@ const NavbarLinkedin = function () {
                     variant="link"
                     className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
                     onClick={() => {
-                      setActiveBtn(btn.id)
+                      setActiveBtn(btn.id);
                       if (btn.id === "messaggi") {
-                        setIsOpen(true)
+                        setIsOpen(true);
                       } else if (btn.navigate) {
-                        navigate(btn.navigate)
-                        setIsOpen(false)
+                        navigate(btn.navigate);
+                        setIsOpen(false);
                       }
                     }}
                   >
@@ -614,6 +614,6 @@ const NavbarLinkedin = function () {
         </Col>
       </Row>
     </Container>
-  )
-}
-export default NavbarLinkedin
+  );
+};
+export default NavbarLinkedin;
