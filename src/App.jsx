@@ -14,6 +14,7 @@ import ProfilePageDetail from "./components/paginaProfiloDetail/ProfilePageDetai
 import FormIscrizioneLinkedin from "./components/FormIscrizioneLinkedin";
 import ChatPage from "./components/pagina messaggi/ChatPage";
 
+import PaginaRete from "./components/pagina rete/PaginaRete";
 const MainLayout = () => {
   return (
     <>
@@ -28,7 +29,9 @@ const MainLayout = () => {
 export default function App() {
   return (
     <Provider store={store}>
-      <div className="overflow-x-hidden">
+      {/* <div className="overflow-x-hidden"> */}
+      {/* commento perchè sovrascrive la proprietà sticky, se da problemi di scroll orizzontale lo mettiamo a posto. Vale */}
+      <div>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<FormIscrizioneLinkedin />} />
@@ -38,6 +41,7 @@ export default function App() {
               <Route path="/profile/:userId" element={<ProfilePageDetail />} />
               <Route path="/jobs" element={<JobsPage />} />
               <Route path="/chat" element={<ChatPage />} />
+              <Route path="/rete" element={<PaginaRete />} />
             </Route>
           </Routes>
         </BrowserRouter>

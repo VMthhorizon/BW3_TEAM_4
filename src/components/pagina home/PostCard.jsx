@@ -153,8 +153,15 @@ const PostCard = function ({ post }) {
                 ""
               )}
             </div>
-            <span>
-              {commentsCount} {commentsCount !== 1 ? "commenti" : "commento"}
+            <span
+              className="comments-counter"
+              onClick={() => {
+                setShowComments(!showComments)
+              }}
+            >
+              {commentsCount}
+
+              {commentsCount !== 1 ? " commenti" : " commento"}
             </span>
           </div>
 

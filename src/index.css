@@ -5,6 +5,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: rgba(0, 0, 0, 0.9);
   background-color: #f3f2ef; 
+  overflow-x: hidden;
 }
 
 
