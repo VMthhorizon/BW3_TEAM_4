@@ -3,8 +3,7 @@ import getCommentsAction from "./getComments"
 export const POST_COMMENT = "POST_COMMENT"
 
 const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjMGE5Njc0MDQxZjAwMTUwYmZiMTEiLCJpYXQiOjE3NzkxNzQwMzgsImV4cCI6MTc4MDM4MzYzOH0.wearIW19fddf_JOanSJ0_whZTAwxzq7Awf2dOtinIxM"
-
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDVmODA2YmJlOTAwMTVkZWU1ODAiLCJpYXQiOjE3NzkwOTUwMzMsImV4cCI6MTc4MDMwNDYzM30.aJJZ_C-CRh-OBPpJD6ApRtQj-Y7-FMgKxJLXgtkGwd4"
 
 const postCommentAction = function (newComment, postId) {
   return function (dispatch) {

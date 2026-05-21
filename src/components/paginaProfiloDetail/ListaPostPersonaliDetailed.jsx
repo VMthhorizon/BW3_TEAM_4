@@ -36,7 +36,7 @@ const ListaPostPersonaliDetailedSection = () => {
             slidesPerView={2.2}
           >
             {listaPost
-              .filter((post) => post.user?._id === profilo._id)
+              .filter((post) => post.user?._id === profilo?._id)
               .reverse()
               .slice(0, 6)
               .map((post, index) => (
