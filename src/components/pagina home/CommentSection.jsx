@@ -73,6 +73,47 @@ const CommentSection = function ({ postId, setCommentsCount }) {
     setEditedText("")
   }
 
+  // funzione data
+  function getTimeAgo(date) {
+    const now = new Date()
+
+    const target = new Date(date)
+
+    const diffInSeconds = Math.floor((now - target) / 1000)
+
+    if (diffInSeconds < 5) return "ora"
+
+    if (diffInSeconds < 60) return `${diffInSeconds} secondi`
+
+    const diffInMinutes = Math.floor(diffInSeconds / 60)
+
+    if (diffInMinutes < 60) {
+      return diffInMinutes === 1 ? "1 minuto" : `${diffInMinutes} minuti`
+    }
+
+    const diffInHours = Math.floor(diffInMinutes / 60)
+
+    if (diffInHours < 24) {
+      return diffInHours === 1 ? "1 ora" : `${diffInHours} ore`
+    }
+
+    const diffInDays = Math.floor(diffInHours / 24)
+
+    if (diffInDays < 7) {
+      return diffInDays === 1 ? "1 giorno" : `${diffInDays} giorni`
+    }
+
+    const diffInWeeks = Math.floor(diffInDays / 7)
+
+    if (diffInWeeks < 4) {
+      return diffInWeeks === 1 ? "1 settimana" : `${diffInWeeks} settimane`
+    }
+
+    const diffInMonths = Math.floor(diffInWeeks / 4)
+
+    return diffInMonths === 1 ? "1 mese" : `${diffInMonths} mesi`
+  }
+
   return (
     <div className="my-3 px-3">
       {/* input commento */}
@@ -118,7 +159,7 @@ const CommentSection = function ({ postId, setCommentsCount }) {
                       {/* data + azioni */}
                       <div className="d-flex flex-column align-items-end">
                         <span className="comment-date">
-                          {new Date(comment.createdAt).toLocaleDateString()}
+                          {getTimeAgo(comment.createdAt)}
                         </span>
 
                         {myComment && (
@@ -161,7 +202,9 @@ const CommentSection = function ({ postId, setCommentsCount }) {
                         }}
                       />
                     ) : (
-                      <p className="comment-text fs-6 mb-0">{comment.comment}</p>
+                      <p className="comment-text fs-6 mb-0">
+                        {comment.comment}
+                      </p>
                     )}
                   </div>
                 </div>
