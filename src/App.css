@@ -227,19 +227,37 @@ body {
 }
 
 /* COMMENTI */
-.comment-box {
-  border-radius: 18px;
-  border: 1px solid #d0d0d0;
+
+.comment-wrapper {
+  width: 100%;
+}
+
+.comment-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-top: 15px;
+}
+
+.comment-content {
+  flex: 1;
+}
+
+.comment-bubble {
   background-color: white;
-  transition: 0.2s;
+  border-radius: 14px;
+  padding: 10px 10px 10px 3px;
 }
 
-.comment-box:hover {
-  background-color: #f8f8f8;
+.comment-author {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222;
 }
 
-.comment-box p {
-  margin: 0;
+.comment-text {
+  margin: 4px 0 0 0;
   font-size: 0.95rem;
   color: #222;
 }
@@ -248,15 +266,19 @@ body {
 .comment-delete {
   cursor: pointer;
   color: #666;
+  font-size: 0.9rem;
   transition: 0.2s;
 }
 
-.comment-edit:hover {
-  color: #0a66c2;
+.comment-edit:hover,
+.comment-delete:hover {
+  color: black;
 }
 
-.comment-delete:hover {
-  color: #d11124;
+.comment-number:hover {
+  color: #0a66c2;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 /*CSS DELLA CHATBOX*/

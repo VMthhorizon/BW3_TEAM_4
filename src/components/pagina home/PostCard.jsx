@@ -1,3 +1,6 @@
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDViOTA2YmJlOTAwMTVkZWU1N2YiLCJpYXQiOjE3NzkwOTQ5NjksImV4cCI6MTc4MDMwNDU2OX0.lCWAGVeHSActGSTjMyk8RMF3Ua0zXKkTnQcNrIuiP20"
+
 import {
   HandThumbsUp,
   ChatText,
@@ -5,6 +8,7 @@ import {
   Send,
   Trash3,
   PencilSquare,
+  HandThumbsUpFill,
 } from "react-bootstrap-icons"
 
 import { useDispatch, useSelector } from "react-redux"
@@ -21,7 +25,7 @@ import { useNavigate } from "react-router-dom"
 
 const PostCard = function ({ post }) {
   const [show, setShow] = useState(false)
-
+  const [liked, setliked] = useState({})
   const [showComments, setShowComments] = useState(false)
 
   const [postText, setPostText] = useState("")
@@ -29,9 +33,18 @@ const PostCard = function ({ post }) {
   const [selectedPostId, setSelectedPostId] = useState(null)
   const [image, setImage] = useState(null)
 
+  const [commentsCount, setCommentsCount] = useState(0)
+
   const handleClose = () => {
     setShow(false)
     setPostText("")
+  }
+
+  const toggleLike = (postId) => {
+    setliked((prev) => ({
+      ...prev,
+      [postId]: !prev[postId],
+    }))
   }
 
   const handleShow = () => setShow(true)
@@ -49,6 +62,33 @@ const PostCard = function ({ post }) {
   useEffect(() => {
     dispatch(getProfilePersonaleAction())
   }, [dispatch])
+
+  // fetch numero commenti
+  useEffect(() => {
+    fetch("https://striveschool-api.herokuapp.com/api/comments/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json()
+        }
+
+        throw new Error("Errore recupero commenti")
+      })
+
+      .then((data) => {
+        const filteredComments = data.filter(
+          (comment) => comment.elementId === post._id,
+        )
+        setCommentsCount(filteredComments.length)
+      })
+
+      .catch((error) => {
+        console.log(error)
+      })
+  }, [post._id])
 
   return (
     <>
@@ -91,15 +131,53 @@ const PostCard = function ({ post }) {
             <img
               src={post.image}
               alt="post"
-              className="img-fluid rounded mb-3"
+              className="img-fluid rounded mb-2"
             />
           )}
 
+          {/* numero commenti */}
+          <div className="comment-number d-flex justify-content-between align-items-center small mb-2">
+            <div className="d-flex ">
+              {liked[post._id] ? (
+                <>
+                  <HandThumbsUpFill className="text-primary" />
+                  <p className="ms-2 mb-0">
+                    {profilo.name.charAt(0).toUpperCase() +
+                      profilo.name.slice(1)}{" "}
+                    {""}
+                    {profilo.surname.charAt(0).toUpperCase() +
+                      profilo.surname.slice(1)}
+                  </p>
+                </>
+              ) : (
+                ""
+              )}
+            </div>
+            <span>
+              {commentsCount} {commentsCount !== 1 ? "commenti" : "commento"}
+            </span>
+          </div>
+
           {/* footer */}
           <div className="d-flex justify-content-around border-top pt-2">
-            <div className="post-action">
-              <HandThumbsUp />
-              <span>Consiglia</span>
+            <div
+              className="post-action"
+              onClick={() => {
+                toggleLike(post._id)
+              }}
+            >
+              {liked[post._id] ? (
+                <>
+                  {" "}
+                  <HandThumbsUpFill className="text-primary" />{" "}
+                  <span className="text-primary">Consiglia</span>
+                </>
+              ) : (
+                <>
+                  {" "}
+                  <HandThumbsUp /> <span>Consiglia</span>
+                </>
+              )}
             </div>
 
             <div
@@ -157,7 +235,12 @@ const PostCard = function ({ post }) {
         </div>
 
         {/* commenti */}
-        {showComments && <CommentSection postId={post._id} />}
+        {showComments && (
+          <CommentSection
+            postId={post._id}
+            setCommentsCount={setCommentsCount}
+          />
+        )}
       </div>
 
       <Modal show={show} onHide={handleClose}>
