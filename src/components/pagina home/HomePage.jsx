@@ -5,7 +5,6 @@ import PostHomePage from "./PostHomePage";
 import Feed from "./Feed";
 import SidebarSxPaginaHome from "./sidebarSxHome/SidebarSxPaginaHome";
 import FooterAdCard from "../pagina profilo/SidebarRightProfilo/components/FooterAdCard";
-import Giochino from "./Gioco";
 import FooterSidebar from "./FooterSidebar";
 
 const Home = function () {
