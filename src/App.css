@@ -650,6 +650,8 @@ body {
 .sidebar-sticky {
   position: sticky;
   top: 90px;
+}
+
 .post-hp-avatar {
   cursor: pointer;
 }
