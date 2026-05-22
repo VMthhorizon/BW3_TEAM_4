@@ -511,17 +511,6 @@ const NavbarLinkedin = function () {
         <Col xs={12} className="text-center justify-content-around p-0">
           <Navbar expand="lg" className="navbar-linkedin rounded-2 py-0">
             <Container className="position-relative">
-              <Link
-                to="/me"
-                className="profile-dropdown me-4 container-img d-lg-none"
-                align="end"
-              >
-                <Image
-                  roundedCircle
-                  src={profilo?.image}
-                  className="object-fit-cover image-container"
-                />
-              </Link>
               <Link to="/home" className="navbar.brand me-1">
                 <i className="bi bi-linkedin logo-linkedin"></i>
               </Link>
@@ -572,6 +561,17 @@ const NavbarLinkedin = function () {
               </div>
 
               <ChatboxMobile isOpen={isOpen} setIsOpen={setIsOpen} />
+              <Link
+                to="/me"
+                className="profile-dropdown me-4 container-img d-lg-none"
+                align="end"
+              >
+                <Image
+                  roundedCircle
+                  src={profilo?.image}
+                  className="object-fit-cover image-container"
+                />
+              </Link>
 
               <Navbar.Collapse
                 className="justify-content-end"
