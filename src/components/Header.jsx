@@ -111,7 +111,7 @@ const NavbarLinkedin = function () {
     const interval = setInterval(() => {
       fetch("https://striveschool-api.herokuapp.com/api/comments/", {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBhZDViOTA2YmJlOTAwMTVkZWU1N2YiLCJpYXQiOjE3NzkwOTQ5NjksImV4cCI6MTc4MDMwNDU2OX0.lCWAGVeHSActGSTjMyk8RMF3Ua0zXKkTnQcNrIuiP20`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2YTBjOGRiNzc0MDQxZjAwMTUwYmZiYTAiLCJpYXQiOjE3NzkyMDc2MDcsImV4cCI6MTc4MDQxNzIwN30.HMrBR3Fc1AQqNEUSWBcW6BdUr9vynsKNjitPN7CA_dU`,
         },
       })
         .then((response) => {
@@ -529,7 +529,7 @@ const NavbarLinkedin = function () {
               <InputGroup className="me-sm-2 w-50 search-input-linkedin">
                 <InputGroup.Text
                   id="search-addon"
-                  className="bg-white border-end-0"
+                  className="search-addon-dark border-end-0"
                 >
                   <i className="bi bi-search text-muted"></i>
                 </InputGroup.Text>
