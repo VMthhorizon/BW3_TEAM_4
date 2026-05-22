@@ -37,13 +37,9 @@ function ProfilePersonalInfo() {
           variant="top"
           src={copertina}
         />
-
-        <Button
-          className=" border border-1 bg-secondary bg-light bg-opacity-75 rounded-circle position-absolute top-0 end-0 m-3 pencil-icon"
-          variant="light"
-        >
+        <div className=" matita1  rounded-5  py-1 px-2 position-absolute top-0 end-0 m-3 ">
           <i className="bi bi-pencil"></i>
-        </Button>
+        </div>
 
         <img
           className="m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
