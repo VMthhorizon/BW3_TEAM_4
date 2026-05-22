@@ -4,6 +4,8 @@ import HPSidebarRight from "./HPSidebarRight";
 import PostHomePage from "./PostHomePage";
 import Feed from "./Feed";
 import SidebarSxPaginaHome from "./sidebarSxHome/SidebarSxPaginaHome";
+import FooterAdCard from "../pagina profilo/SidebarRightProfilo/components/FooterAdCard";
+import FooterSidebar from "./FooterSidebar";
 
 const Home = function () {
   return (
@@ -28,6 +30,10 @@ const Home = function () {
         {/* sidebar destra */}
         <Col xs={12} lg={3}>
           <HPSidebarRight />
+          <div className="sidebar-sticky">
+            <FooterAdCard />
+            <FooterSidebar />
+          </div>
         </Col>
       </Row>
     </Container>

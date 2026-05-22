@@ -1,6 +1,7 @@
-import { useState } from "react"
-import { Button, Card, Col } from "react-bootstrap"
-import { useSelector } from "react-redux"
+import { useEffect, useState } from "react"
+import { Button, Card, Col, Row } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import getProfileAllListAction from "../../redux/actions/profileAction/ProfileAllList"
 function timeAgo(timestamp) {
   const diffMs = Date.now() - new Date(timestamp).getTime()
 
@@ -29,6 +30,17 @@ function timeAgo(timestamp) {
 const CentralNotifiche = function () {
   const [showNotifications, setShowNotifications] = useState(false)
   const notifications = useSelector((state) => state.notification.list)
+  const profiles = useSelector((state) => state.profile.profiles)
+
+  const dispatch = useDispatch()
+
+  console.log("prof", profiles)
+  console.log("not", notifications)
+
+  useEffect(() => {
+    dispatch(getProfileAllListAction())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>
@@ -73,18 +85,46 @@ const CentralNotifiche = function () {
             {notifications.length === 0 ? (
               <p className="text-muted mb-0">Nessuna notifica</p>
             ) : (
-              notifications.map((notification) => (
-                <div
-                  key={notification.id}
-                  className="border-bottom py-2 d-flex justify-content-between"
-                >
-                  <p className="mb-0">
-                    <span className="fw-bold">{notification.author}</span> ha
-                    commentato il tuo post: "{notification.text}"
-                  </p>
-                  <p className="mb-0">{timeAgo(notification.time)}</p>
-                </div>
-              ))
+              notifications.map((notification) => {
+                const userCommented = profiles?.find(
+                  (user) => user.username === notification.author,
+                )
+
+                return (
+                  <Row
+                    key={notification.id}
+                    className="d-flex align-items-center border-bottom py-2 "
+                  >
+                    <Col xs={1}>
+                      <img
+                        src={userCommented?.image}
+                        alt={notification.author}
+                        className="rounded-circle"
+                        style={{
+                          width: "40px",
+                          height: "40px",
+                          objectFit: "cover",
+                        }}
+                      />
+                    </Col>
+
+                    <Col>
+                      <p className="mb-0">
+                        <span className="fw-bold">{notification.author}</span>
+                        <br />
+                        Ha commentato il tuo post:
+                        <span className="fst-italic">
+                          "{notification.text}"
+                        </span>
+                      </p>
+                    </Col>
+
+                    <Col xs={3} className="text-end">
+                      <p className="mb-0">{timeAgo(notification.time)}</p>
+                    </Col>
+                  </Row>
+                )
+              })
             )}
           </Card.Body>
         </Card>

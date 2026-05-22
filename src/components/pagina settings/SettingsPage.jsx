@@ -1,11 +1,17 @@
-import { Container, Card } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { Container, Row, Col, Card } from "react-bootstrap";
+
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
 import { Gear, ShieldLock, Eye, Database, Bell } from "react-bootstrap-icons";
+import { TOGGLE_DARK_MODE } from "../../redux/actions/themeActions/toggleDarkMode";
 
 const SettingsPage = function () {
   const profilo = useSelector((state) => state.profile.me);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const darkMode = useSelector((state) => state.theme.darkMode);
 
   return (
     <Container fluid className="settings-page px-0">
@@ -193,6 +199,33 @@ const SettingsPage = function () {
                   <i className="bi bi-chevron-right"></i>
                 </div>
                 <hr className="m-0" />
+                <div
+                  className="settings-row"
+                  onClick={() => {
+                    dispatch({
+                      type: TOGGLE_DARK_MODE,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                >
+                  <span>
+                    Modalità scura{" "}
+                    {darkMode ? (
+                      <i class="bi bi-moon-stars"></i>
+                    ) : (
+                      <i class="bi bi-brightness-high"></i>
+                    )}
+                  </span>
+
+                  <div className="form-check form-switch m-0">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={darkMode}
+                      readOnly
+                    />
+                  </div>
+                </div>
 
                 <div className="settings-row ps-1">
                   <span>Mostra foto profilo</span>

@@ -4,6 +4,7 @@ import experienceReducer from "../reducers/experiencesReducer"
 import postReducer from "../reducers/postReducer"
 import commentsReducer from "../reducers/commentsReducer"
 import notificationReducer from "../reducers/notificationReducer"
+import toggleThemeReducer from "../reducers/toggleThemeReducer"
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     post: postReducer,
     comments: commentsReducer,
     notification: notificationReducer,
+    theme: toggleThemeReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

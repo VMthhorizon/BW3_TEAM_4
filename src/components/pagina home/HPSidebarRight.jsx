@@ -1,5 +1,6 @@
-import { useState } from "react"
-import { ChevronDown, ChevronUp } from "react-bootstrap-icons"
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
+import Giochino from "./Gioco";
 
 const HPSidebarRight = function () {
   const news = [
@@ -65,29 +66,12 @@ const HPSidebarRight = function () {
           {showAllNews ? "Mostra meno " : "Mostra altro "}
           {showAllNews ? <ChevronUp /> : <ChevronDown />}
         </div>
-      </div>
-
-      {/* footer */}
-      <div className="text-center small text-muted p-2">
-        <p className="mb-1">
-          <span className="footer-link">Informazioni</span>
-          {" • "}
-          <span className="footer-link">Accessibilità</span>
-        </p>
-
-        <p className="mb-1">
-          <span className="footer-link">Centro assistenza</span>
-          {" • "}
-          <span className="footer-link">Privacy e condizioni</span>
-        </p>
-
-        <p className="mb-1">
-          <span className="footer-link">Pubblicità</span>
-          {" • "}
-          <span className="footer-link">Servizi alle aziende</span>
-        </p>
-
-        <p className="mb-0">LinkedIn Clone © 2026</p>
+        <div className="p-2">
+          <h6 className="text-secondary fw-semibold">
+            Rompicapo di linkedin in evidenza
+          </h6>
+          <Giochino />
+        </div>
       </div>
     </div>
   )

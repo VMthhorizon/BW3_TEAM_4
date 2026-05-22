@@ -7,13 +7,17 @@ import "./SidebarRight.css"
 
 const SidebarRight = function () {
   return (
-    <div className="sidebar-right">
-      <LanguageCard />
-      <ViewedPeopleCard />
-      <SuggestedPeopleCard />
-      <SuggestedPagesCard />
-      <FooterAdCard />
-    </div>
+    <>
+      <div className="sidebar-right">
+        <LanguageCard />
+        <ViewedPeopleCard />
+        <SuggestedPeopleCard />
+        <SuggestedPagesCard />
+      </div>
+      <div className="sidebar-sticky">
+        <FooterAdCard />
+      </div>
+    </>
   )
 }
 

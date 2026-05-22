@@ -33,7 +33,21 @@ const ListaPostPersonaliDetailedSection = () => {
           <Swiper
             className="ms-2 mx-1 h-100"
             spaceBetween={20}
-            slidesPerView={2.2}
+            slidesPerView={1.2}
+            breakpoints={{
+              576: {
+                slidesPerView: 1.5,
+              },
+              768: {
+                slidesPerView: 2,
+              },
+              992: {
+                slidesPerView: 2.5,
+              },
+              1200: {
+                slidesPerView: 3,
+              },
+            }}
           >
             {listaPost
               .filter((post) => post.user?._id === profilo?._id)
