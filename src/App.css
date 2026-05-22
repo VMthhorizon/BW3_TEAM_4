@@ -640,3 +640,8 @@ body {
 .sidebar-card {
   width: 100%;
 }
+
+/* post home page avatar */
+.post-hp-avatar{
+  cursor: pointer;
+}

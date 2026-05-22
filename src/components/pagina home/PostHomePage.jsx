@@ -4,12 +4,15 @@ import { useDispatch, useSelector } from "react-redux"
 import getProfilePersonaleAction from "../../redux/actions/profileAction/profiloPersonal"
 import postPostAction from "../../redux/actions/postAction/postPost"
 import { CalendarWeek, Newspaper } from "react-bootstrap-icons"
+import { useNavigate } from "react-router-dom"
 
 import getPostAllListAction from "../../redux/actions/postAction/postAll"
 
 const PostHomePage = () => {
   const [show, setShow] = useState(false)
   const [postText, setPostText] = useState("")
+
+  const navigate = useNavigate()
 
   const handleClose = () => {
     setShow(false)
@@ -33,12 +36,13 @@ const PostHomePage = () => {
           <Row>
             <Col xs={12} className="d-flex gap-3 justify-content-between">
               <img
-                className="rounded-circle object-fit-cover"
+                className="rounded-circle object-fit-cover post-hp-avatar"
                 style={{
                   width: "60px",
                   height: "60px",
                 }}
                 src={profilo?.image}
+                onClick={() => navigate("/me")}
               ></img>
               <Button
                 variant="outline-light"
