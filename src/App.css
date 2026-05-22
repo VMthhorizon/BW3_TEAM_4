@@ -252,10 +252,9 @@ body {
 }
 
 .comment-bubble {
-  background-color: white;
+  background-color: transparent;
   border-radius: 14px;
   padding: 10px 10px 10px 3px;
-
   position: relative;
 }
 
@@ -648,4 +647,7 @@ body {
 }
 
 /* sidebar home/profile sticky */
-
+.sidebar-sticky {
+  position: sticky;
+  top: 90px;
+}
