@@ -1,4 +1,4 @@
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Card } from "react-bootstrap";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -31,8 +31,8 @@ const SettingsPage = function () {
       >
         <div className="my-4 d-flex gap-3 align-items-center">
           <img
-            style={{ width: "70px" }}
-            className="rounded-circle fs-4"
+            style={{ width: "70px", height: "70px" }}
+            className="rounded-circle fs-4 object-fit-cover"
             src={profilo?.image}
           ></img>
           <h4 className="fw-bold fs-1 mb-0">Impostazioni</h4>
@@ -160,10 +160,32 @@ const SettingsPage = function () {
             <Card className="settings-card border-0 mt-3">
               <Card.Body>
                 <h3 className="settings-card-title mb-0">Visualizzazione</h3>
+                <div
+                  className="settings-row"
+                  onClick={() => {
+                    dispatch({
+                      type: TOGGLE_DARK_MODE,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                >
+                  <span>
+                    Modalità scura{" "}
+                    {darkMode ? (
+                      <i class="bi bi-moon-stars"></i>
+                    ) : (
+                      <i class="bi bi-brightness-high"></i>
+                    )}
+                  </span>
 
-                <div className="settings-row ps-1">
-                  <span>Modalità scura</span>
-                  <i className="bi bi-chevron-right"></i>
+                  <div className="form-check form-switch m-0">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={darkMode}
+                      readOnly
+                    />
+                  </div>
                 </div>
               </Card.Body>
             </Card>
@@ -199,33 +221,6 @@ const SettingsPage = function () {
                   <i className="bi bi-chevron-right"></i>
                 </div>
                 <hr className="m-0" />
-                <div
-                  className="settings-row"
-                  onClick={() => {
-                    dispatch({
-                      type: TOGGLE_DARK_MODE,
-                    });
-                  }}
-                  style={{ cursor: "pointer" }}
-                >
-                  <span>
-                    Modalità scura{" "}
-                    {darkMode ? (
-                      <i class="bi bi-moon-stars"></i>
-                    ) : (
-                      <i class="bi bi-brightness-high"></i>
-                    )}
-                  </span>
-
-                  <div className="form-check form-switch m-0">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      checked={darkMode}
-                      readOnly
-                    />
-                  </div>
-                </div>
 
                 <div className="settings-row ps-1">
                   <span>Mostra foto profilo</span>
