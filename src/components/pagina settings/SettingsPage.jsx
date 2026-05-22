@@ -1,11 +1,13 @@
 import { Container, Row, Col, Card } from "react-bootstrap"
 
 import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 import { Gear, ShieldLock, Eye, Database, Bell } from "react-bootstrap-icons"
 
 const SettingsPage = function () {
   const profilo = useSelector((state) => state.profile.me)
+  const navigate = useNavigate()
 
   return (
     <Container fluid className="settings-page">
@@ -50,6 +52,7 @@ const SettingsPage = function () {
                 src={profilo?.image}
                 alt="avatar"
                 className="settings-sidebar-avatar"
+                onClick={() => navigate("/me")}
               />
 
               <h2 className="fw-bold mb-0">Impostazioni</h2>
