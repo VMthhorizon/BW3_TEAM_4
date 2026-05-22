@@ -27,13 +27,15 @@ const Giochino = function () {
             <small className="text-muted d-block">Thursday, May 21</small>
           </div>
         </div>
-        <Button
-          variant="outline-secondary"
-          className="rounded-5 fw-semibold py-0 btn-sm"
-          style={{ borderWidth: "2px" }}
-        >
-          Gioca
-        </Button>
+        <div>
+          <Button
+            variant="outline-secondary"
+            className="rounded-5 fw-semibold py-0 btn-sm"
+            style={{ borderWidth: "2px" }}
+          >
+            Gioca
+          </Button>
+        </div>
       </div>
     </Col>
   );
