@@ -650,4 +650,408 @@ body {
 .sidebar-sticky {
   position: sticky;
   top: 90px;
+.post-hp-avatar {
+  cursor: pointer;
+}
+
+/* =========================================
+   GLOBAL
+========================================= */
+
+.dark-mode {
+  background-color: #121212;
+  color: #f3f2ef;
+  min-height: 100vh;
+}
+
+/* =========================================
+   BODY
+========================================= */
+
+.dark-mode body,
+.dark-mode main {
+  background-color: #121212 !important;
+  color: #f3f2ef !important;
+}
+
+/* =========================================
+   TEXT
+========================================= */
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6,
+.dark-mode p,
+.dark-mode span,
+.dark-mode small,
+.dark-mode label,
+.dark-mode li,
+.dark-mode strong {
+  color: #f3f2ef !important;
+}
+
+/* bootstrap text */
+
+.dark-mode .text-dark,
+.dark-mode .text-black {
+  color: #f3f2ef !important;
+}
+
+.dark-mode .text-muted,
+.dark-mode .text-secondary {
+  color: #a8a8a8 !important;
+}
+
+/* =========================================
+   BACKGROUNDS
+========================================= */
+
+.dark-mode .bg-white,
+.dark-mode .bg-light,
+.dark-mode .card,
+.dark-mode .modal-content,
+.dark-mode .dropdown-menu,
+.dark-mode .sidebar-card,
+.dark-mode .sidebar-card-content,
+.dark-mode .settings-card,
+.dark-mode .active-chat,
+.dark-mode .chat-footer,
+.dark-mode .chat-header,
+.dark-mode .list-group-item {
+  background-color: #1e1e1e !important;
+  color: #f3f2ef !important;
+}
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.dark-mode .navbar {
+  background-color: #1e1e1e !important;
+  border-bottom: 1px solid #2f2f2f !important;
+}
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select,
+.dark-mode .form-control {
+  background-color: #2a2a2a !important;
+  color: white !important;
+  border: 1px solid #444 !important;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: #999 !important;
+}
+
+.dark-mode input:focus,
+.dark-mode textarea:focus,
+.dark-mode select:focus {
+  background-color: #2a2a2a !important;
+  color: white !important;
+  border-color: #0a66c2 !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.dark-mode .btn-light {
+  background-color: #2a2a2a !important;
+  color: white !important;
+  border-color: #444 !important;
+}
+
+.dark-mode .btn-outline-dark {
+  color: white !important;
+  border-color: #666 !important;
+}
+
+.dark-mode .btn-outline-dark:hover {
+  background-color: #333 !important;
+}
+
+/* =========================================
+   DROPDOWN
+========================================= */
+
+.dark-mode .dropdown-item {
+  color: white !important;
+}
+
+.dark-mode .dropdown-item:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* =========================================
+   MODALS
+========================================= */
+
+.dark-mode .modal-header,
+.dark-mode .modal-footer {
+  border-color: #333 !important;
+}
+
+.dark-mode .btn-close {
+  filter: invert(1);
+}
+
+/* =========================================
+   BORDERS
+========================================= */
+
+.dark-mode .border,
+.dark-mode .border-top,
+.dark-mode .border-bottom,
+.dark-mode .border-start,
+.dark-mode .border-end,
+.dark-mode hr {
+  border-color: #333 !important;
+}
+
+/* =========================================
+   ICONS
+========================================= */
+
+.dark-mode i {
+  color: #f3f2ef !important;
+}
+
+/* =========================================
+   LINKS
+========================================= */
+
+.dark-mode a {
+  color: #70b5f9 !important;
+}
+
+.dark-mode a:hover {
+  color: #9ed0ff !important;
+}
+
+/* =========================================
+   CHAT
+========================================= */
+
+.dark-mode .chat-content {
+  background-color: #181818 !important;
+}
+
+.dark-mode .msg-bubble.bg-light {
+  background-color: #2d2d2d !important;
+  color: white !important;
+}
+
+/* =========================================
+   SETTINGS PAGE
+========================================= */
+
+.dark-mode .settings-sidebar {
+  background-color: #1a1a1a !important;
+}
+
+.dark-mode .settings-sidebar-item:hover,
+.dark-mode .settings-row:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* =========================================
+   CUSTOM COMPONENTS
+========================================= */
+
+.dark-mode .sidebar-item:hover,
+.dark-mode .show-all:hover {
+  background-color: #2a2a2a !important;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.dark-mode footer {
+  background-color: #121212 !important;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+.dark-mode ::-webkit-scrollbar {
+  width: 10px;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 20px;
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+  background: #666;
+}
+/* =========================================
+   HOVER DARK MODE
+========================================= */
+
+.dark-mode .linkedin-nav-btn:hover {
+  color: white !important;
+}
+
+.dark-mode .news-item:hover {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .post-action:hover {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .search-item:hover {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .settings-row:hover {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .settings-sidebar-item:hover {
+  background-color: #2a2a2a !important;
+  color: #70b5f9 !important;
+}
+
+.dark-mode .btn-verify-custom:hover,
+.dark-mode .btn-profile-custom:hover {
+  background-color: #2a2a2a !important;
+  border-color: #70b5f9 !important;
+}
+
+.dark-mode .footer-link:hover {
+  color: #70b5f9 !important;
+}
+
+.dark-mode .comment-edit:hover,
+.dark-mode .comment-delete:hover {
+  color: white !important;
+}
+
+.dark-mode .show-all:hover {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .sidebar-item:hover {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .dropdown-item:hover {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .list-group-item:hover {
+  background-color: #2a2a2a !important;
+}
+/* =========================================
+   MODALS FULL DARK MODE
+========================================= */
+
+.dark-mode .modal-content {
+  background-color: #1e1e1e !important;
+  color: white !important;
+}
+
+.dark-mode .modal-header {
+  background-color: #1e1e1e !important;
+  border-bottom: 1px solid #333 !important;
+}
+
+.dark-mode .modal-body {
+  background-color: #1e1e1e !important;
+  color: white !important;
+}
+
+.dark-mode .modal-footer {
+  background-color: #1e1e1e !important;
+  border-top: 1px solid #333 !important;
+}
+
+/* titolo modal */
+
+.dark-mode .modal-title {
+  color: white !important;
+}
+
+/* close button */
+
+.dark-mode .btn-close {
+  filter: invert(1) grayscale(100%);
+}
+
+/* backdrop */
+
+.dark-mode .modal-backdrop.show {
+  opacity: 0.7;
+}
+
+/* inputs dentro modal */
+
+.dark-mode .modal input,
+.dark-mode .modal textarea,
+.dark-mode .modal select {
+  background-color: #2a2a2a !important;
+  color: white !important;
+  border: 1px solid #444 !important;
+}
+
+/* label */
+
+.dark-mode .modal label {
+  color: white !important;
+}
+
+/* hover buttons */
+
+.dark-mode .modal .btn-light:hover {
+  background-color: #333 !important;
+}
+
+.dark-mode .linkedin-nav-btn.active::after {
+  background-color: white !important;
+}
+
+.dark-mode .linkedin-nav-btn.active {
+  color: white !important;
+}
+.dark-mode .settings-page {
+  background-color: #121212 !important;
+}
+
+.dark-mode .settings-page .container,
+.dark-mode .settings-page .container-fluid,
+.dark-mode .settings-page .row,
+.dark-mode .settings-page .col {
+  background-color: transparent !important;
+}
+/* =========================================
+   CARD BORDERS DARK MODE
+========================================= */
+
+.dark-mode .card,
+.dark-mode .settings-card,
+.dark-mode .sidebar-card,
+.dark-mode .modal-content,
+.dark-mode .dropdown-menu,
+.dark-mode .list-group-item,
+.dark-mode .active-chat,
+.dark-mode .list-container {
+  border: 1px solid #3a3a3a !important;
 }
