@@ -121,7 +121,24 @@
 /* pencil */
 .pencil-icon {
   cursor: pointer;
+    background-color: #edf1f5 ;
+    
 }
+.pencil-icon:hover{
+  background-color: #d3d4d5 ;
+
+}
+ 
+.matita:hover{
+  color: black;
+  cursor:pointer;
+
+}
+
+.matita{
+  font-size: 20px;
+}
+ 
 
 /* language modal */
 .language-modal-body {

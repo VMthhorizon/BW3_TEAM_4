@@ -1055,3 +1055,32 @@ body {
 .dark-mode .list-container {
   border: 1px solid #3a3a3a !important;
 }
+}
+
+/*paginarete*/
+
+.d-flex.align-items-center.p-2 {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+
+.d-flex.align-items-center.p-2:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+
+.bg-white.bg-opacity-75.rounded-pill {
+  cursor: pointer;
+}
+
+
+.btn-outline-primary {
+  cursor: pointer !important;
+}
+
+
+.position-absolute.bg-white.rounded-3 {
+  cursor: pointer;
+}
+ 

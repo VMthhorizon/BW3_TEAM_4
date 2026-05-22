@@ -1,34 +1,34 @@
-import { Col, Container, Row, Nav, Modal, NavLink } from "react-bootstrap"
+import { Col, Container, Row, Nav, Modal, NavLink } from "react-bootstrap";
 import {
   Apple,
   Envelope,
   Linkedin,
   PatchCheck,
   TelephoneFill,
-} from "react-bootstrap-icons"
-import Button from "react-bootstrap/Button"
-import Card from "react-bootstrap/Card"
-import MyCarousel from "./MyCarousel"
-import { useDispatch, useSelector } from "react-redux"
-import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal"
-import { useEffect, useState } from "react"
+} from "react-bootstrap-icons";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import MyCarousel from "./MyCarousel";
+import { useDispatch, useSelector } from "react-redux";
+import getProfilePersonaleAction from "../../../redux/actions/profileAction/profiloPersonal";
+import { useEffect, useState } from "react";
 
-import AddImages from "../../AddImages"
-import copertina from "../../../assets/van gogh ciliegio.jpg"
+import AddImages from "../../AddImages";
+import copertina from "../../../assets/van gogh ciliegio.jpg";
 function ProfilePersonalInfo() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
-  })
-  const [show, setShow] = useState(false)
+    return storeRedux.profile.me;
+  });
+  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
-    dispatch(getProfilePersonaleAction())
+    dispatch(getProfilePersonaleAction());
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
   return (
     <Card className="mb-3">
       <div className="position-relative">
@@ -37,15 +37,14 @@ function ProfilePersonalInfo() {
           variant="top"
           src={copertina}
         />
+
         <Button
-          className="border border-1 bg-secondary bg-light bg-opacity-75 rounded-circle position-absolute top-0 end-0 m-3"
+          className=" border border-1 bg-secondary bg-light bg-opacity-75 rounded-circle position-absolute top-0 end-0 m-3 pencil-icon"
           variant="light"
         >
-          <i
-            className="bi bi-pencil pencil-icon"
-            style={{ fontSize: "0.9em" }}
-          ></i>
+          <i className="bi bi-pencil"></i>
         </Button>
+
         <img
           className="m-3 start-0 rounded-circle p-1 bg-white object-fit-cover "
           style={{
@@ -182,7 +181,7 @@ function ProfilePersonalInfo() {
         </Modal.Footer>
       </Modal>
     </Card>
-  )
+  );
 }
 
-export default ProfilePersonalInfo
+export default ProfilePersonalInfo;

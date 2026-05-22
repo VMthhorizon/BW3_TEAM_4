@@ -22,7 +22,7 @@ const AddImages = function () {
           handleShow();
         }}
       >
-        <i className="bi bi-pencil pencil-icon"></i>
+        <i className="bi bi-pencil "></i>
       </Button>
       <Modal show={ShowModal} onHide={handleClose} centered>
         <Modal.Header closeButton>
