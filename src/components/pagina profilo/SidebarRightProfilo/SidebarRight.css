@@ -1,8 +1,7 @@
 /* COMUNI */
 .sidebar-right {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  display: block;
+  overflow: visible;
 }
 
 /* sidebar cards */
@@ -11,6 +10,7 @@
   border-radius: 10px;
   border: 1px solid #ddd;
   overflow: hidden;
+  margin-bottom: 15px;
 }
 
 /* contenuto interno della card */
