@@ -14,7 +14,7 @@ import getProfilePersonaleAction from "../../../redux/actions/profileAction/prof
 import { useEffect, useState } from "react";
 
 import AddImages from "../../AddImages";
-import copertina from "../../../assets/van gogh ciliegio.jpg";
+import copertina from "../../../assets/sinner.jpg";
 function ProfilePersonalInfo() {
   const dispatch = useDispatch();
   const profilo = useSelector((storeRedux) => {
