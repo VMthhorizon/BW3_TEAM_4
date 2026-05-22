@@ -1,7 +1,6 @@
-import { useState } from "react"
-import { ChevronDown, ChevronUp } from "react-bootstrap-icons"
-
-import AdImg from "../../assets/jobAd.png"
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
+import Giochino from "./Gioco";
 
 const HPSidebarRight = function () {
   const news = [
@@ -66,6 +65,12 @@ const HPSidebarRight = function () {
         <div className="show-all" onClick={() => setShowAllNews(!showAllNews)}>
           {showAllNews ? "Mostra meno " : "Mostra altro "}
           {showAllNews ? <ChevronUp /> : <ChevronDown />}
+        </div>
+        <div className="p-2">
+          <h6 className="text-secondary fw-semibold">
+            Rompicapo di linkedin in evidenza
+          </h6>
+          <Giochino />
         </div>
       </div>
     </div>

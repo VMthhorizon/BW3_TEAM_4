@@ -31,7 +31,6 @@ const Home = function () {
         {/* sidebar destra */}
         <Col xs={12} lg={3}>
           <HPSidebarRight />
-          <Giochino />
           <FooterAdCard />
           <FooterSidebar />
         </Col>

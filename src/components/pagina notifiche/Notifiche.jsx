@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import FooterAdCard from "../pagina profilo/SidebarRightProfilo/components/FooterAdCard";
 import CentralNotifiche from "./CentralNotifiche";
+import FooterSidebar from "../pagina home/FooterSidebar";
 
 const Notifiche = function () {
   const profilo = useSelector((storeRedux) => {
@@ -35,6 +36,7 @@ const Notifiche = function () {
         {/* sidebar destra */}
         <Col xs={12} lg={3}>
           <FooterAdCard />
+          <FooterSidebar />
         </Col>
       </Row>
     </Container>
