@@ -12,21 +12,68 @@ const SettingsPage = function () {
       {/* mobile nav */}
       <div
         className="
-        ms-4
+          bg-white
           d-flex
           d-md-none
-          gap-4
+          gap-2
           overflow-auto
           px-3
-          py-3
+         
           settings-mobile-nav
+          flex-column
         "
       >
-        <div className="settings-mobile-item active">Preferenze account</div>
-        <div className="settings-mobile-item">Accesso e sicurezza</div>
-        <div className="settings-mobile-item">Visibilità</div>
-        <div className="settings-mobile-item">Privacy dei dati</div>
-        <div className="settings-mobile-item">Notifiche</div>
+        <div className="my-4 d-flex gap-3 align-items-center">
+          <img
+            style={{ width: "70px" }}
+            className="rounded-circle fs-4"
+            src={profilo?.image}
+          ></img>
+          <h4 className="fw-bold fs-1 mb-0">Impostazioni</h4>
+        </div>
+        <div className="gap-1 flex-column flex-sm-row justify-content-between d-flex">
+          <h6
+            style={{
+              textDecoration: "underline",
+              textUnderlineOffset: "8px",
+            }}
+            className="p-0 text-decoration-underline fs-6 settings-sidebar-item active"
+          >
+            Preferenze account
+          </h6>
+          <h6
+            style={{
+              cursor: "pointer",
+            }}
+            className="text-muted fw-bold"
+          >
+            Accesso e sicurezza
+          </h6>
+          <h6
+            style={{
+              cursor: "pointer",
+            }}
+            className="text-muted fw-bold"
+          >
+            Visibilità
+          </h6>
+          <h6
+            style={{
+              cursor: "pointer",
+            }}
+            className="text-muted fw-bold"
+          >
+            Privacy dei dati
+          </h6>
+          <h6
+            style={{
+              cursor: "pointer",
+            }}
+            className="text-muted fw-bold"
+          >
+            Notifiche
+          </h6>
+        </div>
       </div>
 
       <div className="d-flex align-items-stretch">
