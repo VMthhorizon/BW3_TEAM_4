@@ -68,34 +68,6 @@ const HPSidebarRight = function () {
           {showAllNews ? <ChevronUp /> : <ChevronDown />}
         </div>
       </div>
-
-      <div className="sidebar-sticky">
-        <div className="footer-ad">
-          <img src={AdImg} alt="advertisement" />
-        </div>
-        {/* footer */}
-        <div className="text-center small text-muted">
-          <p className="mb-1">
-            <span className="footer-link">Informazioni</span>
-            {" • "}
-            <span className="footer-link">Accessibilità</span>
-          </p>
-
-          <p className="mb-1">
-            <span className="footer-link">Centro assistenza</span>
-            {" • "}
-            <span className="footer-link">Privacy e condizioni</span>
-          </p>
-
-          <p className="mb-1">
-            <span className="footer-link">Pubblicità</span>
-            {" • "}
-            <span className="footer-link">Servizi alle aziende</span>
-          </p>
-
-          <p className="mb-0">LinkedIn Clone © 2026</p>
-        </div>
-      </div>
     </div>
   )
 }
