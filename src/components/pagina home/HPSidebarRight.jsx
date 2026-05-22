@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { ChevronDown, ChevronUp } from "react-bootstrap-icons"
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "react-bootstrap-icons";
 
 const HPSidebarRight = function () {
   const news = [
@@ -40,9 +40,9 @@ const HPSidebarRight = function () {
       title: "Aumentano i consumi per cani e gatti",
       info: "4 giorni fa • 360 lettori",
     },
-  ]
+  ];
 
-  const [showAllNews, setShowAllNews] = useState(false)
+  const [showAllNews, setShowAllNews] = useState(false);
 
   return (
     <div className="d-flex flex-column gap-2">
@@ -66,31 +66,8 @@ const HPSidebarRight = function () {
           {showAllNews ? <ChevronUp /> : <ChevronDown />}
         </div>
       </div>
-
-      {/* footer */}
-      <div className="text-center small text-muted p-2">
-        <p className="mb-1">
-          <span className="footer-link">Informazioni</span>
-          {" • "}
-          <span className="footer-link">Accessibilità</span>
-        </p>
-
-        <p className="mb-1">
-          <span className="footer-link">Centro assistenza</span>
-          {" • "}
-          <span className="footer-link">Privacy e condizioni</span>
-        </p>
-
-        <p className="mb-1">
-          <span className="footer-link">Pubblicità</span>
-          {" • "}
-          <span className="footer-link">Servizi alle aziende</span>
-        </p>
-
-        <p className="mb-0">LinkedIn Clone © 2026</p>
-      </div>
     </div>
-  )
-}
+  );
+};
 
-export default HPSidebarRight
+export default HPSidebarRight;
