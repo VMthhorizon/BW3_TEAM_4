@@ -1,6 +1,7 @@
-import { Container, Row, Col, NavLink, CloseButton } from "react-bootstrap";
-import { Pencil } from "react-bootstrap-icons";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { Container, Row, Col, NavLink, CloseButton } from "react-bootstrap"
+import { Pencil } from "react-bootstrap-icons"
+import { Swiper, SwiperSlide } from "swiper/react"
+import "swiper/css"
 
 const MyCarousel = () => {
   return (
@@ -120,7 +121,7 @@ const MyCarousel = () => {
         </Container>
       </SwiperSlide>
     </Swiper>
-  );
-};
+  )
+}
 
-export default MyCarousel;
+export default MyCarousel
