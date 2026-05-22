@@ -28,8 +28,8 @@ const Giochino = function () {
           </div>
         </div>
         <Button
-          variant="outline-primary"
-          className="rounded-5 fw-semibold py-0"
+          variant="outline-secondary"
+          className="rounded-5 fw-semibold py-0 btn-sm"
           style={{ borderWidth: "2px" }}
         >
           Gioca
