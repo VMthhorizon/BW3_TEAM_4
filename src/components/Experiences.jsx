@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react"
-import { Row, Col, Modal, Button, Form } from "react-bootstrap"
-import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons"
-import { useDispatch, useSelector } from "react-redux"
-import experiencePostAction from "../redux/actions/experiencesAction/experiencePost"
-import experiencesListAction from "../redux/actions/experiencesAction/experiencesList"
-import experienceDeleteAction from "../redux/actions/experiencesAction/experienceDelete"
-import experiencePutAction from "../redux/actions/experiencesAction/experiencePut"
-import AddExperienceImagesAction from "../redux/actions/images action/pictureExperience"
+import { useState, useEffect } from "react";
+import { Row, Col, Modal, Button, Form } from "react-bootstrap";
+import { PlusLg, Briefcase, Pencil } from "react-bootstrap-icons";
+import { useDispatch, useSelector } from "react-redux";
+import experiencePostAction from "../redux/actions/experiencesAction/experiencePost";
+import experiencesListAction from "../redux/actions/experiencesAction/experiencesList";
+import experienceDeleteAction from "../redux/actions/experiencesAction/experienceDelete";
+import experiencePutAction from "../redux/actions/experiencesAction/experiencePut";
+import AddExperienceImagesAction from "../redux/actions/images action/pictureExperience";
 // import experiencePutAction from "../redux/actions/experiencesAction/experiencePut"
 
 const ExperienceSection = () => {
-  const [show, setShow] = useState(false)
-  const [image, setImage] = useState(null)
+  const [show, setShow] = useState(false);
+  const [image, setImage] = useState(null);
   const [formExp, setFormExp] = useState({
     role: "",
     company: "",
@@ -19,26 +19,26 @@ const ExperienceSection = () => {
     endDate: "",
     description: "",
     area: "",
-  })
+  });
 
-  const [selectedExpId, setSelectedExpId] = useState(null)
+  const [selectedExpId, setSelectedExpId] = useState(null);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const profilo = useSelector((storeRedux) => {
-    return storeRedux.profile.me
-  })
+    return storeRedux.profile.me;
+  });
 
   const listaEsperienze = useSelector((storeRedux) => {
-    return storeRedux.experience.list
-  })
+    return storeRedux.experience.list;
+  });
 
   useEffect(() => {
     if (profilo?._id) {
-      dispatch(experiencesListAction(profilo?._id))
+      dispatch(experiencesListAction(profilo?._id));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [profilo])
+  }, [profilo]);
 
   return (
     <>
@@ -48,10 +48,13 @@ const ExperienceSection = () => {
             <h5 className="m-0">Esperienza</h5>
             <div className="d-flex gap-3 align-items-center">
               <PlusLg
+                className="pencil-btn-linkedin"
                 style={{ cursor: "pointer" }}
                 onClick={() => setShow(true)}
               />
-              <Pencil className="pencil-icon" size={18} />
+              <div className="pencil-icon rounded-4 px-2 py-2 d-flex justify-content-center align-items-center">
+                <Pencil size={18} />
+              </div>
             </div>
           </div>
 
@@ -90,36 +93,44 @@ const ExperienceSection = () => {
                       </p>
                     )}
                   </div>
-                  <div className="d-flex ms-5">
-                    <Button
-                      className="border-0"
-                      variant="light"
-                      onClick={() => {
-                        setFormExp({
-                          role: exp.role,
-                          company: exp.company,
-                          startDate: exp.startDate.slice(0, 10),
-                          endDate: exp.endDate ? exp.endDate.slice(0, 10) : "",
-                          description: exp.description,
-                          area: exp.area,
-                        })
+                  <div className=" d-flex ms-5">
+                    <div>
+                      <Button
+                        className="border-0 mt-2"
+                        variant="light"
+                        onClick={() => {
+                          setFormExp({
+                            role: exp.role,
+                            company: exp.company,
+                            startDate: exp.startDate.slice(0, 10),
+                            endDate: exp.endDate
+                              ? exp.endDate.slice(0, 10)
+                              : "",
+                            description: exp.description,
+                            area: exp.area,
+                          });
 
-                        setSelectedExpId(exp._id)
+                          setSelectedExpId(exp._id);
 
-                        setShow(true)
-                      }}
-                    >
-                      <i className="bi bi-pencil pencil-icon"></i>
-                    </Button>
-                    <Button
-                      className="border-0"
-                      variant="light"
-                      onClick={() => {
-                        dispatch(experienceDeleteAction(profilo._id, exp._id))
-                      }}
-                    >
-                      <i className="bi bi-trash3"></i>
-                    </Button>
+                          setShow(true);
+                        }}
+                      >
+                        <i className="bi bi-pencil "></i>
+                      </Button>
+                    </div>
+                    <div>
+                      <Button
+                        className="border-0 mt-2"
+                        variant="none"
+                        onClick={() => {
+                          dispatch(
+                            experienceDeleteAction(profilo._id, exp._id),
+                          );
+                        }}
+                      >
+                        <i className="bi bi-trash3"></i>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -162,7 +173,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     role: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -177,7 +188,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     company: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -191,7 +202,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     description: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -205,7 +216,7 @@ const ExperienceSection = () => {
                   setFormExp({
                     ...formExp,
                     area: e.target.value,
-                  })
+                  });
                 }}
               />
             </Form.Group>
@@ -220,7 +231,7 @@ const ExperienceSection = () => {
                     setFormExp({
                       ...formExp,
                       startDate: e.target.value.toString(),
-                    })
+                    });
                   }}
                 />
               </Col>
@@ -233,7 +244,7 @@ const ExperienceSection = () => {
                     setFormExp({
                       ...formExp,
                       endDate: e.target.value.toString(),
-                    })
+                    });
                   }}
                 />
               </Col>
@@ -255,10 +266,10 @@ const ExperienceSection = () => {
                         profilo?._id,
                         selectedExpId,
                       ),
-                    )
+                    );
                   }
-                  dispatch(experiencesListAction(profilo._id))
-                })
+                  dispatch(experiencesListAction(profilo._id));
+                });
               } else {
                 dispatch(experiencePostAction(profilo?._id, formExp)).then(
                   () => {
@@ -269,14 +280,14 @@ const ExperienceSection = () => {
                           profilo?._id,
                           selectedExpId,
                         ),
-                      )
+                      );
                     }
-                    dispatch(experiencesListAction(profilo._id))
+                    dispatch(experiencesListAction(profilo._id));
                   },
-                )
+                );
               }
 
-              setShow(false)
+              setShow(false);
             }}
           >
             Salva
@@ -284,7 +295,7 @@ const ExperienceSection = () => {
         </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default ExperienceSection
+export default ExperienceSection;

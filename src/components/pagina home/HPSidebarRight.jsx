@@ -41,9 +41,9 @@ const HPSidebarRight = function () {
       title: "Aumentano i consumi per cani e gatti",
       info: "4 giorni fa • 360 lettori",
     },
-  ];
+  ]
 
-  const [showAllNews, setShowAllNews] = useState(false);
+  const [showAllNews, setShowAllNews] = useState(false)
 
   return (
     <div className="d-flex flex-column gap-2">
@@ -74,7 +74,7 @@ const HPSidebarRight = function () {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default HPSidebarRight;
+export default HPSidebarRight

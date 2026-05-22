@@ -1,19 +1,19 @@
-import { Pencil } from "react-bootstrap-icons"
-import { useState } from "react"
-import { Modal, Button } from "react-bootstrap"
-import { useNavigate } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { Pencil } from "react-bootstrap-icons";
+import { useState } from "react";
+import { Modal, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const LanguageCard = function () {
-  const [language, setLanguage] = useState("Italiano")
-  const [showLanguageModal, setShowLanguageModal] = useState(false)
+  const [language, setLanguage] = useState("Italiano");
+  const [showLanguageModal, setShowLanguageModal] = useState(false);
 
-  const me = useSelector((state) => state.profile.me)
-  const selected = useSelector((state) => state.profile.selectedProfile)
-  const profileUrlMe = `www.linkedin.com/in/${me?.name?.toLowerCase()}-${me?.surname?.toLowerCase()}`
-  const profileUrlById = `www.linkedin.com/in/${selected?.name?.toLowerCase()}-${selected?.surname?.toLowerCase()}`
+  const me = useSelector((state) => state.profile.me);
+  const selected = useSelector((state) => state.profile.selectedProfile);
+  const profileUrlMe = `www.linkedin.com/in/${me?.name?.toLowerCase()}-${me?.surname?.toLowerCase()}`;
+  const profileUrlById = `www.linkedin.com/in/${selected?.name?.toLowerCase()}-${selected?.surname?.toLowerCase()}`;
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <>
@@ -21,10 +21,12 @@ const LanguageCard = function () {
         <div className="sidebar-card-content">
           <div className="language-row">
             <h5>Lingua del profilo</h5>
-            <Pencil
-              className="bi bi-pencil pencil-icon"
-              onClick={() => setShowLanguageModal(true)}
-            />
+            <div className="pencil-icon rounded-4 px-2 py-2 d-flex justify-content-center align-items-center">
+              <Pencil
+                className="bi bi-pencil  "
+                onClick={() => setShowLanguageModal(true)}
+              />
+            </div>
           </div>
           <p>Italiano</p>
 
@@ -32,10 +34,12 @@ const LanguageCard = function () {
 
           <div className="language-row">
             <h5>Profilo pubblico & URL</h5>
-            <Pencil
-              className="bi bi-pencil pencil-icon"
-              onClick={() => navigate("/public&url")}
-            />
+            <div className="pencil-icon rounded-4 px-2 py-2 d-flex justify-content-center align-items-center">
+              <Pencil
+                className="bi bi-pencil "
+                onClick={() => navigate("/public&url")}
+              />
+            </div>
           </div>
           <p>{selected ? profileUrlById : profileUrlMe}</p>
         </div>
@@ -65,7 +69,7 @@ const LanguageCard = function () {
         </Modal.Body>
       </Modal>
     </>
-  )
-}
+  );
+};
 
-export default LanguageCard
+export default LanguageCard;

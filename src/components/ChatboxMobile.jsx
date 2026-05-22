@@ -176,8 +176,11 @@ const ChatBox = ({ isOpen, setIsOpen }) => {
   return (
     <div className="chat-wrapper d-inline-block d-lg-none">
       {!isOpen && !activeChat && (
-        <div className="mobile-chat-toggle " onClick={() => setIsOpen(true)}>
-          <i className="bi bi-chat-dots-fill fs-4"></i>
+        <div
+          className="mobile-chat-toggle d-none"
+          onClick={() => setIsOpen(true)}
+        >
+          <i className="bi bi-chat-dots-fill fs-4 "></i>
         </div>
       )}
 

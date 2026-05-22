@@ -1,8 +1,7 @@
 /* COMUNI */
 .sidebar-right {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  display: block;
+  overflow: visible;
 }
 
 /* sidebar cards */
@@ -11,6 +10,7 @@
   border-radius: 10px;
   border: 1px solid #ddd;
   overflow: hidden;
+  margin-bottom: 15px;
 }
 
 /* contenuto interno della card */
@@ -79,15 +79,18 @@
 /* FOOTER AD */
 /* card pubblicitaria finale */
 .footer-ad {
+  width: 100%;
   aspect-ratio: 1 / 1;
+  border-radius: 12px;
   overflow: hidden;
 }
 
 /* immagine pubblicità */
 .footer-ad img {
   width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: contain;
+  display: block;
 }
 
 /* LANGUAGE CARD */
@@ -118,7 +121,33 @@
 /* pencil */
 .pencil-icon {
   cursor: pointer;
+    background-color: #f8f9fa
+  ;
+    
 }
+.pencil-icon:hover{
+  background-color: #d3d4d5 ;
+
+}
+ 
+.matita:hover{
+  color: black;
+  cursor:pointer;
+
+}
+
+.matita{
+  font-size: 20px;
+}
+
+.matita1{
+  cursor:pointer;
+  background-color:rgba(237, 241, 245, 0.5);
+ 
+}
+ .matita1:hover{
+   background-color: white;
+ }
 
 /* language modal */
 .language-modal-body {
@@ -139,4 +168,3 @@
   font-size: 14px;
   font-weight: 500;
 }
-

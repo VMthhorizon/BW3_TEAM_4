@@ -16,7 +16,9 @@ const Formazione = () => {
             <h5 className="m-0">Formazione</h5>
             <div className="d-flex gap-3 align-items-center">
               <PlusLg style={{ cursor: "pointer" }} onClick={handleShow} />
-              <Pencil className="pencil-icon" size={18} />
+              <div className="pencil-icon rounded-4 px-2 py-2 d-flex justify-content-center align-items-center">
+                <Pencil size={18} />
+              </div>
             </div>
           </div>
 

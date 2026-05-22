@@ -96,7 +96,7 @@ const PostCard = function ({ post }) {
         <div className="sidebar-card-content">
           {/* header */}
           <div
-            className="d-flex align-items-center gap-2 mb-3"
+            className="d-flex align-items-center gap-2 mb-3 post-name-pointer"
             onClick={() => {
               navigate(`/profile/${post.user._id}`)
             }}
