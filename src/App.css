@@ -1057,3 +1057,96 @@ body {
 .dark-mode .list-container {
   border: 1px solid #3a3a3a !important;
 }
+
+/* =========================================
+   CHAT SEARCH DARK MODE
+========================================= */
+
+.dark-mode .bg-search {
+  background-color: #2a2a2a !important;
+}
+
+.dark-mode .bg-search input,
+.dark-mode .bg-search .form-control {
+  background-color: #2a2a2a !important;
+  color: white !important;
+  border: none !important;
+}
+
+.dark-mode .bg-search input::placeholder {
+  color: #999 !important;
+}
+
+.dark-mode .bg-search .input-group-text {
+  background-color: #2a2a2a !important;
+  border: none !important;
+  color: #999 !important;
+}
+
+/* =========================================
+   GLOBAL BUTTONS DARK MODE
+========================================= */
+
+.dark-mode button,
+.dark-mode .btn {
+  background-color: #2a2a2a !important;
+  color: white !important;
+  border-color: #444 !important;
+}
+
+/* hover */
+
+.dark-mode button:hover,
+.dark-mode .btn:hover {
+  background-color: #333 !important;
+  color: white !important;
+  border-color: #555 !important;
+}
+
+/* active */
+
+.dark-mode button:active,
+.dark-mode .btn:active {
+  background-color: #3a3a3a !important;
+  border-color: #666 !important;
+}
+
+/* focus */
+
+.dark-mode button:focus,
+.dark-mode .btn:focus {
+  box-shadow: none !important;
+}
+
+/* btn light bootstrap */
+
+.dark-mode .btn-light {
+  background-color: #2a2a2a !important;
+  color: white !important;
+  border-color: #444 !important;
+}
+
+/* btn outline */
+
+.dark-mode .btn-outline-dark,
+.dark-mode .btn-outline-secondary {
+  color: white !important;
+  border-color: #555 !important;
+}
+
+.dark-mode .btn-outline-dark:hover,
+.dark-mode .btn-outline-secondary:hover {
+  background-color: #333 !important;
+}
+
+/* btn link */
+
+.dark-mode .btn-link {
+  color: #b0b0b0 !important;
+  background: transparent !important;
+}
+
+.dark-mode .btn-link:hover {
+  color: white !important;
+  background-color: #2a2a2a !important;
+}
