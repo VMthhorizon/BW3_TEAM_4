@@ -649,7 +649,7 @@ body {
 /* sidebar home/profile sticky */
 .sidebar-sticky {
   position: sticky;
-  top: 90px;
+  top: 70px;
 }
 
 .post-hp-avatar {

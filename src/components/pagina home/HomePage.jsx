@@ -30,8 +30,10 @@ const Home = function () {
         {/* sidebar destra */}
         <Col xs={12} lg={3}>
           <HPSidebarRight />
+          <div className="sidebar-sticky">
           <FooterAdCard />
           <FooterSidebar />
+          </div>
         </Col>
       </Row>
     </Container>

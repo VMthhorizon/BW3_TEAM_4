@@ -24,7 +24,7 @@ const ViewedPeopleCard = function () {
           <h5>Altri profili consultati</h5>
 
           {/* viewed people map start */}
-          {viewedPeople.slice(10, 15).map((person) => (
+          {viewedPeople.slice(12, 15).map((person) => (
             <SidebarItem
               key={person._id}
               image={person.image}
