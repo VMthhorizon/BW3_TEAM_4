@@ -34,9 +34,6 @@ const CentralNotifiche = function () {
 
   const dispatch = useDispatch()
 
-  console.log("prof", profiles)
-  console.log("not", notifications)
-
   useEffect(() => {
     dispatch(getProfileAllListAction())
     // eslint-disable-next-line react-hooks/exhaustive-deps

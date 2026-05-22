@@ -121,33 +121,47 @@
 /* pencil */
 .pencil-icon {
   cursor: pointer;
-    background-color: #f8f9fa
-  ;
-    
+  background-color: #f8f9fa;
 }
-.pencil-icon:hover{
-  background-color: #d3d4d5 ;
+.pencil-icon:hover {
+  background-color: #d3d4d5;
+}
 
+.dark-mode .pencil-icon {
+  background-color: rgba(112, 180, 249, 0) !important;
 }
- 
-.matita:hover{
+.dark-mode .pencil-icon:hover {
+  background-color: rgba(112, 180, 249, 0.104) !important;
+}
+
+.matita:hover {
   color: black;
-  cursor:pointer;
-
+  cursor: pointer;
 }
 
-.matita{
+.matita {
   font-size: 20px;
 }
 
-.matita1{
-  cursor:pointer;
-  background-color:rgba(237, 241, 245, 0.5);
- 
+.matita1 {
+  cursor: pointer;
+  background-color: rgba(237, 241, 245, 0.5);
 }
- .matita1:hover{
-   background-color: white;
- }
+.matita1:hover {
+  background-color: white;
+}
+
+.dark-mode .matita1:hover {
+  background-color: rgba(112, 180, 249, 0.104) !important;
+}
+
+.dark-mode .matita1 {
+  background-color: rgba(112, 180, 249, 0) !important;
+}
+
+.dark-mode .matita1 {
+  background-color: rgba(112, 180, 249, 0) !important;
+}
 
 /* language modal */
 .language-modal-body {

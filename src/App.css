@@ -1057,8 +1057,6 @@ body {
 .dark-mode .list-container {
   border: 1px solid #3a3a3a !important;
 }
-<<<<<<< HEAD
-}
 
 /*paginarete*/
 
@@ -1067,27 +1065,21 @@ body {
   transition: background-color 0.2s ease;
 }
 
-
 .d-flex.align-items-center.p-2:hover {
   background-color: rgba(0, 0, 0, 0.03);
 }
-
 
 .bg-white.bg-opacity-75.rounded-pill {
   cursor: pointer;
 }
 
-
 .btn-outline-primary {
   cursor: pointer !important;
 }
 
-
 .position-absolute.bg-white.rounded-3 {
   cursor: pointer;
 }
- 
-=======
 
 /* =========================================
    CHAT SEARCH DARK MODE
@@ -1327,4 +1319,3 @@ body {
 .dark-mode .btn-outline-primary:hover {
   background-color: rgba(112, 181, 249, 0.15) !important;
 }
->>>>>>> main

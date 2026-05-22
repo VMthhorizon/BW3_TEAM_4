@@ -681,18 +681,26 @@ const NavbarLinkedin = function () {
                   <Button
                     key={btn.id}
                     variant="link"
-                    className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""}`}
+                    className={`linkedin-nav-btn ${activeBtn === btn.id ? "active" : ""} ${btn.id !== "notifiche" ? "text-truncate" : ""}`}
                     onClick={() => {
                       setActiveBtn(btn.id)
-                      if (btn.id === "messaggi") {
-                        setIsOpen(true)
+                      if (btn.id === "notifiche") {
+                        dispatch({ type: "MARK_ALL_AS_READ" })
+                        setShowNotifications(true)
+                        navigate(btn.navigate)
                       } else if (btn.navigate) {
                         navigate(btn.navigate)
-                        setIsOpen(false)
                       }
                     }}
                   >
-                    <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
+                    <div className="position-relative overflow-visible">
+                      <i className={`bi ${btn.icon} linkedin-btn-icon`}></i>
+                      {btn.id === "notifiche" && unreadNotifications > 0 && (
+                        <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger ">
+                          {unreadNotifications}
+                        </span>
+                      )}
+                    </div>
                     <span className="linkedin-btn-text">{btn.label}</span>
                   </Button>
                 ))}
