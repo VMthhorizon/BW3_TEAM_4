@@ -1,9 +1,12 @@
-import { Container, Row, Col } from "react-bootstrap"
+import { Container, Row, Col } from "react-bootstrap";
 
-import HPSidebarRight from "./HPSidebarRight"
-import PostHomePage from "./PostHomePage"
-import Feed from "./Feed"
-import SidebarSxPaginaHome from "./sidebarSxHome/SidebarSxPaginaHome"
+import HPSidebarRight from "./HPSidebarRight";
+import PostHomePage from "./PostHomePage";
+import Feed from "./Feed";
+import SidebarSxPaginaHome from "./sidebarSxHome/SidebarSxPaginaHome";
+import FooterAdCard from "../pagina profilo/SidebarRightProfilo/components/FooterAdCard";
+import Giochino from "./Gioco";
+import FooterSidebar from "./FooterSidebar";
 
 const Home = function () {
   return (
@@ -28,10 +31,13 @@ const Home = function () {
         {/* sidebar destra */}
         <Col xs={12} lg={3}>
           <HPSidebarRight />
+          <Giochino />
+          <FooterAdCard />
+          <FooterSidebar />
         </Col>
       </Row>
     </Container>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
